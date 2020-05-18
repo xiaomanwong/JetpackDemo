@@ -27,11 +27,13 @@ class AppBottomBar @SuppressLint("RestrictedApi") constructor(
         context,
         attrs,
         0
-    ) {
-    }
+    )
 
     var mBottomBar: BottomBar? = null
 
+    /**
+     * 所有底部按钮的 icon
+     */
     companion object {
         val icons = intArrayOf(
             R.mipmap.icon_tab_home,
@@ -58,7 +60,21 @@ class AppBottomBar @SuppressLint("RestrictedApi") constructor(
         itemTextColor = colorStateList
         itemIconTintList = colorStateList
 
+        /*
+          自动判断
+          int LABEL_VISIBILITY_AUTO = -1;
+
+          选中时，显示文本
+          int LABEL_VISIBILITY_SELECTED = 0;
+
+          无论什么状态都显示文本
+          int LABEL_VISIBILITY_LABELED = 1;
+
+          无论什么状态都不显示文本
+          int LABEL_VISIBILITY_UNLABELED = 2;*/
         labelVisibilityMode = LabelVisibilityMode.LABEL_VISIBILITY_LABELED
+        // 设置选中 item
+        selectedItemId = mBottomBar?.selectTab!!
 
         val tabs = mBottomBar?.tabs
         for (tab in tabs!!) {

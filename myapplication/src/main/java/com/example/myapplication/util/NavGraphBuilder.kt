@@ -1,11 +1,12 @@
 package com.example.myapplication.util
 
 import android.content.ComponentName
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.ActivityNavigator
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.NavGraphNavigator
-import androidx.navigation.fragment.FragmentNavigator
+import com.example.myapplication.FixFragmentNavigator
 
 /**
  * @author wangxu
@@ -15,11 +16,15 @@ import androidx.navigation.fragment.FragmentNavigator
  */
 object NavGraphBuilder {
 
-    fun builder(navController: NavController) {
+    fun builder(activity: FragmentActivity, containerId: Int, navController: NavController) {
         val navigatorProvider = navController.navigatorProvider
         val activityNavigator: ActivityNavigator =
             navigatorProvider.getNavigator(ActivityNavigator::class.java)
-        val fragmentNavigator = navigatorProvider.getNavigator(FragmentNavigator::class.java)
+//        val fragmentNavigator = navigatorProvider.getNavigator(FragmentNavigator::class.java)
+        // 自定义的 fragment 导航器
+        val fragmentNavigator =
+            FixFragmentNavigator(activity, activity.supportFragmentManager, containerId)
+        navigatorProvider.addNavigator(fragmentNavigator)
         val destMap = getDestConfig()
 
         val navGraph = NavGraph(NavGraphNavigator(navigatorProvider))
@@ -35,7 +40,12 @@ object NavGraphBuilder {
                 val activityDestination = activityNavigator.createDestination()
                 activityDestination.id = value.id
                 activityDestination.addDeepLink(value.pageUrl)
-                activityDestination.setComponentName(ComponentName(getApplication().packageName,value.className))
+                activityDestination.setComponentName(
+                    ComponentName(
+                        getApplication().packageName,
+                        value.className
+                    )
+                )
                 navGraph.addDestination(activityDestination)
             }
 
