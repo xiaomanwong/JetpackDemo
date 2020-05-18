@@ -1,9 +1,14 @@
 package com.example.myapplication.util
 
+import android.content.res.AssetManager
 import com.alibaba.fastjson.JSON
+import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
+import com.example.myapplication.mode.BottomBar
 import com.example.myapplication.mode.Destination
 import java.io.BufferedReader
+import java.io.IOException
+import java.io.InputStream
 import java.io.InputStreamReader
 
 /**
@@ -14,6 +19,8 @@ import java.io.InputStreamReader
  */
 
 var mDestination: HashMap<String, Destination>? = null
+
+var mBottomBar: BottomBar? = null
 
 fun getDestConfig(): HashMap<String, Destination> {
     if (mDestination == null) {
@@ -26,19 +33,35 @@ fun getDestConfig(): HashMap<String, Destination> {
     return mDestination!!
 }
 
-fun parseFile(fileName: String): String {
-    val assets = getApplication().resources.assets
-    val inputStream = assets.open(fileName)
-    val bufferReader = BufferedReader(InputStreamReader(inputStream))
-    var line: String
-    val buffer = StringBuffer()
-    line = bufferReader.readLine()
-    while (line != null) {
-        buffer.append(line)
-        line = bufferReader.readLine()
+fun getBottomConfig(): BottomBar? {
+    if (mBottomBar == null) {
+        val content = parseFile("main_tabs_config.json")
+        println("tabs: $content")
+        mBottomBar = JSONObject.parseObject(content, BottomBar::class.java)
     }
+    return mBottomBar
+}
 
-    bufferReader.close()
-    inputStream.close()
-    return buffer.toString()
+private fun parseFile(fileName: String): String {
+    val assets: AssetManager = getApplication().assets
+    var `is`: InputStream? = null
+    var br: BufferedReader? = null
+    val builder = StringBuilder()
+    try {
+        `is` = assets.open(fileName)
+        br = BufferedReader(InputStreamReader(`is`))
+        var line: String?
+        while (br.readLine().also { line = it } != null) {
+            builder.append(line)
+        }
+    } catch (e: IOException) {
+        e.printStackTrace()
+    } finally {
+        try {
+            `is`?.close()
+            br?.close()
+        } catch (e: Exception) {
+        }
+    }
+    return builder.toString()
 }

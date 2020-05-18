@@ -10,10 +10,12 @@ import android.app.Application
  */
 
 
-lateinit var mApplication: Application
+var mApplication: Application? = null
 fun getApplication(): Application {
-    val method =
-        Class.forName("android.app.ActivityThread").getDeclaredMethod("currentApplication")
-    mApplication = method.invoke(null, null) as Application
-    return mApplication
+    if (mApplication == null) {
+        val method =
+            Class.forName("android.app.ActivityThread").getMethod("currentApplication")
+        mApplication = method.invoke(null) as Application
+    }
+    return mApplication!!
 }

@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.dashboard
+package com.example.myapplication.ui.find
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,21 +11,21 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.lib_annotation.FragmentDestination
 import com.example.myapplication.R
 
-@FragmentDestination(pageUrl = "main/tabs/DashboardFragment", asStart = false)
-class DashboardFragment : Fragment() {
+@FragmentDestination(pageUrl = "main/tabs/find", asStart = false)
+class FindFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var findViewModel: FindViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
+        findViewModel =
+            ViewModelProviders.of(this).get(FindViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
         val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
+        findViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
