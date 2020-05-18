@@ -1,5 +1,6 @@
 package com.example.myapplication.widget;
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -15,7 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 
-class AppBottomBar constructor(
+class AppBottomBar @SuppressLint("RestrictedApi") constructor(
     context: Context?,
     attributes: AttributeSet?,
     defStyleAttributes: Int
