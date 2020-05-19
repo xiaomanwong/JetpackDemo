@@ -1,11 +1,9 @@
 package com.example.lib_network
 
-class JsonCallback<T> {
+abstract class JsonCallback<T>() {
 
 
-    fun onSuccess(response: ApiResponse<T>): Unit {
-
-    }
+    abstract fun onSuccess(response: ApiResponse<T>)
 
     fun onError(apiResponse: ApiResponse<T>) {
 

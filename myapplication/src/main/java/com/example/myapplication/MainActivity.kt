@@ -6,13 +6,13 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import com.example.lib_network.GetRequest
+import com.example.lib_network.JsonCallback
 import com.example.myapplication.util.NavGraphBuilder
 import com.example.myapplication.util.getDestConfig
 import com.example.myapplication.widget.AppBottomBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.json.JSONObject
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private lateinit var navController: NavController

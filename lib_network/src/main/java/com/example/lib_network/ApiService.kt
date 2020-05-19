@@ -15,6 +15,8 @@ class ApiService {
 
     companion object {
         var okHttpClient: OkHttpClient? = null
+        var mBaseUrl: String? = null
+        var mConvert: Convert<Any?>? = null
     }
 
     // ok http 的初始化
@@ -60,8 +62,12 @@ class ApiService {
         sslContext.init(null, trustManagers, SecureRandom())
         HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.socketFactory)
         HttpsURLConnection.setDefaultHostnameVerifier { _, _ -> true }
+    }
 
 
+    open fun init(baseUrl: String, convert: Convert<Any?>): Unit {
+        mBaseUrl = baseUrl
+        mConvert = convert
     }
 
 }
