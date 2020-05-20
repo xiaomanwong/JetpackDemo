@@ -55,5 +55,6 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.2.61'
     implementation project(":lib_annotation")
     implementation project(":lib_network")
+    implementation project(":lib_common")
     kapt project(":lib_complier")
 }

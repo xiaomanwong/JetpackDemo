@@ -1,4 +1,4 @@
-package com.example.myapplication.util
+package com.example.lib_common
 
 import android.app.Application
 

@@ -43,7 +43,7 @@ fun getBottomConfig(): BottomBar? {
 }
 
 private fun parseFile(fileName: String): String {
-    val assets: AssetManager = getApplication().assets
+    val assets: AssetManager = com.example.lib_common.getApplication().assets
     var `is`: InputStream? = null
     var br: BufferedReader? = null
     val builder = StringBuilder()

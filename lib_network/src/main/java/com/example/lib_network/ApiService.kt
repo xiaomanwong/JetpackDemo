@@ -18,9 +18,7 @@ class ApiService {
         var mBaseUrl: String? = null
         var mConvert: Convert<Any?>? = null
     }
-
     // ok http 的初始化
-
     init {
 
         val interceptor = HttpLoggingInterceptor()

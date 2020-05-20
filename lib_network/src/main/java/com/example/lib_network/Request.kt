@@ -1,11 +1,14 @@
 package com.example.lib_network
 
+import android.text.TextUtils
 import android.util.Log
 import androidx.annotation.IntDef
+import com.example.lib_network.cache.CacheManager
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
 import java.io.IOException
+import java.io.Serializable
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 import java.util.*
@@ -16,6 +19,7 @@ abstract class Request<T, R : Request<T, R>?>(url: String) {
     private var mType: Type? = null
     private var mClazz: Class<*>? = null
     private var cacheKey: String? = null
+    private var mCacheStrategy: Int = NET_ONLY
     private val headers = hashMapOf<String, String>()
     protected val params = hashMapOf<String, Objects>()
 
@@ -54,6 +58,12 @@ abstract class Request<T, R : Request<T, R>?>(url: String) {
         return this
     }
 
+
+    fun setStrategy(cacheStrategy: Int): Request<T, R> {
+        mCacheStrategy = cacheStrategy
+        return this
+    }
+
     fun cacheKey(key: String): Request<T, R> {
         this.cacheKey = key
         return this
@@ -85,22 +95,51 @@ abstract class Request<T, R : Request<T, R>?>(url: String) {
         apiResponse.status = response.code
         apiResponse.success = response.isSuccessful
         val convert = ApiService.mConvert
-        if (apiResponse.success!!) {
+        try {
             val content: String = response.body.toString()
-            if (callback != null) {
-                val genericSuperclass: ParameterizedType =
-                    callback.javaClass.genericSuperclass as ParameterizedType
-                val type = genericSuperclass.actualTypeArguments[0];
-                apiResponse.body = convert?.convert(content, type) as T
-            } else if (mType != null) {
-                apiResponse.body = convert?.convert(content, mType!!) as T?
-            } else if (mClazz != null) {
-                apiResponse.body = convert?.convert(content, mClazz!!) as T?
-            } else {
-                Log.e("无法解析", "无法解析")
+            if (apiResponse.success!!) {
+                when {
+                    callback != null -> {
+                        val genericSuperclass: ParameterizedType =
+                            callback.javaClass.genericSuperclass as ParameterizedType
+                        val type = genericSuperclass.actualTypeArguments[0];
+                        apiResponse.body = convert?.convert(content, type) as T
+                    }
+                    mType != null -> {
+                        apiResponse.body = convert?.convert(content, mType!!) as T?
+                    }
+                    mClazz != null -> {
+                        apiResponse.body = convert?.convert(content, mClazz!!) as T?
+                    }
+                    else -> {
+                        Log.e("无法解析", "无法解析")
+                    }
+                }
             }
+        } catch (e: IOException) {
+            apiResponse.message = e.message
+            apiResponse.status = 0
+            apiResponse.success = false
+            apiResponse.body = null
+        }
+
+        if (apiResponse.success!! && mCacheStrategy != NET_ONLY && apiResponse.body != null && apiResponse.body is Serializable) {
+            saveCache(apiResponse.body)
         }
         return apiResponse
+    }
+
+    /**
+     * 保存缓存数据
+     */
+    private fun <T> saveCache(result: T): Unit {
+        val key = if (TextUtils.isEmpty(cacheKey)) generateCacheKey() else cacheKey
+        CacheManager.save(key, result)
+    }
+
+    private fun generateCacheKey(): String {
+        cacheKey = UrlCreator.createUrlFromParams(mUrl, params)
+        return cacheKey!!
     }
 
     fun responseType(type: Type): R {

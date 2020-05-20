@@ -42,7 +42,7 @@ object NavGraphBuilder {
                 activityDestination.addDeepLink(value.pageUrl)
                 activityDestination.setComponentName(
                     ComponentName(
-                        getApplication().packageName,
+                        com.example.lib_common.getApplication().packageName,
                         value.className
                     )
                 )
