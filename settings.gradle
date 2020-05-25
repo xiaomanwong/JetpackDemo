@@ -1,7 +1,0 @@
-rootProject.name='JetpackDemo'
-include ':app'
-include ':myapplication'
-include ':lib_annotation'
-include ':lib_complier'
-include ':lib_network'
-include ':lib_common'
