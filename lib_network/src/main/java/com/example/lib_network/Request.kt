@@ -1,8 +1,10 @@
 package com.example.lib_network
 
+import android.annotation.SuppressLint
 import android.text.TextUtils
 import android.util.Log
 import androidx.annotation.IntDef
+import androidx.arch.core.executor.ArchTaskExecutor
 import com.example.lib_network.cache.CacheManager
 import okhttp3.Call
 import okhttp3.Callback
@@ -14,7 +16,7 @@ import java.lang.reflect.Type
 import java.util.*
 
 
-abstract class Request<T, R : Request<T, R>?>(url: String) {
+abstract class Request<T, R : Request<T, R>?>(url: String) : Cloneable {
     protected var mUrl: String = url
     private var mType: Type? = null
     private var mClazz: Class<*>? = null
@@ -69,24 +71,48 @@ abstract class Request<T, R : Request<T, R>?>(url: String) {
         return this
     }
 
-    // 异步
-    fun execute(callback: JsonCallback<T>) {
-        getCall().enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                val response = ApiResponse<T>()
-                response.message = e.message
-                callback.onError(response)
-            }
 
-            override fun onResponse(call: Call, response: Response) {
-                val apiResponse = parseResponse(response, callback)
-                if (apiResponse.success!!) {
-                    callback.onError(apiResponse)
-                } else {
-                    callback.onSuccess(apiResponse)
+    fun readCache(): ApiResponse<T> {
+        val key = if (TextUtils.isEmpty(cacheKey)) generateCacheKey() else cacheKey
+        val cache = key?.let { CacheManager.getCache(it) }
+        val result = ApiResponse<T>()
+        result.status = 304
+        result.body = cache as T
+        result.message = "缓存读取成功"
+        result.success = true
+        return result
+    }
+
+    // 异步
+    @SuppressLint("RestrictedApi")
+    fun execute(callback: JsonCallback<T>) {
+        if (mCacheStrategy != NET_ONLY) {
+            ArchTaskExecutor.getIOThreadExecutor().execute {
+                val response = readCache()
+                callback.let {
+                    callback.onSuccess(response)
                 }
             }
-        })
+        }
+
+        if (mCacheStrategy != CACHE_ONLY) {
+            getCall().enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    val response = ApiResponse<T>()
+                    response.message = e.message
+                    callback.onError(response)
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val apiResponse = parseResponse(response, callback)
+                    if (apiResponse.success!!) {
+                        callback.onError(apiResponse)
+                    } else {
+                        callback.onSuccess(apiResponse)
+                    }
+                }
+            })
+        }
     }
 
     fun parseResponse(response: Response, callback: JsonCallback<T>?): ApiResponse<T> {
@@ -154,8 +180,26 @@ abstract class Request<T, R : Request<T, R>?>(url: String) {
 
     // 同步
     fun execute(): ApiResponse<T> {
-        val response = getCall().execute()
-        return parseResponse(response, null)
+
+        if (mCacheStrategy == CACHE_ONLY) {
+            return readCache()
+        }
+
+        var result: ApiResponse<T>? = null
+        try {
+
+            val response = getCall().execute()
+            result = parseResponse(response, null)
+        } catch (e: Exception) {
+            if (result == null) {
+                result = ApiResponse()
+                result.success = false
+                result.message = e.message
+
+            }
+        }
+
+        return result!!
     }
 
     private fun getCall(): Call {
