@@ -5,12 +5,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.example.jetpackdemo.widget.CurtainView
 
 class MainActivity : Activity() {
+//    lateinit var curtainView: CurtainView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+//        curtainView = findViewById(R.id.curtain)
     }
 
     fun startNextActivity(view: View) {
@@ -27,5 +30,6 @@ class MainActivity : Activity() {
         println("收到了结果${resultCode == RESULT_OK}")
         Toast.makeText(this, "hahaha收到了结果${resultCode == RESULT_OK}", Toast.LENGTH_LONG).show()
     }
+
 }
 
