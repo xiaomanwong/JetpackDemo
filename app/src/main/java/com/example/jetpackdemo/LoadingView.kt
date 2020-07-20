@@ -19,7 +19,7 @@ class LoadingView @kotlin.jvm.JvmOverloads constructor(
     private val SCALE = 1.0f
 
     val SCALE_ARRAY = floatArrayOf(SCALE, SCALE, SCALE, SCALE, SCALE, SCALE)
-    val START_DELAY = longArrayOf(100, 200, 300, 200, 100)
+    val START_DELAY = longArrayOf(100, 350, 550, 350, 100)
 
     var mWidth = 0
     var mHeight = 0
@@ -116,7 +116,7 @@ class LoadingView @kotlin.jvm.JvmOverloads constructor(
 
         for (index in 0..4) {
 
-            val annotation = ValueAnimator.ofFloat(1.0f, 0.4f, 1.0f)
+            val annotation = ValueAnimator.ofFloat(1.0f, 0.2f, 1.0f)
             annotation.apply {
                 duration = 1000
                 repeatCount = -1

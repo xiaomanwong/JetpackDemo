@@ -11,15 +11,15 @@ import androidx.room.*
 @Dao
 interface CacheDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun save(cache: Cache):Long
+    fun save(cache: Cache): Long
 
-    @Query("select * from cache_data where `key` = :key")
+    @Query("select * from cache_data where 'key' = :key")
     fun query(key: String): Cache
 
     @Delete
     fun delete(key: String): Int
 
     @Update(onConflict = OnConflictStrategy.IGNORE)
-    fun update(cache: Cache) : Int
+    fun update(cache: Cache): Int
 
 }

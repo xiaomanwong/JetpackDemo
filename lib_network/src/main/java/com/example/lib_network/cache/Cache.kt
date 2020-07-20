@@ -1,5 +1,6 @@
 package com.example.lib_network.cache
 
+import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -15,6 +16,7 @@ import java.io.Serializable
 class Cache : Serializable {
     //PrimaryKey 必须要有,且不为空,autoGenerate 主键的值是否由Room自动生成,默认false
     @PrimaryKey(autoGenerate = false)
+    @NonNull
     var key: String? = null
 
     @ColumnInfo(name = "_data")// 指定该字段在表中的列的名字
