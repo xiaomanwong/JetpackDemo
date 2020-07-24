@@ -1,4 +1,4 @@
-package com.example.jetpackdemo.widget
+package com.example.jetpackdemo.control
 
 import android.content.Context
 import android.graphics.Canvas

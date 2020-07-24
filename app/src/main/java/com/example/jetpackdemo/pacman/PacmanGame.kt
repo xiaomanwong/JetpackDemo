@@ -1,7 +1,6 @@
-package com.example.jetpackdemo
+package com.example.jetpackdemo.pacman
 
 import android.animation.ValueAnimator
-import android.animation.ValueAnimator.AnimatorUpdateListener
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
@@ -9,7 +8,6 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import java.math.BigDecimal
-import java.util.*
 import kotlin.math.abs
 import kotlin.math.sqrt
 

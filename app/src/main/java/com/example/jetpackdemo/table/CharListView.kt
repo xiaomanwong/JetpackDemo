@@ -1,4 +1,4 @@
-package com.example.jetpackdemo.widget
+package com.example.jetpackdemo.table
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,7 +8,6 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import java.util.concurrent.ThreadPoolExecutor
 
 class CharListView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0

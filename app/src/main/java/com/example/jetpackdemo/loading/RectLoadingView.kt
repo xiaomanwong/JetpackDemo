@@ -1,4 +1,4 @@
-package com.example.jetpackdemo.widget
+package com.example.jetpackdemo.loading
 
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
@@ -10,7 +10,7 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.core.animation.addListener
 
-class LoadingView @JvmOverloads constructor(
+class RectLoadingView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
@@ -20,6 +20,8 @@ class LoadingView @JvmOverloads constructor(
     val mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     var isInit = false
+    private var rotateYAnimation: ObjectAnimator? = null
+    private var rotateXAnimation: ObjectAnimator? = null
 
     init {
         mPaint.color = Color.RED
@@ -46,24 +48,32 @@ class LoadingView @JvmOverloads constructor(
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
      */
-    fun dp2px(dpValue: Float): Int {
+    private fun dp2px(dpValue: Float): Int {
         return (resources.displayMetrics.widthPixels * dpValue / 750).toInt()
+    }
+
+    override fun onDetachedFromWindow() {
+        rotateXAnimation?.cancel()
+        rotateXAnimation?.removeAllListeners()
+        rotateYAnimation?.cancel()
+        rotateYAnimation?.removeAllListeners()
+        super.onDetachedFromWindow()
     }
 
     @SuppressLint("WrongConstant")
     private fun rotateAnimation(): Unit {
         if (isInit) return
         println("我开始了")
-        val rotateYAnimation = ObjectAnimator.ofFloat(this, "rotationX", 180F, 0F)
-        rotateYAnimation.setDuration(500)
-        val rotateXAnimation = ObjectAnimator.ofFloat(this, "rotationY", 0F, 180F)
-        rotateXAnimation.setDuration(500)
-        rotateXAnimation.addListener(onEnd = {
-            rotateYAnimation.start()
+        rotateYAnimation = ObjectAnimator.ofFloat(this, "rotationX", 180F, 0F)
+        rotateYAnimation?.duration = 500
+        rotateXAnimation = ObjectAnimator.ofFloat(this, "rotationY", 0F, 180F)
+        rotateXAnimation?.duration = 500
+        rotateXAnimation?.addListener(onEnd = {
+            rotateYAnimation?.start()
         })
-        rotateYAnimation.addListener(onEnd = {
-            rotateXAnimation.start()
+        rotateYAnimation?.addListener(onEnd = {
+            rotateXAnimation?.start()
         })
-        rotateXAnimation.start()
+        rotateXAnimation?.start()
     }
 }

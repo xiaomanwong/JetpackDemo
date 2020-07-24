@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.example.jetpackdemo.widget.CurtainView
 
 class MainActivity : Activity() {
 //    lateinit var curtainView: CurtainView
@@ -14,6 +13,27 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 //        curtainView = findViewById(R.id.curtain)
+
+//        gpw.setCallBack(object : GesturePasswordView.CallBack {
+//
+//            override fun onFinish(password: String) {
+//
+//            }
+//
+//            override fun onError() {
+//                gppv.resetView()
+//            }
+//
+//            override fun onPasswordChanged(password: Int) {
+//                gppv.updatePoint(password)
+//            }
+//        })
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+//        gpw.postDelayed({ gpw.setResult(true) }, 5000)
     }
 
     fun startNextActivity(view: View) {

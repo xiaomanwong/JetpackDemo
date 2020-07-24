@@ -1,4 +1,4 @@
-package com.example.jetpackdemo.widget
+package com.hachi.base.widget.loading
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -11,7 +11,7 @@ class VideoLoadingView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    private var animator: ValueAnimator? = null
+    //    private var animator: ValueAnimator? = null
     private var isStartAnimator: Boolean = false
     var intervalSpace: Int = 0
 
@@ -19,7 +19,7 @@ class VideoLoadingView @JvmOverloads constructor(
     private val radius = 10F
 
     private val SCALE_ARRAY = floatArrayOf(SCALE, SCALE, SCALE)
-    private val SCALE_DELAY = longArrayOf(100, 300, 500)
+    private val SCALE_DELAY = longArrayOf(300, 600, 900)
     private val mPath: Path
     private val corEffect: CornerPathEffect
 
@@ -27,6 +27,8 @@ class VideoLoadingView @JvmOverloads constructor(
     private val orangePaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val greenPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val bluePaint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+    private val animatorList: ArrayList<ValueAnimator> = arrayListOf()
 
     init {
         orangePaint.strokeCap = Paint.Cap.ROUND
@@ -65,7 +67,7 @@ class VideoLoadingView @JvmOverloads constructor(
             canvas?.save()
             mPaint?.get(index)!!.pathEffect = corEffect
             canvas?.translate(2 * (intervalSpace * index).toFloat(), 0f)
-            canvas?.scale(SCALE, SCALE_ARRAY[index], width / 2f, height / 2f)
+            canvas?.scale(SCALE, SCALE_ARRAY[index], width.toFloat(), height / 2f)
             canvas!!.drawPath(mPath, mPaint?.get(index)!!)
             canvas.restore()
         }
@@ -81,9 +83,11 @@ class VideoLoadingView @JvmOverloads constructor(
     }
 
     private fun cancelAnimator() {
-        animator?.cancel()
+        animatorList.forEach {
+            it.cancel()
+            it.removeAllUpdateListeners()
+        }
         isStartAnimator = false
-        animator?.removeAllUpdateListeners()
     }
 
     /**
@@ -95,7 +99,7 @@ class VideoLoadingView @JvmOverloads constructor(
         }
 
         for (index in SCALE_DELAY.indices) {
-            animator = ValueAnimator.ofFloat(1.0f, 0f, 1.0f)
+            val animator = ValueAnimator.ofFloat(1.0f, 0f, 1.0f)
             animator?.apply {
                 duration = 1000
                 repeatCount = -1
@@ -106,9 +110,20 @@ class VideoLoadingView @JvmOverloads constructor(
                 }
                 start()
             }
+            animatorList.add(animator)
         }
         isStartAnimator = true
     }
+
+
+    override fun onDetachedFromWindow() {
+        animatorList.forEach {
+            it.cancel()
+            it.removeAllUpdateListeners()
+        }
+        super.onDetachedFromWindow()
+    }
+
 
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
