@@ -47,6 +47,26 @@ class Comment : BaseObservable(), Serializable {
                 && ugc != null && ugc!!.equals(newComment.ugc))
     }
 
+    override fun hashCode(): Int {
+        var result = id
+        result = 31 * result + itemId.hashCode()
+        result = 31 * result + commentId.hashCode()
+        result = 31 * result + userId.hashCode()
+        result = 31 * result + commentType
+        result = 31 * result + createTime.hashCode()
+        result = 31 * result + commentCount
+        result = 31 * result + likeCount
+        result = 31 * result + (commentText?.hashCode() ?: 0)
+        result = 31 * result + (imageUrl?.hashCode() ?: 0)
+        result = 31 * result + (videoUrl?.hashCode() ?: 0)
+        result = 31 * result + width
+        result = 31 * result + height
+        result = 31 * result + hasLiked.hashCode()
+        result = 31 * result + (author?.hashCode() ?: 0)
+        result = 31 * result + (ugc?.hashCode() ?: 0)
+        return result
+    }
+
     companion object {
         const val COMMENT_TYPE_VIDEO = 3
         const val COMMENT_TYPE_IMAGE_TEXT = 2

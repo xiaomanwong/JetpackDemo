@@ -41,12 +41,9 @@ class User : BaseObservable(), Serializable {
     var commentCount = 0
     var favoriteCount = 0
     var feedCount = 0
-    var hasFollow: Boolean
-        get() {
-            return hasFollow
-        }
+    var hasFollow: Boolean = false
         set(value) {
-            hasFollow = value
+            field = value
             notifyPropertyChanged(com.example.myapplication.BR._all)
         }
 
@@ -62,5 +59,25 @@ class User : BaseObservable(), Serializable {
     @Bindable
     fun isHasFollow(): Boolean {
         return hasFollow
+    }
+
+    override fun hashCode(): Int {
+        var result = id
+        result = 31 * result + userId.hashCode()
+        result = 31 * result + (name?.hashCode() ?: 0)
+        result = 31 * result + (avatar?.hashCode() ?: 0)
+        result = 31 * result + (description?.hashCode() ?: 0)
+        result = 31 * result + likeCount
+        result = 31 * result + topCommentCount
+        result = 31 * result + followCount
+        result = 31 * result + followerCount
+        result = 31 * result + (qqOpenId?.hashCode() ?: 0)
+        result = 31 * result + expires_time.hashCode()
+        result = 31 * result + score
+        result = 31 * result + historyCount
+        result = 31 * result + commentCount
+        result = 31 * result + favoriteCount
+        result = 31 * result + feedCount
+        return result
     }
 }

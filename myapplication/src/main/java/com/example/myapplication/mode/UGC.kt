@@ -19,20 +19,19 @@ class Ugc : BaseObservable(), Serializable {
         @Bindable
         get() = field
         set(value) {
-            field = shareCount
+            field = value
             notifyPropertyChanged(com.example.myapplication.BR._all)
         }
 
     var commentCount = 0
-    var hasFavorite: Boolean
+    var hasFavorite: Boolean = false
         set(value) {
-            this.hasFavorite = hasFavorite
+            field = value
             notifyPropertyChanged(com.example.myapplication.BR._all)
         }
         @Bindable
-        get() {
-            return hasFavorite
-        }
+        get() = field
+
     var hasdiss = false
         @Bindable
         get() = field
@@ -52,12 +51,12 @@ class Ugc : BaseObservable(), Serializable {
         @Bindable
         get() = field
         set(value) {
-            if (this.hasLiked == hasLiked) return
-            if (hasLiked) {
-                likeCount = likeCount + 1
+            if (field == value) return
+            if (field) {
+                likeCount += 1
                 hasdiss = false
             } else {
-                likeCount = likeCount - 1
+                likeCount -= 1
             }
             field = hasLiked
             notifyPropertyChanged(com.example.myapplication.BR._all)
@@ -65,9 +64,8 @@ class Ugc : BaseObservable(), Serializable {
 
     override fun equals(obj: Any?): Boolean {
         if (obj == null || obj !is Ugc) return false
-        val newUgc = obj
-        return likeCount == newUgc.likeCount && shareCount == newUgc.shareCount && commentCount == newUgc.commentCount
-                && hasFavorite == newUgc.hasFavorite && hasLiked == newUgc.hasLiked && hasdiss == newUgc.hasdiss
+        return likeCount == obj.likeCount && shareCount == obj.shareCount && commentCount == obj.commentCount
+                && hasFavorite == obj.hasFavorite && hasLiked == obj.hasLiked && hasdiss == obj.hasdiss
     }
 
     override fun hashCode(): Int {
