@@ -1,5 +1,5 @@
 rootProject.name='JetpackDemo'
-include ':app'
+include ':customize_widget'
 include ':myapplication'
 include ':lib_annotation'
 include ':lib_complier'
