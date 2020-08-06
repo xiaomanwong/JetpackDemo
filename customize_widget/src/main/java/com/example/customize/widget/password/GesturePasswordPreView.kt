@@ -1,4 +1,4 @@
-package com.example.customize.password
+package com.example.customize.widget.password
 
 import android.content.Context
 import android.graphics.*

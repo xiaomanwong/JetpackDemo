@@ -1,4 +1,4 @@
-package com.example.customize.pacman
+package com.example.customize.widget.pacman
 
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator

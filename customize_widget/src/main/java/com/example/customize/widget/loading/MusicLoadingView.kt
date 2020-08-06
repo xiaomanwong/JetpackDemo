@@ -1,4 +1,4 @@
-package com.example.customize.loading
+package com.example.customize.widget.loading
 
 import android.animation.ValueAnimator
 import android.content.Context
