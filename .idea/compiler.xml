@@ -22,6 +22,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="customize_widget" target="11" />
+      <module name="lib" target="1.7" />
       <module name="myapplication" target="11" />
     </bytecodeTargetLevel>
   </component>
