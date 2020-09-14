@@ -1,4 +1,4 @@
-package com.example.customize.control
+package com.example.customize.widget.control
 
 import android.content.Context
 import android.graphics.Canvas

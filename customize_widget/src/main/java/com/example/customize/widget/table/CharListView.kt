@@ -1,4 +1,4 @@
-package com.example.customize.table
+package com.example.customize.widget.table
 
 import android.annotation.SuppressLint
 import android.content.Context
