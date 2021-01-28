@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.customize.aop.SingleClick
 
 class InjectActivity : AppCompatActivity() {
 
@@ -27,7 +28,7 @@ class InjectActivity : AppCompatActivity() {
 
     }
 
-
+    @SingleClick
     @OnClick([R.id.tv_name, R.id.tv_name2])
     fun clickListener(view: View) {
         when (view.id) {

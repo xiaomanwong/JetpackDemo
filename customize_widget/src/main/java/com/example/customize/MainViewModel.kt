@@ -15,4 +15,5 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         println("startGesturePassword${++index}")
         textValue.value = (++index).toString()
     }
+
 }

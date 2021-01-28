@@ -17,7 +17,7 @@ interface CacheDao {
     fun query(key: String): Cache
 
     @Delete
-    fun delete(key: String): Int
+    fun delete(key: Cache): Int
 
     @Update(onConflict = OnConflictStrategy.IGNORE)
     fun update(cache: Cache): Int
