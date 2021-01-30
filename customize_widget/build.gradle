@@ -5,8 +5,8 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'android-aspectjx'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
 // 涂鸦 SDK 配置
     packagingOptions {
         pickFirst 'lib/x86/libc++_shared.so'
