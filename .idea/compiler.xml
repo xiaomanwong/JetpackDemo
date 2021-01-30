@@ -23,6 +23,7 @@
     <bytecodeTargetLevel target="1.7">
       <module name="customize_widget" target="11" />
       <module name="JetpackDemo.customize_widget" target="1.8" />
+      <module name="JetpackDemo.jetpack" target="1.8" />
       <module name="JetpackDemo.lib_annotation" target="1.8" />
       <module name="JetpackDemo.lib_common" target="1.8" />
       <module name="JetpackDemo.lib_complier" target="1.8" />
