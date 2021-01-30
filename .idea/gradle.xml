@@ -5,7 +5,6 @@
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="testRunner" value="PLATFORM" />
-        <option name="disableWrapperSourceDistributionNotification" value="true" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
@@ -17,7 +16,9 @@
             <option value="$PROJECT_DIR$/lib_annotation" />
             <option value="$PROJECT_DIR$/lib_common" />
             <option value="$PROJECT_DIR$/lib_complier" />
+            <option value="$PROJECT_DIR$/lib_java" />
             <option value="$PROJECT_DIR$/lib_network" />
+            <option value="$PROJECT_DIR$/libandroid" />
             <option value="$PROJECT_DIR$/myapplication" />
             <option value="$PROJECT_DIR$/mylibrary" />
           </set>

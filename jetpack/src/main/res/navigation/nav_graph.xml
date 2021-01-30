@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.jetpack.SecondFragment"
+        android:name="com.example.jetpack.DivideStoreFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 

@@ -29,7 +29,7 @@ class FirstFragment : Fragment() {
             findNavController().navigate(R.id.action_FirstFragment_to_WorkManagerFragment)
         }
 
-        view.findViewById<Button>(R.id.button_second).setOnClickListener {
+        view.findViewById<Button>(R.id.divide_store).setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
 

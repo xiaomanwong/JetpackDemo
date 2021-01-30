@@ -1,4 +1,6 @@
 include ':jetpack'
+include ':libandroid'
+include ':lib_java'
 include ':lib'
 include ':mylibrary'
 rootProject.name='JetpackDemo'
