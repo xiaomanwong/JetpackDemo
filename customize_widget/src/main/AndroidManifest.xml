@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         tools:replace="android:allowBackup,android:supportsRtl"
         android:theme="@style/AppTheme">
-        <activity android:name=".InjectActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
