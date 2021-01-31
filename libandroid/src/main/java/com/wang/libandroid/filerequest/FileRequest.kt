@@ -1,6 +1,5 @@
 package com.wang.libandroid.filerequest
 
-class FileRequest(val displayName: String) {
+class FileRequest(val relatePath: String, val displayName: String) {
     val type: String? = null
-    val relatePath: String? = null
 }

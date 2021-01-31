@@ -10,7 +10,12 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import com.wang.libandroid.filerequest.FileRequest
 import com.wang.libandroid.filerequest.FileResponse
+import com.wang.libandroid.filerequest.opera.AudioRequestImpl
+import com.wang.libandroid.filerequest.opera.FileRequestImpl
+import com.wang.libandroid.filerequest.opera.ImageRequestImpl
+import com.wang.libandroid.filerequest.opera.MoviesRequestImpl
 import java.io.File
+import java.util.*
 
 /**
  * Android 10, 11 分区存储
@@ -19,6 +24,20 @@ import java.io.File
 class MediaStoreRequest : Request {
 
     private val map: ArrayMap<String, Uri> = ArrayMap()
+
+    private val _movieScheme = listOf(
+        ".mp4", ".rmvb", ".avi", ".flv", ".3gp", ".wmv", ".mkv", ".mpeg"
+    )
+
+    private val _musicScheme = listOf(
+        ".mp3", ".wma"
+    )
+
+    private val _imageScheme = listOf(
+        ".jpg", "jpeg", ".png", ".bmp", ".gif", ".wmf"
+    )
+
+    private val _documentScheme = listOf(".txt", ".doc", ".xls")
 
     init {
 //        val DIRECTORY_ALARMS = "Alarms"
@@ -61,7 +80,7 @@ class MediaStoreRequest : Request {
     ) {
         val value =
             context.contentResolver.delete(
-                getFileUri(context, File(request.relatePath!!)),
+                getFileUri(context, File(request.relatePath)),
                 null,
                 null
             )
@@ -73,6 +92,8 @@ class MediaStoreRequest : Request {
         request: FileRequest,
         response: (fileResponse: FileResponse) -> Unit
     ) {
+        val requestImpl = getFileScheme(request)
+        requestImpl.updateFile(context, request, response)
         Log.d(Request.TAG, "MediaStoreRequest updateFile: ${request.displayName}")
     }
 
@@ -90,5 +111,36 @@ class MediaStoreRequest : Request {
         response: (fileResponse: FileResponse) -> Unit
     ) {
         TODO("Not yet implemented")
+    }
+
+
+    private fun getFileScheme(request: FileRequest): Request {
+        // 截取后缀
+        val suffix =
+            request.displayName.substring(request.displayName.lastIndexOf("."))
+                .toLowerCase(Locale.getDefault())
+        return if (request.relatePath.startsWith(Environment.DIRECTORY_MOVIES)
+            && _movieScheme.contains(suffix)
+        ) {
+            MoviesRequestImpl()
+        } else if ((request.relatePath.startsWith(Environment.DIRECTORY_DCIM)
+                    || request.relatePath.startsWith(Environment.DIRECTORY_PICTURES)
+                    || request.relatePath.startsWith(Environment.DIRECTORY_SCREENSHOTS))
+            && _imageScheme.contains(suffix)
+        ) {
+            ImageRequestImpl()
+        } else if ((request.relatePath.startsWith(Environment.DIRECTORY_ALARMS)
+                    || request.relatePath.startsWith(Environment.DIRECTORY_MUSIC)
+                    || request.relatePath.startsWith(Environment.DIRECTORY_RINGTONES))
+            && _musicScheme.contains(suffix)
+        ) {
+            AudioRequestImpl()
+        } else if (request.relatePath.startsWith(Environment.DIRECTORY_DOCUMENTS)) {
+            FileRequestImpl()
+        } else if (request.relatePath.startsWith(Environment.DIRECTORY_DOWNLOADS)) {
+            FileRequestImpl()
+        } else {
+            FileRequestImpl()
+        }
     }
 }

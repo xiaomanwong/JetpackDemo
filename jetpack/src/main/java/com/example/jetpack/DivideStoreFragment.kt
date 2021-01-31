@@ -1,6 +1,7 @@
 package com.example.jetpack
 
 import android.os.Bundle
+import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +32,10 @@ class DivideStoreFragment : Fragment() {
         }
 
         val request = FileRequestFactory.getRequest()
-        request.updateFile(this.requireContext(), FileRequest("hhaha.txt")) {
+        request.updateFile(
+            this.requireContext(),
+            FileRequest(Environment.DIRECTORY_MOVIES, "hhaha.mp4")
+        ) {
 
         }
     }
