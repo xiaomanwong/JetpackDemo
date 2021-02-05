@@ -15,6 +15,7 @@ import com.wang.libandroid.filerequest.opera.FileRequestImpl
 import com.wang.libandroid.filerequest.opera.ImageRequestImpl
 import com.wang.libandroid.filerequest.opera.MoviesRequestImpl
 import java.io.File
+import java.lang.IllegalArgumentException
 import java.util.*
 
 /**
@@ -40,18 +41,6 @@ class MediaStoreRequest : Request {
     private val _documentScheme = listOf(".txt", ".doc", ".xls")
 
     init {
-//        val DIRECTORY_ALARMS = "Alarms"
-//        val DIRECTORY_AUDIOBOOKS = "Audiobooks"
-//        val DIRECTORY_DCIM = "DCIM"
-//        val DIRECTORY_DOCUMENTS = "Documents"
-//        val DIRECTORY_DOWNLOADS = "Download"
-//        val DIRECTORY_MOVIES = "Movies"
-//        val DIRECTORY_MUSIC = "Music"
-//        val DIRECTORY_NOTIFICATIONS = "Notifications"
-//        val DIRECTORY_PICTURES = "Pictures"
-//        val DIRECTORY_PODCASTS = "Podcasts"
-//        val DIRECTORY_RINGTONES = "Ringtones"
-//        val DIRECTORY_SCREENSHOTS = "Screenshots"
         map[Environment.DIRECTORY_ALARMS] = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
         map[Environment.DIRECTORY_AUDIOBOOKS] = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
         map[Environment.DIRECTORY_DCIM] = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
@@ -70,7 +59,11 @@ class MediaStoreRequest : Request {
         request: FileRequest,
         response: (fileResponse: FileResponse) -> Unit
     ) {
-
+        if (request.displayName.isNullOrEmpty() || request.relatePath.isNullOrEmpty()) {
+            throw IllegalArgumentException("参数displayName或relatePath为空！")
+        }
+        val requestImpl = getFileScheme(request)
+        requestImpl.createFile(context, request, response)
     }
 
     override fun deleteFile(
@@ -78,13 +71,12 @@ class MediaStoreRequest : Request {
         request: FileRequest,
         response: (fileResponse: FileResponse) -> Unit
     ) {
-        val value =
-            context.contentResolver.delete(
-                getFileUri(context, File(request.relatePath)),
-                null,
-                null
-            )
-        response(FileResponse(value == 1))
+        if (request.displayName.isNullOrEmpty() || request.relatePath.isNullOrEmpty()) {
+            throw IllegalArgumentException("参数displayName或relatePath为空！")
+        }
+        val requestImpl = getFileScheme(request)
+        requestImpl.deleteFile(context, request, response)
+
     }
 
     override fun updateFile(
@@ -92,9 +84,11 @@ class MediaStoreRequest : Request {
         request: FileRequest,
         response: (fileResponse: FileResponse) -> Unit
     ) {
+        if (request.displayName.isNullOrEmpty() || request.relatePath.isNullOrEmpty() || request.source == null) {
+            throw IllegalArgumentException("参数为displayName或relatePath或source null !")
+        }
         val requestImpl = getFileScheme(request)
         requestImpl.updateFile(context, request, response)
-        Log.d(Request.TAG, "MediaStoreRequest updateFile: ${request.displayName}")
     }
 
     override fun queryFile(
@@ -102,7 +96,11 @@ class MediaStoreRequest : Request {
         request: FileRequest,
         response: (fileResponse: FileResponse) -> Unit
     ) {
-        TODO("Not yet implemented")
+        if (request.displayName.isNullOrEmpty() || request.relatePath.isNullOrEmpty()) {
+            throw IllegalArgumentException("参数为displayName或relatePath为null!")
+        }
+        val requestImpl = getFileScheme(request)
+        requestImpl.queryFile(context, request, response)
     }
 
     override fun renameTo(
@@ -110,15 +108,30 @@ class MediaStoreRequest : Request {
         request: FileRequest,
         response: (fileResponse: FileResponse) -> Unit
     ) {
-        TODO("Not yet implemented")
+        if (request.oldName.isNullOrEmpty() || request.newName.isNullOrEmpty()) {
+            throw IllegalArgumentException("参数oldName或newName为空！")
+        }
+        if (!request.oldName.equals(request.newName)) {
+            val oldFile = File(request.relatePath + "/" + request.oldName)
+            val newFile = File(request.relatePath + "/" + request.newName)
+            if (!oldFile.exists()) {
+                response(FileResponse(isSuccess = false))
+            }
+            if (newFile.exists()) {
+                response(FileResponse(isSuccess = false))
+            } else {
+                oldFile.renameTo(newFile)
+                response(FileResponse(isSuccess = true))
+            }
+        }
     }
 
 
     private fun getFileScheme(request: FileRequest): Request {
         // 截取后缀
         val suffix =
-            request.displayName.substring(request.displayName.lastIndexOf("."))
-                .toLowerCase(Locale.getDefault())
+            request.displayName?.substring(request.displayName.lastIndexOf("."))
+                ?.toLowerCase(Locale.getDefault())
         return if (request.relatePath.startsWith(Environment.DIRECTORY_MOVIES)
             && _movieScheme.contains(suffix)
         ) {

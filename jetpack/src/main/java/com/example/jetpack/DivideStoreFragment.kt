@@ -1,15 +1,18 @@
 package com.example.jetpack
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.wang.libandroid.filerequest.FileRequest
 import com.wang.libandroid.filerequest.FileRequestFactory
+import java.io.ByteArrayInputStream
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -27,16 +30,123 @@ class DivideStoreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.button_second).setOnClickListener {
+        view.findViewById<Button>(R.id.textview_second).setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
 
-        val request = FileRequestFactory.getRequest()
-        request.updateFile(
-            this.requireContext(),
-            FileRequest(Environment.DIRECTORY_MOVIES, "hhaha.mp4")
-        ) {
+        //图片存储
+        view.findViewById<Button>(R.id.button_save_picture).setOnClickListener {
+            val request = FileRequestFactory.getRequest()
+            val displayName = "${System.currentTimeMillis().toString().takeLast(8)}.jpg"
+            val bitmap = BitmapFactory.decodeResource(resources, R.drawable.die)
 
+            //传入的source类型必须为InputSrteam
+            request.createFile(
+                this.requireContext(),
+                FileRequest(
+                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+                        .toString(), displayName
+                )
+//                 FileRequest(Environment.DIRECTORY_PICTURES, displayName)
+            ) { it ->
+                if (it.isSuccess) {
+                    Toast.makeText(
+                        this.requireContext(),
+                        "获取uri成功 uri = ${it.uri}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                it.uri?.also { uri ->
+                    request.updateFile(
+                        this.requireContext(), FileRequest(
+                            Environment.DIRECTORY_PICTURES,
+                            displayName,
+                            source = bitmap,
+                            uri = uri
+                        )
+                    ) {
+                        Toast.makeText(this.requireContext(), "保存图片成功}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
+
+        //图片查询
+        view.findViewById<Button>(R.id.button_get_picture).setOnClickListener {
+            val request = FileRequestFactory.getRequest()
+            val displayName = "92606621.jpg"
+            request.queryFile(
+                this.requireContext(),
+                FileRequest(Environment.DIRECTORY_PICTURES, displayName)
+            ) {
+                Toast.makeText(this.requireContext(), "查询到图片path${it.uri}}", Toast.LENGTH_SHORT).show()
+
+            }
+        }
+
+        //图片删除
+        view.findViewById<Button>(R.id.button_cancel_picture).setOnClickListener {
+            val request = FileRequestFactory.getRequest()
+            val displayName = "92606621.jpg"
+            request.deleteFile(
+                this.requireContext(),
+                FileRequest(Environment.DIRECTORY_PICTURES, displayName)
+            ) {
+                if (it.isSuccess) {
+                    Toast.makeText(this.requireContext(), "删除成功", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        //txt 保存 到Document DownLoad
+        view.findViewById<Button>(R.id.button_create_txt).setOnClickListener {
+            val request = FileRequestFactory.getRequest()
+            val displayName = "test.txt"
+//            val source = resources.assets.open("test.txt")
+            val str = "112314"
+            val source = ByteArrayInputStream(str.toByteArray())
+            request.createFile(
+                this.requireContext(),
+//                FileRequest(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).path
+//                   , displayName, source = source)
+                        FileRequest(this.requireContext().getExternalFilesDir("txt")!!.absolutePath
+                   , displayName, source = source)
+//                FileRequest(Environment.DIRECTORY_DOCUMENTS, displayName, source = source)
+            ) {
+                if (it.isSuccess) {
+                    Toast.makeText(this.requireContext(), "获取uri成功", Toast.LENGTH_SHORT).show()
+                }
+                it.file?.also { file ->
+                    request.updateFile(
+                        this.requireContext(),
+                        FileRequest(
+                            Environment.DIRECTORY_DOWNLOADS,
+                            displayName,
+                            file = file,
+                            source = source
+                        )
+                    ) {
+                        Toast.makeText(this.requireContext(), "创建成功", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+
+        //txt 查询
+        view.findViewById<Button>(R.id.button_query_txt).setOnClickListener {
+            val request = FileRequestFactory.getRequest()
+            val displayName = "down/file_1612505786010.txt"
+            request.queryFile(
+                this.requireContext(),
+                FileRequest(Environment.DIRECTORY_DOWNLOADS, displayName)
+//                FileRequest(Environment.DIRECTORY_DOCUMENTS, displayName, source = source)
+            ) {
+                if (it.isSuccess) {
+                    Toast.makeText(this.requireContext(), "查询成功${it.uri}", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+        }
+
     }
 }
