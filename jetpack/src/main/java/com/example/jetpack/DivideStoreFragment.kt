@@ -1,18 +1,28 @@
 package com.example.jetpack
 
-import android.graphics.BitmapFactory
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.SimpleTarget
 import com.wang.libandroid.filerequest.FileRequest
 import com.wang.libandroid.filerequest.FileRequestFactory
 import java.io.ByteArrayInputStream
+
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -33,42 +43,69 @@ class DivideStoreFragment : Fragment() {
         view.findViewById<Button>(R.id.textview_second).setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
-
+        val iv = view.findViewById<ImageView>(R.id.iv)
         //图片存储
-        view.findViewById<Button>(R.id.button_save_picture).setOnClickListener {
-            val request = FileRequestFactory.getRequest()
-            val displayName = "${System.currentTimeMillis().toString().takeLast(8)}.jpg"
-            val bitmap = BitmapFactory.decodeResource(resources, R.drawable.die)
 
-            //传入的source类型必须为InputSrteam
-            request.createFile(
-                this.requireContext(),
-                FileRequest(
-                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-                        .toString(), displayName
-                )
-//                 FileRequest(Environment.DIRECTORY_PICTURES, displayName)
-            ) { it ->
-                if (it.isSuccess) {
-                    Toast.makeText(
-                        this.requireContext(),
-                        "获取uri成功 uri = ${it.uri}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                it.uri?.also { uri ->
-                    request.updateFile(
-                        this.requireContext(), FileRequest(
-                            Environment.DIRECTORY_PICTURES,
-                            displayName,
-                            source = bitmap,
-                            uri = uri
-                        )
-                    ) {
-                        Toast.makeText(this.requireContext(), "保存图片成功}", Toast.LENGTH_SHORT).show()
+        view.findViewById<Button>(R.id.button_save_picture).setOnClickListener {
+            Glide.with(this.requireActivity())
+                .load("http://pic.5tu.cn/uploads/allimg/1506/210952576680.jpg")
+                .listener(object : RequestListener<Drawable> {
+                    override fun onResourceReady(
+                        resource: Drawable?,
+                        model: Any?,
+                        target: com.bumptech.glide.request.target.Target<Drawable>?,
+                        dataSource: DataSource?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        // 加载失败后的逻辑处理
+                        Log.e("TAG", "onResourceReady: " )
+                        return false
                     }
-                }
-            }
+
+                    override fun onLoadFailed(
+                        e: GlideException?,
+                        model: Any?,
+                        target: com.bumptech.glide.request.target.Target<Drawable>?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        Log.e("TAG", "onLoadFailed: ")
+                        return false
+                    }
+                })
+                .into(iv)
+//            val request = FileRequestFactory.getRequest()
+//            val displayName = "${System.currentTimeMillis().toString().takeLast(8)}.jpg"
+//            val bitmap = BitmapFactory.decodeResource(resources, R.drawable.die)
+//
+//            //传入的source类型必须为InputSrteam
+//            request.createFile(
+//                this.requireContext(),
+//                FileRequest(
+//                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+//                        .toString(), displayName
+//                )
+////                 FileRequest(Environment.DIRECTORY_PICTURES, displayName)
+//            ) { it ->
+//                if (it.isSuccess) {
+//                    Toast.makeText(
+//                        this.requireContext(),
+//                        "获取uri成功 uri = ${it.uri}",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+//                it.uri?.also { uri ->
+//                    request.updateFile(
+//                        this.requireContext(), FileRequest(
+//                            Environment.DIRECTORY_PICTURES,
+//                            displayName,
+//                            source = bitmap,
+//                            uri = uri
+//                        )
+//                    ) {
+//                        Toast.makeText(this.requireContext(), "保存图片成功}", Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//            }
         }
 
         //图片查询
@@ -109,8 +146,11 @@ class DivideStoreFragment : Fragment() {
                 this.requireContext(),
 //                FileRequest(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).path
 //                   , displayName, source = source)
-                        FileRequest(this.requireContext().getExternalFilesDir("txt")!!.absolutePath
-                   , displayName, source = source)
+                FileRequest(
+                    this.requireContext().getExternalFilesDir("txt")!!.absolutePath,
+                    displayName,
+                    source = source
+                )
 //                FileRequest(Environment.DIRECTORY_DOCUMENTS, displayName, source = source)
             ) {
                 if (it.isSuccess) {

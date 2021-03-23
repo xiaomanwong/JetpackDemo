@@ -1,8 +1,6 @@
 package com.wang.libandroid.filerequest.request
 
 import android.content.Context
-import android.text.TextUtils
-import android.util.Log
 import com.wang.libandroid.filerequest.FileRequest
 import com.wang.libandroid.filerequest.FileResponse
 import java.io.*
@@ -18,46 +16,13 @@ class FileManagerRequest : Request {
         if (request.relatePath.isNullOrEmpty()) {
             throw IllegalArgumentException("路径不完整！")
         }
-        val file = newFileWithPath(request.relatePath +"/" +request.displayName)
-        response(
-            FileResponse(
-                file = file,
-                uri = getFileUri(context, file!!)
-            )
-        )
+        val file = File(request.relatePath, request.displayName)
+        if (file.exists()) {
+            file.delete()
+        }
+        file.createNewFile()
     }
 
-    private fun newFileWithPath(filePath: String): File? {
-        if (TextUtils.isEmpty(filePath)) {
-            return null
-        }
-        val index = filePath.lastIndexOf(File.separator)
-        var path = ""
-        if (index != -1) {
-            path = filePath.substring(0, index)
-            if (!TextUtils.isEmpty(path)) {
-                val file = File(path)
-                // 如果文件夹不存在
-                if (!file.exists() && !file.isDirectory) {
-                    val flag = file.mkdirs()
-                    if (flag) {
-                        Log.e(
-                            Request.TAG,
-                            "httpFrame  threadName:" + Thread.currentThread().name + " 创建文件夹成功："
-                                    + file.path
-                        )
-                    } else {
-                        Log.e(
-                            Request.TAG,
-                            "httpFrame  threadName:" + Thread.currentThread().name + " 创建文件夹失败："
-                                    + file.path
-                        )
-                    }
-                }
-            }
-        }
-        return File(filePath)
-    }
 
     override fun deleteFile(
         context: Context,
@@ -67,7 +32,7 @@ class FileManagerRequest : Request {
         if (request.displayName.isNullOrEmpty() || request.relatePath.isNullOrEmpty()) {
             throw IllegalArgumentException("路径不完整！")
         }
-        val file = File(request.relatePath)
+        val file = File(request.relatePath, request.displayName)
         var result = false
         if (file.exists()) {
             result = file.delete()
@@ -86,14 +51,9 @@ class FileManagerRequest : Request {
 
         try {
             request.file?.apply {
-                val out = FileOutputStream(this)
-                val buff = ByteArray(1024)
-                var len: Int
-                while (inputStream!!.read(buff).also { len = it!! } != -1) {
-                    out.write(buff, 0, len)
-                }
-                inputStream!!.close()
-                out.close()
+                val outStream = FileOutputStream(this)
+                outStream.write(input2byte(inputStream))
+                outStream.close()
             }
 
         } catch (e: FileNotFoundException) {
@@ -101,6 +61,17 @@ class FileManagerRequest : Request {
         } catch (e: IOException) {
             e.printStackTrace()
         }
+    }
+
+    @Throws(IOException::class)
+    fun input2byte(inStream: InputStream): ByteArray {
+        val swapStream = ByteArrayOutputStream()
+        val buff = ByteArray(100)
+        var rc = 0
+        while (inStream.read(buff, 0, 100).also { rc = it } > 0) {
+            swapStream.write(buff, 0, rc)
+        }
+        return swapStream.toByteArray()
     }
 
     override fun queryFile(
