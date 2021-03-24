@@ -11,7 +11,7 @@ object FileRequestFactory {
     fun getRequest(): Request =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             // 已经是 10，但使用的是兼容模式
-            if (!Environment.isExternalStorageLegacy()) {
+            if (Environment.isExternalStorageLegacy()) {
                 FileManagerRequest()
             } else {
                 MediaStoreRequest()
