@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+
+        <action android:id="@+id/action_FirstFragment_to_AutoChangeNetworkFragment"
+            app:destination="@+id/AutoChangeNetworkFragment"/>
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -40,5 +43,14 @@
             android:id="@+id/action_WorkManagerFragment_to_FirstFragment"
             app:destination="@+id/FirstFragment" />
 
+    </fragment>
+
+    <fragment android:id="@+id/AutoChangeNetworkFragment"
+        android:name="com.example.jetpack.AutoChangeNetworkFragment"
+        android:label="@string/change_wifi"
+        tools:layout="@layout/activity_auto_change_network">
+        <action
+            android:id="@+id/action_AutoChangeNetworkFragment_to_FirstFragment"
+            app:destination="@+id/FirstFragment" />
     </fragment>
 </navigation>

@@ -33,6 +33,10 @@ class FirstFragment : Fragment() {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
 
+        view.findViewById<Button>(R.id.button_five).setOnClickListener{
+            findNavController().navigate(R.id.action_FirstFragment_to_AutoChangeNetworkFragment)
+        }
+
 
     }
 
