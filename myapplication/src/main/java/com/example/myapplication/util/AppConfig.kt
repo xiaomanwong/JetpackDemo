@@ -33,6 +33,13 @@ fun getDestConfig(): HashMap<String, Destination> {
     return mDestination!!
 }
 
+fun getDestination(page: String): Destination? {
+    if (mDestination != null) {
+        return mDestination!![page]
+    }
+    return null
+}
+
 fun getBottomConfig(): BottomBar? {
     if (mBottomBar == null) {
         val content = parseFile("main_tabs_config.json")

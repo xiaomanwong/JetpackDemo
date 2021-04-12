@@ -22,4 +22,34 @@
         android:name="com.example.myapplication.ui.mine.MineFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_curtain"
+        android:name="com.example.myapplication.ui.home.CurtainFragment"
+        android:label="窗帘"
+        tools:layout="@layout/fragment_curtain" />
+
+    <fragment
+        android:id="@+id/navigation_direction"
+        android:name="com.example.myapplication.ui.home.DirectionFragment"
+        android:label="方向键"
+        tools:layout="@layout/fragment_curtain" />
+
+    <fragment
+        android:id="@+id/navigation_gesture_password"
+        android:name="com.example.myapplication.ui.home.GesturePasswordFragment"
+        android:label="方向键"
+        tools:layout="@layout/fragment_curtain" />
+
+    <fragment
+        android:id="@+id/navigation_loading"
+        android:name="com.example.myapplication.ui.home.LoadingFragment"
+        android:label="方向键"
+        tools:layout="@layout/fragment_loading" />
+
+    <fragment
+        android:id="@+id/navigation_mask"
+        android:name="com.example.myapplication.ui.home.MaskFragment"
+        android:label="方向键"
+        tools:layout="@layout/fragment_loading" />
 </navigation>

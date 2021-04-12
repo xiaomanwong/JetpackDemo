@@ -6,13 +6,10 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.example.lib_network.GetRequest
-import com.example.lib_network.JsonCallback
 import com.example.myapplication.util.NavGraphBuilder
 import com.example.myapplication.util.getDestConfig
 import com.example.myapplication.widget.AppBottomBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import org.json.JSONObject
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private lateinit var navController: NavController
@@ -40,6 +37,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         navController.navigate(item.itemId)
         return !TextUtils.isEmpty(item.title)
 
+    }
+
+
+    fun getNavController(): NavController {
+        return navController
     }
 
 
