@@ -6,6 +6,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.view.animation.LinearInterpolator
 import androidx.core.animation.addListener
@@ -15,7 +16,7 @@ class CurtainView @JvmOverloads constructor(
     attributes: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : View(context, attributes, defStyleAttr) {
-
+    private val TAG = "CurtainView"
     private var mPaint: Paint? = null
 
     // View 宽高
@@ -89,6 +90,7 @@ class CurtainView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+        Log.d(TAG, "onDraw: kkkkkkkkkk")
         for (index in 0..5) {
             val drawX = startX - index * (blockInterval + paintWidth)
             mPaint?.let {

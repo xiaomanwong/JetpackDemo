@@ -1,6 +1,8 @@
 package com.example.myapplication.ui.home
 
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,11 +16,13 @@ import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.util.getDestination
 import kotlinx.android.synthetic.main.fragment_home.view.*
+import java.util.*
 
 
 @FragmentDestination(pageUrl = "main/tabs/home", asStart = true)
 class HomeFragment : Fragment() {
 
+    private val TAG = "HomeFragment"
     private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreateView(
@@ -32,29 +36,42 @@ class HomeFragment : Fragment() {
         val textView: TextView = root.findViewById(R.id.text_home)
         val btnCurtain: Button = root.findViewById(R.id.btn_curtain)
 
-        root.btn_char_list.setOnClickListener { (requireActivity() as MainActivity).getNavController()
-            .navigate(getDestination("main/tabs/home/char_list")?.id!!) }
 
-        root.btn_direction.setOnClickListener { (requireActivity() as MainActivity).getNavController()
-            .navigate(getDestination("main/tabs/home/direction")?.id!!) }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+          val result =   context?.checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            Log.d(TAG, "checkSelfPermission: " + result)
+        }
 
-        root.btn_gesture_password.setOnClickListener { (requireActivity() as MainActivity).getNavController()
-            .navigate(getDestination("main/tabs/home/gesture_password")?.id!!) }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val result = activity?.shouldShowRequestPermissionRationale(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            Log.d(TAG, "shouldShowRequestPermissionRationale: " + result)
+        }
+        root.btn_permission.setOnClickListener {
+            requestPermissions(arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 1);
+        }
 
-        root.btn_loading.setOnClickListener { (requireActivity() as MainActivity).getNavController()
-            .navigate(getDestination("main/tabs/home/loading")?.id!!) }
-
-        root.btn_mask.setOnClickListener { (requireActivity() as MainActivity).getNavController()
-            .navigate(getDestination("main/tabs/home/mask")?.id!!) }
-
+        root.btn_auto_change_network.setOnClickListener{
+            (requireActivity() as MainActivity).getNavController()
+                .navigate(getDestination("main/wifi/strength")?.id!!)
+        }
 
         btnCurtain.setOnClickListener {
             (requireActivity() as MainActivity).getNavController()
-                .navigate(getDestination("main/tabs/home/curtain")?.id!!)
+                .navigate(getDestination("main/tabs/custom_page")?.id!!)
         }
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
         return root
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        Log.d(TAG, "onRequestPermissionsResult: " + grantResults.contentToString())
     }
 }

@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.home
+package com.example.myapplication.custom_page
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,15 +13,16 @@ import com.example.myapplication.R
  * @date 4/12/21
  * @Desc
  */
-@FragmentDestination(pageUrl = "main/tabs/home/direction")
-class DirectionFragment:Fragment() {
+@FragmentDestination(pageUrl = "main/tabs/home/loading")
+class LoadingFragment : Fragment() {
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_direction, container, false)
+        val root = inflater.inflate(R.layout.fragment_loading, container, false)
         return root
     }
 }

@@ -24,26 +24,36 @@
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
+        android:id="@+id/navigation_custom_page"
+        android:name="com.example.myapplication.custom_page.CustomFragment"
+        android:label="自定义View页面"
+        tools:layout="@layout/fragment_custom_page" />
+    <fragment
+        android:id="@+id/navigation_auto_change_network"
+        android:name="com.example.myapplication.wifi.AutoChangeNetworkFragment"
+        android:label="自动切换WiFi与Mobile"
+        tools:layout="@layout/fragment_custom_page" />
+    <fragment
         android:id="@+id/navigation_curtain"
-        android:name="com.example.myapplication.ui.home.CurtainFragment"
+        android:name="com.example.myapplication.custom_page.CurtainFragment"
         android:label="窗帘"
         tools:layout="@layout/fragment_curtain" />
 
     <fragment
         android:id="@+id/navigation_direction"
-        android:name="com.example.myapplication.ui.home.DirectionFragment"
+        android:name="com.example.myapplication.custom_page.DirectionFragment"
         android:label="方向键"
         tools:layout="@layout/fragment_curtain" />
 
     <fragment
         android:id="@+id/navigation_gesture_password"
-        android:name="com.example.myapplication.ui.home.GesturePasswordFragment"
+        android:name="com.example.myapplication.custom_page.GesturePasswordFragment"
         android:label="方向键"
         tools:layout="@layout/fragment_curtain" />
 
     <fragment
         android:id="@+id/navigation_loading"
-        android:name="com.example.myapplication.ui.home.LoadingFragment"
+        android:name="com.example.myapplication.custom_page.LoadingFragment"
         android:label="方向键"
         tools:layout="@layout/fragment_loading" />
 

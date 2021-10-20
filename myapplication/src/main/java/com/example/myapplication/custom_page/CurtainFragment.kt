@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.home
+package com.example.myapplication.custom_page
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.fragment_curtain.view.*
 @FragmentDestination(pageUrl = "main/tabs/home/curtain")
 class CurtainFragment : Fragment() {
 
+
     lateinit var root: View
 
     override fun onCreateView(
@@ -25,7 +26,7 @@ class CurtainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        root = inflater.inflate(R.layout.fragment_curtain, container,false)
+        root = inflater.inflate(R.layout.fragment_curtain, container, false)
 
         root.btn_open.setOnClickListener {
             curtain_view.openAnimator()
@@ -40,5 +41,12 @@ class CurtainFragment : Fragment() {
         }
 
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        root.postDelayed({
+            curtain_view.translationX = 100f
+        }, 3000)
     }
 }

@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.home
+package com.example.myapplication.custom_page
 
 import android.os.Bundle
 import android.view.LayoutInflater

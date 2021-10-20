@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -87,6 +88,10 @@ public class MaskFragment extends Fragment {
                     singleGuideView.show();
                 })
                 .build();
+        if (anchorList.size() == 0) {
+            Toast.makeText(this.getContext(), "请传入锚点", Toast.LENGTH_SHORT).show();
+            return;
+        }
         // 单身社区
         singleGuideView = FloatGuideView.Builder.newInstance(getContext())
                 .setTargetView(anchorList.get(0))

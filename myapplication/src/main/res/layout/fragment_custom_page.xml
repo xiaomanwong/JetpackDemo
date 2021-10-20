@@ -32,20 +32,38 @@
                 android:id="@+id/btn_curtain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="自定义 view" />
+                android:text="窗帘" />
 
             <Button
-                android:id="@+id/btn_permission"
+                android:id="@+id/btn_char_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="权限请求" />
-
+                android:text="字母列表" />
 
             <Button
-                android:id="@+id/btn_auto_change_network"
+                android:id="@+id/btn_direction"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="网络切换" />
+                android:text="方向键" />
+
+            <Button
+                android:id="@+id/btn_gesture_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="手势密码" />
+
+            <Button
+                android:id="@+id/btn_loading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="loading" />
+
+            <Button
+                android:id="@+id/btn_mask"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="引导蒙版" />
+
         </LinearLayout>
     </ScrollView>
 </TableLayout>
