@@ -16,7 +16,6 @@ import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.util.getDestination
 import kotlinx.android.synthetic.main.fragment_home.view.*
-import java.util.*
 
 
 @FragmentDestination(pageUrl = "main/tabs/home", asStart = true)
@@ -38,19 +37,25 @@ class HomeFragment : Fragment() {
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-          val result =   context?.checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            val result =
+                context?.checkSelfPermission(android.Manifest.permission.READ_PHONE_STATE)
             Log.d(TAG, "checkSelfPermission: " + result)
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val result = activity?.shouldShowRequestPermissionRationale(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            val result =
+                activity?.shouldShowRequestPermissionRationale(android.Manifest.permission.READ_PHONE_STATE)
             Log.d(TAG, "shouldShowRequestPermissionRationale: " + result)
         }
         root.btn_permission.setOnClickListener {
-            requestPermissions(arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 1);
+            requestPermissions(
+                arrayOf(
+                    android.Manifest.permission.READ_PHONE_STATE
+                ), 1
+            );
         }
 
-        root.btn_auto_change_network.setOnClickListener{
+        root.btn_auto_change_network.setOnClickListener {
             (requireActivity() as MainActivity).getNavController()
                 .navigate(getDestination("main/wifi/strength")?.id!!)
         }
@@ -72,6 +77,9 @@ class HomeFragment : Fragment() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        Log.d(TAG, "onRequestPermissionsResult: " + grantResults.contentToString())
+        Log.d(
+            TAG,
+            "onRequestPermissionsResult: " + permissions.contentToString() + "\n" + grantResults.contentToString()
+        )
     }
 }
