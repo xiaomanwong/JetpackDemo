@@ -8,4 +8,19 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+
+    <style name="immeric_activity_style" parent="Theme.AppCompat.Light.Dialog">
+
+        <item name="android:immersive">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="windowActionBar">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="background">@color/transparent</item>
+        <item name="android:windowTitleBackgroundStyle">@color/transparent</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBarOverlay">true</item>
+    </style>
 </resources>

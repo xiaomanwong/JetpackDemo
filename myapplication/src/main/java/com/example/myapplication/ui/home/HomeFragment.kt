@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.home
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.lib_annotation.FragmentDestination
+import com.example.myapplication.ImmericActivity
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.util.getDestination
@@ -60,6 +62,10 @@ class HomeFragment : Fragment() {
                 .navigate(getDestination("main/wifi/strength")?.id!!)
         }
 
+        root.btn_immersive_activity.setOnClickListener {
+            startActivity(Intent(this.requireContext(), ImmericActivity::class.java))
+        }
+
         btnCurtain.setOnClickListener {
             (requireActivity() as MainActivity).getNavController()
                 .navigate(getDestination("main/tabs/custom_page")?.id!!)
@@ -70,6 +76,7 @@ class HomeFragment : Fragment() {
 
         return root
     }
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,

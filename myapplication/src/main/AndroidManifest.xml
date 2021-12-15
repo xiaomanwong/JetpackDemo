@@ -29,6 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.publish.PublishActivity" />
+        <activity android:name=".ImmericActivity" />
     </application>
 
 </manifest>
