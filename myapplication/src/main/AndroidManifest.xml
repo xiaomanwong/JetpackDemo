@@ -3,20 +3,20 @@
     package="com.example.myapplication">
 
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/Theme.AppCompat"
         android:supportsRtl="false"
-        android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
         <activity
@@ -29,7 +29,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.publish.PublishActivity" />
-        <activity android:name=".ImmericActivity" />
+        <activity
+            android:name=".ImmericActivity"
+            />
+<!--            android:theme="@style/AppTheme.FullScreen"-->
+<!--            android:theme="@style/Theme.AppCompat"-->
+
+<!--        android:theme="@style/AppTheme.FullScreen"-->
     </application>
 
 </manifest>

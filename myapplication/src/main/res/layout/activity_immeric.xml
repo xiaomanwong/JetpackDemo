@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -52,4 +53,46 @@
             android:text="我这里是文案" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
+<!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:id="@+id/container"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:fitsSystemWindows="true">-->
+
+<!--    <androidx.coordinatorlayout.widget.CoordinatorLayout-->
+<!--        android:id="@+id/coordinator"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:fitsSystemWindows="true">-->
+
+<!--        <View-->
+<!--            android:id="@+id/touch_outside"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:focusable="false"-->
+<!--            android:importantForAccessibility="no"-->
+<!--            android:soundEffectsEnabled="false"-->
+<!--            tools:ignore="UnusedAttribute" />-->
+
+<!--        <FrameLayout-->
+<!--            android:id="@+id/design_bottom_sheet"-->
+<!--            style="?attr/bottomSheetStyle"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal|top"-->
+<!--            app:layout_behavior="@string/bottom_sheet_behavior">-->
+
+<!--            -->
+
+
+<!--        </FrameLayout>-->
+
+
+<!--    </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+
+<!--</FrameLayout>-->
+
+
 
