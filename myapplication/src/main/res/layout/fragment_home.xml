@@ -56,6 +56,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="沉浸式布局" />
+
+
+            <Button
+                android:id="@+id/btn1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="按钮 1" />
+
+
+
+            <Button
+                android:id="@+id/btn2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="按钮 2" />
+
+
+
+            <Button
+                android:id="@+id/btn3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="按钮 3" />
+
         </LinearLayout>
     </ScrollView>
 </TableLayout>

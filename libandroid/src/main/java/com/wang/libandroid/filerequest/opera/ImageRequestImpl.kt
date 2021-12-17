@@ -4,19 +4,15 @@ import android.app.RecoverableSecurityException
 import android.content.ContentUris
 import android.content.ContentValues
 import android.content.Context
-import android.content.IntentSender
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.text.TextUtils
-import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityCompat.startIntentSenderForResult
 import com.wang.libandroid.filerequest.FileRequest
 import com.wang.libandroid.filerequest.FileResponse
 import com.wang.libandroid.filerequest.request.Request
-import java.io.File
 import java.util.*
 
 class ImageRequestImpl : Request {
@@ -25,8 +21,8 @@ class ImageRequestImpl : Request {
         request: FileRequest,
         response: (fileResponse: FileResponse) -> Unit
     ) {
-        val suffix = request.displayName?.substring(request.displayName.lastIndexOf("."))
-            ?.toLowerCase(Locale.getDefault())
+        val suffix = request.displayName.substring(request.displayName.lastIndexOf("."))
+            .toLowerCase(Locale.getDefault())
         val mimeType = "image/${suffix}"
         val contentValues = ContentValues()
         contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, request.displayName)
@@ -49,10 +45,10 @@ class ImageRequestImpl : Request {
             // Android 10+中,如果删除的是其它应用的Uri,则需要用户授权
             // 会抛出RecoverableSecurityException异常
             var imageUri: Uri? = null
-            queryFile(context,FileRequest(request.relatePath, request.displayName)){
-                if (it.uri == null){
+            queryFile(context, FileRequest(request.relatePath, request.displayName)) {
+                if (it.uri == null) {
                     response(FileResponse(isSuccess = false))
-                }else{
+                } else {
                     imageUri = it.uri
                 }
             }
@@ -66,7 +62,6 @@ class ImageRequestImpl : Request {
             response(FileResponse(isSuccess = true))
         }
     }
-
 
 
     override fun updateFile(
@@ -120,14 +115,14 @@ class ImageRequestImpl : Request {
                         it.getString(cursor.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME))
                     val uri =
                         ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id)
-                    if (TextUtils.equals(displayName, request.displayName)){
+                    if (TextUtils.equals(displayName, request.displayName)) {
                         response(FileResponse(isSuccess = true, uri = uri))
                     }
                     dataList.add(ImageBean(id, uri, displayName))
                 }
             }
             cursor?.close()
-        }catch (e: Exception){
+        } catch (e: Exception) {
             response(FileResponse(isSuccess = false))
         }
 

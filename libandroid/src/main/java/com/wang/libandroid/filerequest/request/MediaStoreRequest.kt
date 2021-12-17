@@ -6,7 +6,6 @@ import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.ArrayMap
-import android.util.Log
 import androidx.annotation.RequiresApi
 import com.wang.libandroid.filerequest.FileRequest
 import com.wang.libandroid.filerequest.FileResponse
@@ -15,7 +14,6 @@ import com.wang.libandroid.filerequest.opera.FileRequestImpl
 import com.wang.libandroid.filerequest.opera.ImageRequestImpl
 import com.wang.libandroid.filerequest.opera.MoviesRequestImpl
 import java.io.File
-import java.lang.IllegalArgumentException
 import java.util.*
 
 /**
@@ -130,8 +128,8 @@ class MediaStoreRequest : Request {
     private fun getFileScheme(request: FileRequest): Request {
         // 截取后缀
         val suffix =
-            request.displayName?.substring(request.displayName.lastIndexOf("."))
-                ?.toLowerCase(Locale.getDefault())
+            request.displayName.substring(request.displayName.lastIndexOf("."))
+                .toLowerCase(Locale.getDefault())
         return if (request.relatePath.startsWith(Environment.DIRECTORY_MOVIES)
             && _movieScheme.contains(suffix)
         ) {

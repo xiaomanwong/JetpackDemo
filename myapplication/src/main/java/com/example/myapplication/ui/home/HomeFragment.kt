@@ -17,6 +17,7 @@ import com.example.myapplication.ImmericActivity
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.util.getDestination
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 
@@ -73,10 +74,17 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
-
         return root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        btn1.setOnClickListener {
+            (requireActivity() as MainActivity).getNavController()
+                .navigate(getDestination("main/tabs/divide_store")?.id!!)
+        }
+    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
