@@ -64,7 +64,7 @@ dependencies {
     implementation project(":lib_common")
     implementation project(":libandroid")
     kapt project(":lib_complier")
-
+    implementation 'com.github.seancfoley:ipaddress:5.3.3'
 
 
     //图片加载

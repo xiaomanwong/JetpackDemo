@@ -7,3 +7,5 @@
 /captures
 .externalNativeBuild
 .cxx
+maven.gradle
+myapplication/src/main/assets/destination.json
