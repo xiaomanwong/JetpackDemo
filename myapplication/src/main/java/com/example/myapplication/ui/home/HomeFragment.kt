@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.home
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -12,6 +13,7 @@ import android.media.projection.MediaProjectionManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.transition.TransitionSet
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
@@ -21,12 +23,16 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.lib_annotation.FragmentDestination
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
+import com.example.myapplication.TransitionPendingActivity
+import com.example.myapplication.transition.ChangeAlphaTransition
+import com.example.myapplication.transition.ExitTransition
 import com.example.myapplication.util.getDestination
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
@@ -91,6 +97,43 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
+        root.btn3.setOnClickListener {
+
+            val btn3: View = root.btn3
+
+            // 退场动画
+            val enterTransition = TransitionSet()
+            val enterScale = ExitTransition(1, 20)
+            val enterAlpha = ChangeAlphaTransition(1f, 0f)
+            enterScale.addTarget(root.btn3)
+            enterAlpha.addTarget(root.btn3)
+            enterTransition.addTransition(enterScale)
+            enterTransition.addTransition(enterAlpha)
+            enterTransition.ordering = TransitionSet.ORDERING_TOGETHER
+            enterTransition.duration = 300
+
+            // 重新进入动画
+            val reentrantTransition = TransitionSet()
+            val reenterScale = ExitTransition(20, 1)
+            val reenterAlpha = ChangeAlphaTransition(0f, 1f)
+            reenterScale.addTarget(root.btn3)
+            reenterAlpha.addTarget(root.btn3)
+            reentrantTransition.addTransition(reenterScale)
+            reentrantTransition.addTransition(reenterAlpha)
+            reentrantTransition.ordering = TransitionSet.ORDERING_TOGETHER
+            reentrantTransition.duration = 300
+
+            requireActivity().window?.exitTransition = enterTransition
+            requireActivity().window?.reenterTransition = reentrantTransition
+            startActivity(
+                Intent(activity, TransitionPendingActivity::class.java),
+                ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    context as Activity
+                ).toBundle()
+            )
+//            startActivity()
+        }
         return root
     }
 
