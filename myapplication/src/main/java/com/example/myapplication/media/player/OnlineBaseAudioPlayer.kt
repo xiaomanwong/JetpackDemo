@@ -2,8 +2,8 @@ package com.example.myapplication.media.player
 
 /**
  * @author admin
- * @date 2022/5/7
+ * @date 2022/5/9
  * @Desc
  */
-class DefaultPlayer: BaseAudioPlayer() {
+open class OnlineBaseAudioPlayer : BaseAudioPlayer() {
 }

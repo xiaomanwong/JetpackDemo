@@ -1,10 +1,11 @@
-package com.example.myapplication.media.download
+package com.yidian.local.service.audio.download
 
 import android.util.Log
 import com.liulishuo.filedownloader.BaseDownloadTask
 import com.liulishuo.filedownloader.FileDownloadListener
 import com.liulishuo.filedownloader.FileDownloadQueueSet
 import com.liulishuo.filedownloader.FileDownloader
+import com.yidian.local.service.audio.model.TruelyAudioElement
 
 /**
  * @author admin
@@ -14,13 +15,13 @@ import com.liulishuo.filedownloader.FileDownloader
 object TruelyAudioDownloadManager {
 
     @Synchronized
-    fun startDownload(element: ArrayList<TruelyAudioElement>) {
+    fun startDownload(element: ArrayList<TruelyAudioElement>, downloadAndPlay: Boolean = false) {
         val downloadListener = createLis()
         val queueSet = FileDownloadQueueSet(downloadListener)
         val tasks: MutableList<BaseDownloadTask> = ArrayList()
 
-        element.forEachIndexed { index, it->
-            if (index == 0) {
+        element.forEachIndexed { index, it ->
+            if (index == 0 && downloadAndPlay) {
                 it.isFirst = true
             }
             it.startTime = System.currentTimeMillis()
@@ -50,7 +51,7 @@ object TruelyAudioDownloadManager {
                 // 后面所有在回调中加这句都是这个原因
                 Log.d(
                     "wangxu3",
-                    "TruelyAudioDownloadManager ===> pending() called with: task = $task, soFarBytes = $soFarBytes, totalBytes = $totalBytes"
+                    "TruelyAudioDownloadManager ===> pending() called with: task = ${(task.tag as TruelyAudioElement).element.music_url}, soFarBytes = $soFarBytes, totalBytes = $totalBytes"
                 )
             }
 
@@ -61,7 +62,7 @@ object TruelyAudioDownloadManager {
                 super.connected(task, etag, isContinue, soFarBytes, totalBytes)
                 Log.d(
                     "wangxu3",
-                    "TruelyAudioDownloadManager ===> connected() called with: task = $task, etag = $etag, isContinue = $isContinue, soFarBytes = $soFarBytes, totalBytes = $totalBytes"
+                    "TruelyAudioDownloadManager ===> connected() called with: task = ${(task.tag as TruelyAudioElement).element.music_url}, etag = $etag, isContinue = $isContinue, soFarBytes = $soFarBytes, totalBytes = $totalBytes"
                 )
             }
 

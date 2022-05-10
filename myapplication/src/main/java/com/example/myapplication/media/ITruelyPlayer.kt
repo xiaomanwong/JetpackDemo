@@ -8,11 +8,9 @@ package com.example.myapplication.media
 interface ITruelyPlayer {
 
     fun play(
-        sourceList: ArrayList<String>,
-        index: Int,
-        startTime: Long,
+        source: Any,
         @TruelyAudioPlayerManager.AudioMediaCategory category: String,
-        callback:  (code:Int, msg:String) -> Unit
+        callback: (code: Int, msg: String, other: Any?) -> Unit
     )
 
     fun stop(@TruelyAudioPlayerManager.AudioMediaCategory category: String?)

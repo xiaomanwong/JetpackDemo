@@ -22,12 +22,14 @@ class TruelyAudioPlayerManager : ITruelyPlayer {
     @Retention(AnnotationRetention.SOURCE)
     annotation class AudioMediaCategory {
         companion object {
-            const val BGM = "bgm"
             const val JUKEBOX = "jukebox" // 唱片机
-            const val GUITAR = "guitar" // 、吉他
-            const val VOICE_MESSAGE = "voice_message" //语音消息
-            const val POLLY = "POLLY" //鹦鹉
-            const val DEFAULT = "default"
+            const val GUITAR_FOLK = "guitar_folk" // 、吉他1
+            const val GUITAR_CLASSICAL = "guitar_classical" // 、吉他2
+            const val GUITAR_ELECTRIC = "guitar_electric" // 、吉他3
+            const val POLLY = "polly" //鹦鹉
+            const val HTTP = "http"
+            const val LOCAL = "local"
+            const val BYTE_DATA = "byte_data"
         }
     }
 
@@ -49,46 +51,62 @@ class TruelyAudioPlayerManager : ITruelyPlayer {
     private val playerList = hashMapOf<@AudioMediaCategory String, BaseAudioPlayer>()
 
     override fun play(
-        sourceList: ArrayList<String>,
-        index: Int,
-        startTime: Long,
+        source: Any,
         category: String,
-        callback: (code: Int, msg: String) -> Unit
+        callback: (code: Int, msg: String, other: Any?) -> Unit
     ) {
         // 处理冲突业务 唱片机和吉他类型互斥
         // 检查是否是具有互斥性元素
-        if (category == AudioMediaCategory.JUKEBOX
-            || category == AudioMediaCategory.GUITAR
-        ) {
-            // 找到对应的互斥元素并停止
-            findDiscriminateElementAndStop(category)
-        }
+        // 找到对应的互斥元素并停止
+        findDiscriminateElementAndStop(category)
         // 处理完互斥元素后，判断当前播放列表中是否有当前元素
-        val player = establishPlayer(category)
+        val player: BaseAudioPlayer? = establishPlayer(category)
+        if (player == null) {
+            callback.invoke(
+                TruelyAudioStatusCode.PARAM_ERROR,
+                TruelyAudioStatusCode.STR_PARAM_ERROR,
+                category
+            )
+            return
+        }
         playerList[category] = player
         // 开始播放
-        player.play(sourceList, index, startTime, category, callback)
+        player.play(source, category, callback)
     }
 
     /**
      * 寻找到互斥元素
      */
     private fun findDiscriminateElementAndStop(category: String) {
-        if (category == AudioMediaCategory.JUKEBOX) {
+        if (category == AudioMediaCategory.JUKEBOX
+            || category == AudioMediaCategory.GUITAR_CLASSICAL
+            || category == AudioMediaCategory.GUITAR_ELECTRIC
+            || category == AudioMediaCategory.GUITAR_FOLK
+        ) {
+            // 找到对应的互斥元素并停止
             // 如果是唱片机，找到所有吉他播放器,吉他可能有多个
-            for ((k, v) in playerList) {
-                if (k == AudioMediaCategory.GUITAR) {
-                    v.stop(category)
-                    playerList.remove(k)
+            val iterator = playerList.iterator()
+            while (iterator.hasNext()) {
+                val (key, value) = iterator.next()
+                var remove = false
+                if (category == AudioMediaCategory.JUKEBOX) {
+                    if (key == AudioMediaCategory.GUITAR_CLASSICAL
+                        || key == AudioMediaCategory.GUITAR_ELECTRIC
+                        || key == AudioMediaCategory.GUITAR_FOLK
+                    ) {
+                        remove = true
+                    }
+                } else if (category == AudioMediaCategory.GUITAR_CLASSICAL
+                    || category == AudioMediaCategory.GUITAR_ELECTRIC
+                    || category == AudioMediaCategory.GUITAR_FOLK
+                ) {
+                    if (key == AudioMediaCategory.JUKEBOX) {
+                        remove = true
+                    }
                 }
-            }
-        } else if (category == AudioMediaCategory.GUITAR) {
-            for ((k, v) in playerList) {
-                // 唱片机移除
-                if (k == AudioMediaCategory.JUKEBOX) {
-                    v.stop(category)
-                    playerList.remove(k)
-                    break
+                if (remove) {
+                    value.stop(key)
+                    iterator.remove()
                 }
             }
         }
@@ -101,12 +119,17 @@ class TruelyAudioPlayerManager : ITruelyPlayer {
      * 如果当前播放器不存在，则重新创建
      */
 
-    private fun establishPlayer(category: String): BaseAudioPlayer {
+    private fun establishPlayer(category: String): BaseAudioPlayer? {
         return playerList[category] ?: when (category) {
             AudioMediaCategory.JUKEBOX -> JukeboxPlayer()
-            AudioMediaCategory.GUITAR -> GuitarPlayer()
+            AudioMediaCategory.GUITAR_CLASSICAL,
+            AudioMediaCategory.GUITAR_ELECTRIC,
+            AudioMediaCategory.GUITAR_FOLK -> GuitarPlayer()
             AudioMediaCategory.POLLY -> PollyPlayer()
-            else -> DefaultPlayer()
+            AudioMediaCategory.HTTP -> HttpPlayer()
+            AudioMediaCategory.LOCAL -> LocalPlayer()
+            AudioMediaCategory.BYTE_DATA -> ByteDataPlayer()
+            else -> null
         }
     }
 

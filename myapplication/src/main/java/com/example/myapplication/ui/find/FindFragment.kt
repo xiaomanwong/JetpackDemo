@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.find
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,14 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.lib_annotation.FragmentDestination
 import com.example.myapplication.R
 import com.example.myapplication.media.TruelyAudioPlayerManager
+import com.example.myapplication.media.TruelyAudioStatusCode
+import com.yidian.local.service.audio.model.AudioModel
+import org.json.JSONArray
+import org.json.JSONObject
+import java.io.File
+import java.nio.file.Files
+import java.nio.file.Paths
+import java.util.*
 
 @FragmentDestination(pageUrl = "main/tabs/find", asStart = false)
 class FindFragment : Fragment() {
@@ -29,47 +38,251 @@ class FindFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<View>(R.id.text_dashboard).setOnClickListener {
+        val apply = JSONObject()
+        val array = JSONArray()
+        arrayListOf(
+            AudioModel(
+                1,
+                "https://shenbian-yidian.go2yd.com/admin/pictools/Amatorski - Come Home.mp3",
+                "未知",
+                "sss",
+                "category",
+                1,
+                100,
+                "12049124",
+                "12124124"
+            ),
+            AudioModel(
+                1,
+                "https://shenbian-yidian.go2yd.com/admin/pictools/Ginger Root - B4.mp3",
+                "未知",
+                "sss",
+                "category",
+                1,
+                1000,
+                "12049124L",
+                "12124124L"
+            ), AudioModel(
+                1,
+                "https://shenbian-yidian.go2yd.com/admin/pictools/KΛGWΣ - ㅤㅤ.mp3",
+                "未知",
+                "sss",
+                "category",
+                1,
+                100,
+                "12049124",
+                "12124124"
+            ), AudioModel(
+                1,
+                "https://shenbian-yidian.go2yd.com/admin/pictools/the girl next door - letters to ana.mp3",
+                "未知",
+                "sss",
+                "category",
+                1,
+                100,
+                "12049124L",
+                "12124124L"
+            )
+        ).forEach {
+            val obj = JSONObject()
+            obj.put("music_id", it.music_id)
+            obj.put("music_url", it.music_url)
+            obj.put("name", it.name)
+            obj.put("signer", it.signer)
+            obj.put("music_category", it.music_category)
+            obj.put("sort", it.sort)
+            obj.put("duration", it.duration)
+            obj.put("create_time", it.create_time)
+            obj.put("update_time", it.update_time)
+            array.put(obj)
+        }
+        apply.put("sourceList", array)
+        apply.put("index", 2)
+        apply.put("startTime", 0)
+        TruelyAudioPlayerManager.AudioMediaCategory.JUKEBOX
+        view.findViewById<View>(R.id.text_dashboard_1).setOnClickListener {
             TruelyAudioPlayerManager.getInstance().play(
-                arrayListOf(
-                    "http://m8.music.126.net/20220507141015/79a2f86e75e1e2f6e0fef03d00803c55/ymusic/b774/f84c/19cf/1fbd6b108563ccd03bf86b1a304d4570.mp3",
-                    "http://m8.music.126.net/20220507141407/95f073b86b62c718e8f129bc7305e664/ymusic/545d/5252/5553/c749b329eae8d1f85449b9dbdfaf08b4.mp3",
-                    "http://m8.music.126.net/20220507141400/a507daf44ab21647c6c38ead7ac29e06/ymusic/54ea/91ec/767e/20497bcc9ffc83e89184a6999258ae72.mp3",
-                    "http://m8.music.126.net/20220507141357/9d52c3bff1d9be629723425a502aee23/ymusic/0575/dc5e/aa10/781ae4d95b9fea03e1267170b1cacd32.mp3",
-                    "http://m8.music.126.net/20220507141355/98fb75197943ab26f6e8354c40cb5a92/ymusic/2d9d/fe2f/52e3/93c5c73bcf793249ea4c6aba718ca2f7.mp3"
-                ),
-                0,
-                60_000,
+                apply,
                 TruelyAudioPlayerManager.AudioMediaCategory.JUKEBOX
-            ) { code, msg ->
-                Log.d("wangxu3", "FindFragment ===> onViewCreated() called")
+            ) { code, msg, any ->
+                Log.d(
+                    "wangxu3",
+                    "FindFragment ===> onViewCreated() called with: code = $code, msg = $msg, any = $any"
+                )
+
+
+                if (code != TruelyAudioStatusCode.ALARM_SYNC
+                    && code != TruelyAudioStatusCode.START_PLAY
+                ) {
+                    // 只有同步时钟和开始播放，不需要释放资源，其他情况都回收资源
+                    TruelyAudioPlayerManager.getInstance()
+                        .stop(TruelyAudioPlayerManager.AudioMediaCategory.JUKEBOX)
+                }
             }
         }
+        val it = AudioModel(
+            1,
+            "https://shenbian-yidian.go2yd.com/admin/pictools/the girl next door - letters to ana.mp3",
+            "未知",
+            "sss",
+            "category",
+            1,
+            100,
+            "12049124L",
+            "12124124L"
+        )
+        val obj = JSONObject()
+        obj.put("music_id", it.music_id)
+        obj.put(
+            "music_url",
+            "https://shenbian-yidian.go2yd.com/admin/pictools/the girl next door - letters to ana.mp3"
+        )
+        obj.put("name", it.name)
+        obj.put("signer", it.signer)
+        obj.put("music_category", it.music_category)
+        obj.put("sort", it.sort)
+        obj.put("duration", it.duration)
+        obj.put("create_time", it.create_time)
+        obj.put("update_time", it.update_time)
+//
+        view.findViewById<View>(R.id.text_dashboard).setOnClickListener {
+            TruelyAudioPlayerManager.getInstance().play(
+                JSONObject().apply { put("source", obj) },
+                TruelyAudioPlayerManager.AudioMediaCategory.GUITAR_FOLK
+            ) { code, msg, any ->
+                Log.d(
+                    "wangxu3",
+                    "FindFragment ===> onViewCreated() called with: code = $code, msg = $msg, any = $any"
+                )
+
+
+                if (code != TruelyAudioStatusCode.ALARM_SYNC
+                    && code != TruelyAudioStatusCode.START_PLAY
+                ) {
+                    // 只有同步时钟和开始播放，不需要释放资源，其他情况都回收资源
+                    TruelyAudioPlayerManager.getInstance()
+                        .stop(TruelyAudioPlayerManager.AudioMediaCategory.GUITAR_FOLK)
+                }
+            }
+        }
+
+        val obj1 = JSONObject()
+        obj1.put("music_id", it.music_id)
+        obj1.put("music_url", "https://shenbian-yidian.go2yd.com/admin/pictools/KΛGWΣ - ㅤㅤ.mp3")
+        obj1.put("name", it.name)
+        obj1.put("signer", it.signer)
+        obj1.put("music_category", it.music_category)
+        obj1.put("sort", it.sort)
+        obj1.put("duration", it.duration)
+        obj1.put("create_time", it.create_time)
+        obj1.put("update_time", it.update_time)
 
         view.findViewById<View>(R.id.text_dashboard_2).setOnClickListener {
             TruelyAudioPlayerManager.getInstance().play(
-                arrayListOf(
-                    "http://m8.music.126.net/20220507141015/79a2f86e75e1e2f6e0fef03d00803c55/ymusic/b774/f84c/19cf/1fbd6b108563ccd03bf86b1a304d4570.mp3",
-                    "http://m8.music.126.net/20220507141407/95f073b86b62c718e8f129bc7305e664/ymusic/545d/5252/5553/c749b329eae8d1f85449b9dbdfaf08b4.mp3",
-                    "http://m8.music.126.net/20220507141400/a507daf44ab21647c6c38ead7ac29e06/ymusic/54ea/91ec/767e/20497bcc9ffc83e89184a6999258ae72.mp3",
-                    "http://m8.music.126.net/20220507141357/9d52c3bff1d9be629723425a502aee23/ymusic/0575/dc5e/aa10/781ae4d95b9fea03e1267170b1cacd32.mp3",
-                    "http://m8.music.126.net/20220507141355/98fb75197943ab26f6e8354c40cb5a92/ymusic/2d9d/fe2f/52e3/93c5c73bcf793249ea4c6aba718ca2f7.mp3"
-                ),
-                3,
-                0,
-                TruelyAudioPlayerManager.AudioMediaCategory.GUITAR
-            ) { code, msg ->
-                Log.d("wangxu3", "FindFragment ===> onViewCreated() called")
+                JSONObject().apply { put("source", obj1) },
+                TruelyAudioPlayerManager.AudioMediaCategory.GUITAR_CLASSICAL
+            ) { code, msg, any ->
+                Log.d(
+                    "wangxu3",
+                    "FindFragment ===> onViewCreated() called with: code = $code, msg = $msg, any = $any"
+                )
+                if (code != TruelyAudioStatusCode.ALARM_SYNC
+                    && code != TruelyAudioStatusCode.START_PLAY
+                ) {
+                    // 只有同步时钟和开始播放，不需要释放资源，其他情况都回收资源
+                    TruelyAudioPlayerManager.getInstance()
+                        .stop(TruelyAudioPlayerManager.AudioMediaCategory.GUITAR_CLASSICAL)
+                }
             }
         }
 
+        view.findViewById<View>(R.id.text_dashboard_3).setOnClickListener {
+            TruelyAudioPlayerManager.getInstance().play(
+                JSONObject().apply {
+                    put(
+                        "source",
+//                    "/data/user/0/com.example.myapplication/cache/audio/Amatorski - Come Home.mp3"
+                        "https://shenbian-yidian.go2yd.com/admin/pictools/KΛGWΣ - ㅤㅤ.mp3"
+                    )
+                },
+                TruelyAudioPlayerManager.AudioMediaCategory.HTTP
+            ) { code, msg, any ->
+                Log.d(
+                    "wangxu3",
+                    "FindFragment ===> onViewCreated() called with: code = $code, msg = $msg, any = $any"
+                )
+                if (code != TruelyAudioStatusCode.ALARM_SYNC
+                    && code != TruelyAudioStatusCode.START_PLAY
+                ) {
+                    // 只有同步时钟和开始播放，不需要释放资源，其他情况都回收资源
+                    TruelyAudioPlayerManager.getInstance()
+                        .stop(TruelyAudioPlayerManager.AudioMediaCategory.HTTP)
+                }
+            }
+        }
+
+        File("/data/user/0/com.example.myapplication/cache/audio/KΛGWΣ - ㅤㅤ.mp3")
+        val b: ByteArray? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Files.readAllBytes(Paths.get("/data/user/0/com.example.myapplication/cache/audio/KΛGWΣ - ㅤㅤ.mp3"))
+        } else {
+            null
+        }
+
+       val byte :String =  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Base64.getEncoder().encodeToString(b)
+        } else {
+            ""
+       }
+        Log.d(
+            "wangxu3",
+            "FindFragment ===> onViewCreated() called with: byte $byte"
+        )
+        view.findViewById<View>(R.id.text_dashboard_4).setOnClickListener {
+            TruelyAudioPlayerManager.getInstance().play(
+                JSONObject().apply {
+                    put(
+                        "source",
+//                    "/data/user/0/com.example.myapplication/cache/audio/Amatorski - Come Home.mp3"
+                        byte+"---"
+                    )
+                },
+                TruelyAudioPlayerManager.AudioMediaCategory.BYTE_DATA
+            ) { code, msg, any ->
+                Log.d(
+                    "wangxu3",
+                    "FindFragment ===> onViewCreated() called with: code = $code, msg = $msg, any = $any"
+                )
+                if (code != TruelyAudioStatusCode.ALARM_SYNC
+                    && code != TruelyAudioStatusCode.START_PLAY
+                ) {
+                    // 只有同步时钟和开始播放，不需要释放资源，其他情况都回收资源
+                    TruelyAudioPlayerManager.getInstance()
+                        .stop(TruelyAudioPlayerManager.AudioMediaCategory.BYTE_DATA)
+                }
+            }
+        }
         view.findViewById<View>(R.id.close_1).setOnClickListener {
             TruelyAudioPlayerManager.getInstance()
                 .stop(TruelyAudioPlayerManager.AudioMediaCategory.JUKEBOX)
         }
         view.findViewById<View>(R.id.close_2).setOnClickListener {
             TruelyAudioPlayerManager.getInstance()
-                .stop(TruelyAudioPlayerManager.AudioMediaCategory.GUITAR)
+                .stop(TruelyAudioPlayerManager.AudioMediaCategory.GUITAR_FOLK)
+        }
+
+//
+        view.findViewById<View>(R.id.close_3).setOnClickListener {
+            TruelyAudioPlayerManager.getInstance()
+                .stop(TruelyAudioPlayerManager.AudioMediaCategory.GUITAR_CLASSICAL)
+        }
+
+        view.findViewById<View>(R.id.close_4).setOnClickListener {
+            TruelyAudioPlayerManager.getInstance()
+                .stop(TruelyAudioPlayerManager.AudioMediaCategory.HTTP)
+        }
+        view.findViewById<View>(R.id.close_5).setOnClickListener {
+            TruelyAudioPlayerManager.getInstance()
+                .stop(TruelyAudioPlayerManager.AudioMediaCategory.BYTE_DATA)
         }
     }
 }
