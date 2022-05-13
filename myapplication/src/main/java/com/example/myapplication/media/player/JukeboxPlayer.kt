@@ -1,6 +1,11 @@
 package com.example.myapplication.media.player
 
+import android.media.AudioAttributes
+import android.media.AudioFocusRequest
+import android.media.AudioManager
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.example.myapplication.App
 import com.example.myapplication.media.TruelyAudioFileManager
 import com.example.myapplication.media.TruelyAudioStatusCode
@@ -13,7 +18,8 @@ import org.json.JSONObject
  * @date 2022/5/6
  * @Desc
  */
-class JukeboxPlayer : BaseDownloadAndPlayPlayer() {
+@RequiresApi(Build.VERSION_CODES.O)
+class JukeboxPlayer : BaseDownloadAndPlayPlayer(), AudioManager.OnAudioFocusChangeListener {
 
 
     var index: Int = 0
@@ -49,9 +55,9 @@ class JukeboxPlayer : BaseDownloadAndPlayPlayer() {
             return
         }
         val localPath = TruelyAudioFileManager.getLocalFilePath(App.instance, srcPath)
-
+        val exits: Boolean
         try {
-            if (TruelyAudioFileManager.checkLocalCache(localPath)) {
+            if (TruelyAudioFileManager.checkLocalCache(localPath).also { exits = it }) {
                 // 准备去播放
                 play(localPath)
             }
@@ -64,11 +70,30 @@ class JukeboxPlayer : BaseDownloadAndPlayPlayer() {
             return
         }
         // 需要去下载， 顺序下载全部
-        this.sourceList = swapDownloadElement(obtainJudeBoxSource, index + 1, true)
+        this.sourceList =
+            swapDownloadElement(obtainJudeBoxSource, if (exits) index + 1 else index, true)
         TruelyAudioDownloadManager.startDownload(
             this.sourceList,
-            index == params.optInt("index")
+            !exits
         )
+        requestAudioFocusManager()
+    }
+
+    private fun requestAudioFocusManager() {
+        // 初始化对音频焦点的监听
+        val audioAttributes: AudioAttributes = AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_MEDIA)
+            .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+            .build()
+        val audioFocusRequest = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
+            .setAudioAttributes(audioAttributes)
+            .setAcceptsDelayedFocusGain(true)
+            .setWillPauseWhenDucked(true)
+            .setOnAudioFocusChangeListener(this)
+            .build()
+
+        val result = requestAudioFocusManager(audioFocusRequest)
+        Log.d("wangxu3", "JukeboxPlayer ===> requestAudioFocusManager() called =======>   $result")
     }
 
 
@@ -107,6 +132,14 @@ class JukeboxPlayer : BaseDownloadAndPlayPlayer() {
         Log.d(
             "wangxu3",
             "JukeboxPlayer ===> onStatusChanged() called with: index = $index, status = $status, other = $other"
+        )
+    }
+
+    override fun onAudioFocusChange(focusChange: Int) {
+        // TODO() 这里监听音频焦点变化
+        Log.d(
+            "wangxu3",
+            "JukeboxPlayer ===> onAudioFocusChange() called with: focusChange = $focusChange"
         )
     }
 }

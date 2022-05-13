@@ -1,7 +1,13 @@
 package com.example.myapplication.media.player
 
+import android.content.Context
+import android.media.AudioFocusRequest
+import android.media.AudioManager
+import android.os.Build
 import android.util.Log
 import androidx.annotation.CallSuper
+import androidx.annotation.RequiresApi
+import com.example.myapplication.App
 import com.example.myapplication.media.ITruelyPlayer
 import com.example.myapplication.media.TruelyAudioPlayerManager
 import com.example.myapplication.media.TruelyAudioStatusCode
@@ -33,11 +39,43 @@ open class BaseAudioPlayer : ITruelyPlayer, TruelyAudioPlayer.OnStatusChangedLis
 
     @CallSuper
     override fun stop(category: String?) {
+        if (::focusRequest.isInitialized) {
+            abandonAudioFocusRequest(focusRequest)
+        }
         player.finalize()
     }
 
     override fun stopAll() {
 
+    }
+
+
+    /**
+     * 获取音频管理器
+     */
+    private lateinit var audioManager: AudioManager
+
+    private lateinit var focusRequest: AudioFocusRequest
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun requestAudioFocusManager(focusRequest: AudioFocusRequest): Int {
+        audioManager =
+            App.instance.applicationContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        this.focusRequest = focusRequest
+        return audioManager.requestAudioFocus(focusRequest)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun abandonAudioFocusRequest(focusRequest: AudioFocusRequest) {
+        Log.d(
+            "wangxu3",
+            "BaseAudioPlayer ===> abandonAudioFocusRequest() called with: focusRequest = $focusRequest"
+        )
+        if (::audioManager.isInitialized) {
+            audioManager.abandonAudioFocusRequest(
+                focusRequest
+            )
+        }
     }
 
     /**

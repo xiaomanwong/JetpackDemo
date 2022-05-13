@@ -8,7 +8,7 @@ import org.json.JSONObject
  * @date 2022/5/10
  * @Desc
  */
-class ByteDataPlayer : OfflineBaseAudioPlayer() {
+open class ByteDataPlayer : OfflineBaseAudioPlayer() {
 
     override fun play(
         source: Any,

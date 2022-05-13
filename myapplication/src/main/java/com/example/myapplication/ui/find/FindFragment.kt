@@ -180,7 +180,7 @@ class FindFragment : Fragment() {
         view.findViewById<View>(R.id.text_dashboard_2).setOnClickListener {
             TruelyAudioPlayerManager.getInstance().play(
                 JSONObject().apply { put("source", obj1) },
-                TruelyAudioPlayerManager.AudioMediaCategory.GUITAR_CLASSICAL
+                TruelyAudioPlayerManager.AudioMediaCategory.POLLY
             ) { code, msg, any ->
                 Log.d(
                     "wangxu3",
@@ -191,7 +191,7 @@ class FindFragment : Fragment() {
                 ) {
                     // 只有同步时钟和开始播放，不需要释放资源，其他情况都回收资源
                     TruelyAudioPlayerManager.getInstance()
-                        .stop(TruelyAudioPlayerManager.AudioMediaCategory.GUITAR_CLASSICAL)
+                        .stop(TruelyAudioPlayerManager.AudioMediaCategory.POLLY)
                 }
             }
         }
@@ -222,31 +222,31 @@ class FindFragment : Fragment() {
         }
 
         File("/data/user/0/com.example.myapplication/cache/audio/KΛGWΣ - ㅤㅤ.mp3")
-        val b: ByteArray? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Files.readAllBytes(Paths.get("/data/user/0/com.example.myapplication/cache/audio/KΛGWΣ - ㅤㅤ.mp3"))
-        } else {
-            null
-        }
+        val byte: String = try {
+            val b: ByteArray? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                Files.readAllBytes(Paths.get("/data/user/0/com.example.myapplication/cache/audio/KΛGWΣ - ㅤㅤ.mp3"))
+            } else {
+                null
+            }
 
-       val byte :String =  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Base64.getEncoder().encodeToString(b)
-        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                Base64.getEncoder().encodeToString(b)
+            } else {
+                ""
+            }
+        } catch (e: Exception) {
             ""
-       }
-        Log.d(
-            "wangxu3",
-            "FindFragment ===> onViewCreated() called with: byte $byte"
-        )
+        }
         view.findViewById<View>(R.id.text_dashboard_4).setOnClickListener {
             TruelyAudioPlayerManager.getInstance().play(
                 JSONObject().apply {
                     put(
                         "source",
-//                    "/data/user/0/com.example.myapplication/cache/audio/Amatorski - Come Home.mp3"
-                        byte+"---"
+                    "/data/user/0/com.example.myapplication/cache/audio/Amatorski - Come Home.mp3"
+//                        byte
                     )
                 },
-                TruelyAudioPlayerManager.AudioMediaCategory.BYTE_DATA
+                TruelyAudioPlayerManager.AudioMediaCategory.LOCAL
             ) { code, msg, any ->
                 Log.d(
                     "wangxu3",
@@ -257,7 +257,7 @@ class FindFragment : Fragment() {
                 ) {
                     // 只有同步时钟和开始播放，不需要释放资源，其他情况都回收资源
                     TruelyAudioPlayerManager.getInstance()
-                        .stop(TruelyAudioPlayerManager.AudioMediaCategory.BYTE_DATA)
+                        .stop(TruelyAudioPlayerManager.AudioMediaCategory.LOCAL)
                 }
             }
         }
@@ -273,7 +273,7 @@ class FindFragment : Fragment() {
 //
         view.findViewById<View>(R.id.close_3).setOnClickListener {
             TruelyAudioPlayerManager.getInstance()
-                .stop(TruelyAudioPlayerManager.AudioMediaCategory.GUITAR_CLASSICAL)
+                .stop(TruelyAudioPlayerManager.AudioMediaCategory.POLLY)
         }
 
         view.findViewById<View>(R.id.close_4).setOnClickListener {
@@ -282,7 +282,12 @@ class FindFragment : Fragment() {
         }
         view.findViewById<View>(R.id.close_5).setOnClickListener {
             TruelyAudioPlayerManager.getInstance()
-                .stop(TruelyAudioPlayerManager.AudioMediaCategory.BYTE_DATA)
+                .stop(TruelyAudioPlayerManager.AudioMediaCategory.LOCAL)
+        }
+
+        view.findViewById<View>(R.id.close_all).setOnClickListener {
+            TruelyAudioPlayerManager.getInstance()
+                .stopAll()
         }
     }
 }
