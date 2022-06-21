@@ -85,13 +85,14 @@ class JukeboxPlayer : BaseDownloadAndPlayPlayer(), AudioManager.OnAudioFocusChan
             .setUsage(AudioAttributes.USAGE_MEDIA)
             .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
             .build()
-        val audioFocusRequest = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
+        val audioFocusRequest = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
             .setAudioAttributes(audioAttributes)
             .setAcceptsDelayedFocusGain(true)
-            .setWillPauseWhenDucked(true)
+            .setWillPauseWhenDucked(false)
             .setOnAudioFocusChangeListener(this)
             .build()
-
+        player.setVolume(0.2f)
+        player.setAttribute(audioAttributes)
         val result = requestAudioFocusManager(audioFocusRequest)
         Log.d("wangxu3", "JukeboxPlayer ===> requestAudioFocusManager() called =======>   $result")
     }
@@ -128,11 +129,17 @@ class JukeboxPlayer : BaseDownloadAndPlayPlayer(), AudioManager.OnAudioFocusChan
                 )
                 return
             }
+        }else if(status ==TruelyAudioPlayer.Status.STATUS_PLAYING){
+            callback.invoke(
+                TruelyAudioStatusCode.PLAYING,
+                TruelyAudioStatusCode.STR_PLAYING,
+                sourceList[index].element.music_id
+            )
+            Log.d(
+                "wangxu3",
+                "JukeboxPlayer ===> onStatusChanged() called with: lapt = $lapt, status = $status, other = ${sourceList[index].element.music_id}"
+            )
         }
-        Log.d(
-            "wangxu3",
-            "JukeboxPlayer ===> onStatusChanged() called with: index = $index, status = $status, other = $other"
-        )
     }
 
     override fun onAudioFocusChange(focusChange: Int) {

@@ -12,6 +12,7 @@ import com.example.lib_annotation.FragmentDestination
 import com.example.myapplication.R
 import com.example.myapplication.media.TruelyAudioPlayerManager
 import com.example.myapplication.media.TruelyAudioStatusCode
+import com.example.myapplication.media.soundpool.SoundPoolManager
 import com.yidian.local.service.audio.model.AudioModel
 import org.json.JSONArray
 import org.json.JSONObject
@@ -43,7 +44,8 @@ class FindFragment : Fragment() {
         arrayListOf(
             AudioModel(
                 1,
-                "https://shenbian-yidian.go2yd.com/admin/pictools/Amatorski - Come Home.mp3",
+//                "https://shenbian-yidian.go2yd.com/admin/pictools/Amatorski - Come Home.mp3",
+                "http://zheli-rongcloud-audio.go2yd.com/SgMKSEVEQ1dKBgAEUQMAAwsKAgIGBAoABAcGBgcKCgIyMjIx?e=1670310832&token=Zon5dAl4G44DOuWi8Xg8S0nXfaUf0rlvkIvJ0_C6:vV3LQ--uINzHLO7Y2l9NCAKLA9o=",
                 "未知",
                 "sss",
                 "category",
@@ -53,7 +55,7 @@ class FindFragment : Fragment() {
                 "12124124"
             ),
             AudioModel(
-                1,
+                2,
                 "https://shenbian-yidian.go2yd.com/admin/pictools/Ginger Root - B4.mp3",
                 "未知",
                 "sss",
@@ -63,7 +65,7 @@ class FindFragment : Fragment() {
                 "12049124L",
                 "12124124L"
             ), AudioModel(
-                1,
+                3,
                 "https://shenbian-yidian.go2yd.com/admin/pictools/KΛGWΣ - ㅤㅤ.mp3",
                 "未知",
                 "sss",
@@ -73,7 +75,7 @@ class FindFragment : Fragment() {
                 "12049124",
                 "12124124"
             ), AudioModel(
-                1,
+                4,
                 "https://shenbian-yidian.go2yd.com/admin/pictools/the girl next door - letters to ana.mp3",
                 "未知",
                 "sss",
@@ -97,7 +99,7 @@ class FindFragment : Fragment() {
             array.put(obj)
         }
         apply.put("sourceList", array)
-        apply.put("index", 2)
+        apply.put("index", 0)
         apply.put("startTime", 0)
         TruelyAudioPlayerManager.AudioMediaCategory.JUKEBOX
         view.findViewById<View>(R.id.text_dashboard_1).setOnClickListener {
@@ -114,9 +116,9 @@ class FindFragment : Fragment() {
                 if (code != TruelyAudioStatusCode.ALARM_SYNC
                     && code != TruelyAudioStatusCode.START_PLAY
                 ) {
-                    // 只有同步时钟和开始播放，不需要释放资源，其他情况都回收资源
-                    TruelyAudioPlayerManager.getInstance()
-                        .stop(TruelyAudioPlayerManager.AudioMediaCategory.JUKEBOX)
+//                    // 只有同步时钟和开始播放，不需要释放资源，其他情况都回收资源
+//                    TruelyAudioPlayerManager.getInstance()
+//                        .stop(TruelyAudioPlayerManager.AudioMediaCategory.JUKEBOX)
                 }
             }
         }
@@ -202,7 +204,8 @@ class FindFragment : Fragment() {
                     put(
                         "source",
 //                    "/data/user/0/com.example.myapplication/cache/audio/Amatorski - Come Home.mp3"
-                        "https://shenbian-yidian.go2yd.com/admin/pictools/KΛGWΣ - ㅤㅤ.mp3"
+//                        "https://shenbian-yidian.go2yd.com/admin/pictools/KΛGWΣ - ㅤㅤ.mp3"
+                        "http://zheli-rongcloud-audio.go2yd.com/SgMKSEVEQ1dKBgAEUQMAAwsKAgIGBAoABAcGBgcKCgIyMjIx?e=1670310832&token=Zon5dAl4G44DOuWi8Xg8S0nXfaUf0rlvkIvJ0_C6:vV3LQ--uINzHLO7Y2l9NCAKLA9o="
                     )
                 },
                 TruelyAudioPlayerManager.AudioMediaCategory.HTTP
@@ -288,6 +291,10 @@ class FindFragment : Fragment() {
         view.findViewById<View>(R.id.close_all).setOnClickListener {
             TruelyAudioPlayerManager.getInstance()
                 .stopAll()
+        }
+
+        view.findViewById<View>(R.id.close_6).setOnClickListener {
+            SoundPoolManager.play("/data/user/0/com.example.myapplication/cache/audio/Amatorski - Come Home.mp3")
         }
     }
 }

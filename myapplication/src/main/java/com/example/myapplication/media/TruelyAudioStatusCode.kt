@@ -38,6 +38,7 @@ annotation class TruelyAudioStatusCode {
     companion object {
 
         const val START_PLAY = 2001
+        const val PLAYING = 2008
         const val PLAY_ERROR = 2002
         const val PLAY_COMPLETE = 2003
         const val PLAY_LIST_COMPLETE = 2004
@@ -46,6 +47,7 @@ annotation class TruelyAudioStatusCode {
         const val PARAM_ERROR = 2007
 
         const val STR_START_PLAY = "开始播放"
+        const val STR_PLAYING = "正在播放的曲目"
         const val STR_DOWNLOAD_ERROR = "下载失败"
         const val STR_PLAY_ERROR = "播放错误"
         const val STR_PLAY_SINGLE_COMPLETE = "单曲播放完成"

@@ -1,5 +1,7 @@
 package com.example.myapplication.media
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.myapplication.media.player.*
 
 
@@ -50,6 +52,7 @@ class TruelyAudioPlayerManager : ITruelyPlayer {
 
     private val playerList = hashMapOf<@AudioMediaCategory String, BaseAudioPlayer>()
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun play(
         source: Any,
         category: String,
@@ -119,6 +122,7 @@ class TruelyAudioPlayerManager : ITruelyPlayer {
      * 如果当前播放器不存在，则重新创建
      */
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun establishPlayer(category: String): BaseAudioPlayer? {
         return playerList[category] ?: when (category) {
             AudioMediaCategory.JUKEBOX -> JukeboxPlayer()

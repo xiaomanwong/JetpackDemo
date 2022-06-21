@@ -1,5 +1,6 @@
 package com.example.myapplication.media.player
 
+import android.media.AudioAttributes
 import android.media.AudioManager
 import android.media.MediaPlayer
 import androidx.annotation.FloatRange
@@ -64,6 +65,11 @@ class TruelyAudioPlayer {
             }
         }
 
+    }
+
+
+    fun setAttribute(attributes: AudioAttributes){
+        mPlayer?.setAudioAttributes(attributes)
     }
 
     /*

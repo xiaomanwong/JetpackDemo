@@ -3,10 +3,44 @@ package com.example.lib;
 // 锁实例方法
 public class AccountingSync implements Runnable {
 
-    private final Object mLock = new Object();
     // 共享资源
     static int i = 0;
     static int j = 0;
+    private final Object mLock = new Object();
+
+    public static void main(String[] args) {
+//        AccountingSync sync1 = new AccountingSync();
+//        AccountingSync sync2 = new AccountingSync();
+//        Thread t1 = new Thread(sync1);
+//        Thread t2 = new Thread(sync1);
+//        StringBuffer sb = new StringBuffer();
+//        t1.start();
+//        t2.start();
+//        try {
+//            t1.join();
+//            t2.join();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+        int fore = 0x1001;
+        int back = 0x1002;
+        int fix = fore & back;
+        int none = fore & back;
+
+        int current = none;
+
+        current |= fore;
+        current |= back;
+        current &= fore;
+//        current |= back;
+//        current |= fore;
+        System.out.println("fore = " + fore);
+        System.out.println("back = " + back);
+        System.out.println("result = " + current);
+
+
+    }
 
     // synchroized
     public void increase() {
@@ -23,7 +57,6 @@ public class AccountingSync implements Runnable {
         System.out.println(j);
     }
 
-
     @Override
     public void run() {
         for (int j = 0; j < 100000; j++) {
@@ -34,21 +67,9 @@ public class AccountingSync implements Runnable {
         }
     }
 
-    public static void main(String[] args) {
-        AccountingSync sync1 = new AccountingSync();
-        AccountingSync sync2 = new AccountingSync();
-        Thread t1 = new Thread(sync1);
-        Thread t2 = new Thread(sync1);
-        StringBuffer sb = new StringBuffer();
-        t1.start();
-        t2.start();
-        try {
-            t1.join();
-            t2.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-
+    enum Environment {
+        fore(),
+        back(),
+        fix()
     }
 }

@@ -1,6 +1,7 @@
 package com.example.myapplication.media
 
 import android.content.Context
+import com.example.myapplication.App
 import java.io.File
 
 /**
@@ -37,6 +38,16 @@ object TruelyAudioFileManager {
             val fileName = path.substring(path.lastIndexOf("/"))
             cachePath + fileName
         } else {
+            path
+        }
+    }
+
+    fun checkCacheAndReturn(path:String, execWhenNotExist: ((String) -> Unit)?) : String {
+        val localPath = getLocalFilePath(App.instance, path)
+        return if (File(localPath).exists()) localPath else {
+            execWhenNotExist?.let {
+                it(localPath)
+            }
             path
         }
     }

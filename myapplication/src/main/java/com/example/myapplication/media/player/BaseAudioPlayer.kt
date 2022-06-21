@@ -86,6 +86,7 @@ open class BaseAudioPlayer : ITruelyPlayer, TruelyAudioPlayer.OnStatusChangedLis
         player.play(localPath)
         player.setStatusChangedListener(TruelyAudioPlayer.Status.STATUS_READY, this)
         player.setStatusChangedListener(TruelyAudioPlayer.Status.STATUS_COMPLETE, this)
+        player.setStatusChangedListener(TruelyAudioPlayer.Status.STATUS_PLAYING, this)
         player.setStatusChangedListener(TruelyAudioPlayer.Status.STATUS_STOP, this)
         player.setStatusChangedListener(TruelyAudioPlayer.Status.STATUS_ERROR, this)
     }
