@@ -11,7 +11,7 @@ import com.example.lib_common.getApplication
  * @Description 数据读取，存储的转换器，
  *
  */
-@Database(entities = [Cache::class], version = 1)
+@Database(entities = [Cache::class], version = 1, exportSchema = false)
 abstract class CacheDatabase : RoomDatabase() {
     companion object {
         val database: CacheDatabase =

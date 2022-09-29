@@ -86,7 +86,8 @@ class ImmericActivity : AppCompatActivity() {
                     }
                 }
 
-                override fun performAccessibilityAction(host: View, action: Int, args: Bundle): Boolean {
+
+                override fun performAccessibilityAction(host: View, action: Int, args: Bundle?): Boolean {
                     if (action == AccessibilityNodeInfoCompat.ACTION_DISMISS && cancelable) {
                         cancel()
                         return true

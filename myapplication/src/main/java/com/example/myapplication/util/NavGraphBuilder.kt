@@ -32,7 +32,7 @@ object NavGraphBuilder {
         for (value in destMap.values) {
             if (value.isFragment) {
                 val fragmentDestination = fragmentNavigator.createDestination()
-                fragmentDestination.className = value.className
+                fragmentDestination.setClassName(value.className)
                 fragmentDestination.id = value.id
                 fragmentDestination.addDeepLink(value.pageUrl)
                 navGraph.addDestination(fragmentDestination)
@@ -50,7 +50,7 @@ object NavGraphBuilder {
             }
 
             if (value.asStart) {
-                navGraph.startDestination = value.id
+                navGraph.setStartDestination(value.id)
             }
         }
 
