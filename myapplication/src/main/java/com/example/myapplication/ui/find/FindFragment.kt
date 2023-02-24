@@ -17,6 +17,7 @@ import com.yidian.local.service.audio.model.AudioModel
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
+import java.nio.charset.Charset
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.util.*
@@ -38,6 +39,9 @@ class FindFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+//        String("abc", Charsets.UTF-8)
 
         val apply = JSONObject()
         val array = JSONArray()
@@ -205,7 +209,7 @@ class FindFragment : Fragment() {
                         "source",
 //                    "/data/user/0/com.example.myapplication/cache/audio/Amatorski - Come Home.mp3"
 //                        "https://shenbian-yidian.go2yd.com/admin/pictools/KΛGWΣ - ㅤㅤ.mp3"
-                        "http://zheli-rongcloud-audio.go2yd.com/SgMKSEVEQ1dKBgAEUQMAAwsKAgIGBAoABAcGBgcKCgIyMjIx?e=1670310832&token=Zon5dAl4G44DOuWi8Xg8S0nXfaUf0rlvkIvJ0_C6:vV3LQ--uINzHLO7Y2l9NCAKLA9o="
+                        "https://siren.museflat.com/client/5-1666839051089-8937.aac"
                     )
                 },
                 TruelyAudioPlayerManager.AudioMediaCategory.HTTP
