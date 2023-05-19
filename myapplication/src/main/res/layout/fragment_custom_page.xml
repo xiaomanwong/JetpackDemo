@@ -64,6 +64,12 @@
                 android:layout_height="wrap_content"
                 android:text="引导蒙版" />
 
+            <Button
+                android:id="@+id/btn_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="view_pager" />
+
         </LinearLayout>
     </ScrollView>
 </TableLayout>

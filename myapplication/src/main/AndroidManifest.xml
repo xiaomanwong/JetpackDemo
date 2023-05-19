@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -14,7 +15,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -23,20 +24,51 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+
+    <queries>
+        <package android:name="com.kakao.talk" />
+        <package android:name="com.instagram.android" />
+        <package android:name="com.zhiliaoapp.musically" />
+        <package android:name="com.ss.android.ugc.trill" />
+        <package android:name="jp.naver.line.android" />
+        <package android:name="com.whatsapp" />
+        <package android:name="com.facebook.orca" />
+        <package android:name="com.viber.voip" />
+        <package android:name="com.twitter.android" />
+
+        <provider android:authorities="com.facebook.orca.provider.PlatformProvider" />
+    </queries>
+
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:theme="@style/Theme.AppCompat"
-        android:name=".App"
         android:supportsRtl="false"
+        android:theme="@style/Theme.AppCompat.Light"
         android:usesCleartextTraffic="true">
+        <provider
+            android:name=".MyFileProvider"
+            android:authorities="com.example.myapplication.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,18 +76,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.publish.PublishActivity" />
-        <activity
-            android:name=".ImmericActivity"
-            />
+        <activity android:name=".ImmericActivity" />
 
-        <activity android:name=".TransitionPendingActivity"/>
-        <activity android:name=".TransitionPendingActivity2"/>
+        <activity android:name=".TransitionPendingActivity" />
+        <activity android:name=".TransitionPendingActivity2" />
         <activity android:name=".ui.sofa.IndexableListViewActivity" />
 
         <!--            android:theme="@style/AppTheme.FullScreen"-->
-<!--            android:theme="@style/Theme.AppCompat"-->
+        <!--            android:theme="@style/Theme.AppCompat"-->
 
-<!--        android:theme="@style/AppTheme.FullScreen"-->
+        <!--        android:theme="@style/AppTheme.FullScreen"-->
     </application>
 
 </manifest>

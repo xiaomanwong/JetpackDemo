@@ -71,6 +71,12 @@
                 android:layout_height="wrap_content"
                 android:text="按钮 2" />
 
+            <Button
+                android:id="@+id/btn4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="分享" />
+
 
             <ImageView
                 android:id="@+id/btn3"

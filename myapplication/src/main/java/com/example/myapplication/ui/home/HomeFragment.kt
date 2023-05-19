@@ -98,6 +98,11 @@ class HomeFragment : Fragment() {
             textView.text = it
         })
 
+        root.btn4.setOnClickListener {
+            (requireActivity() as MainActivity).getNavController()
+                .navigate(getDestination("main/tabs/share")?.id!!)
+        }
+
         root.btn3.setOnClickListener {
 
             val btn3: View = root.btn3

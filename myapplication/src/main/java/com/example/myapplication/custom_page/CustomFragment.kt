@@ -1,16 +1,22 @@
 package com.example.myapplication.custom_page
 
 import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.OnBackPressedDispatcher
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleOwner
 import com.example.lib_annotation.FragmentDestination
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.util.getDestination
+import kotlinx.android.synthetic.main.fragment_custom_page.btn_viewpager
 import kotlinx.android.synthetic.main.fragment_custom_page.view.*
 
 /**
@@ -62,7 +68,49 @@ class CustomFragment : Fragment() {
                 .navigate(getDestination("main/tabs/home/curtain")?.id!!)
         }
 
+        root.btn_viewpager.setOnClickListener {
+//            (requireActivity() as MainActivity).getNavController()
+//                .navigate(getDestination("main/tabs/home/view_pager")?.id!!)
+            try {
+                val fragment = ViewPagerFragment.newInstance()
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(android.R.id.content,fragment)
+                    ?.commitAllowingStateLoss()
+
+
+
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+
         return root
     }
+    private val TAG = "CustomFragment"
+}
 
+
+fun androidx.activity.ComponentActivity.addBackPressed(owner:LifecycleOwner, onBackPressed:()->Boolean):OnBackPressedCallback{
+    return backPressCallback(onBackPressed).also{
+        onBackPressedDispatcher.addCallback(owner, it)
+    }
+}
+
+fun androidx.activity.ComponentActivity.addBackPressed(onBackPressed: () -> Boolean):OnBackPressedCallback{
+    return backPressCallback(onBackPressed).also {
+        onBackPressedDispatcher.addCallback(it)
+    }
+}
+private fun androidx.activity.ComponentActivity.backPressCallback(onBackPressed: () -> Boolean):OnBackPressedCallback{
+    return object :OnBackPressedCallback(true){
+        override fun handleOnBackPressed() {
+            if (!onBackPressed()) {
+                isEnabled = false
+                onBackPressedDispatcher.onBackPressed()
+                isEnabled = true
+            }
+        }
+
+    }
 }

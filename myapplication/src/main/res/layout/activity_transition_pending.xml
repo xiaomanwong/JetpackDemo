@@ -36,6 +36,7 @@
         android:id="@+id/scroll_bound"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:foreground="#00000000"
         android:background="#AA00FF"
         app:layout_constraintEnd_toEndOf="@id/middle_line"
         app:layout_constraintStart_toStartOf="parent"
