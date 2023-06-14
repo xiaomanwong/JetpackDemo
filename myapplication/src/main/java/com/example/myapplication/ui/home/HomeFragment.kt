@@ -31,11 +31,17 @@ import com.example.lib_annotation.FragmentDestination
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.TransitionPendingActivity
+import com.example.myapplication.Util
 import com.example.myapplication.transition.ChangeAlphaTransition
 import com.example.myapplication.transition.ExitTransition
 import com.example.myapplication.util.getDestination
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_home.view.*
+import kotlinx.android.synthetic.main.fragment_home.btn1
+import kotlinx.android.synthetic.main.fragment_home.btn2
+import kotlinx.android.synthetic.main.fragment_home.view.btn3
+import kotlinx.android.synthetic.main.fragment_home.view.btn4
+import kotlinx.android.synthetic.main.fragment_home.view.btn_auto_change_network
+import kotlinx.android.synthetic.main.fragment_home.view.btn_immersive_activity
+import kotlinx.android.synthetic.main.fragment_home.view.btn_permission
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -98,7 +104,11 @@ class HomeFragment : Fragment() {
             textView.text = it
         })
 
-        root.btn4.setOnClickListener {
+        root.btn4.also {
+            Util.stringLive.observe(this.viewLifecycleOwner) { value ->
+                it.text = value
+            }
+        }.setOnClickListener {
             (requireActivity() as MainActivity).getNavController()
                 .navigate(getDestination("main/tabs/share")?.id!!)
         }

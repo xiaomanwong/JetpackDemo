@@ -14,10 +14,10 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.FileProvider
-import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import com.example.lib_annotation.FragmentDestination
 import com.example.myapplication.R
+import com.example.myapplication.Util
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.io.File
 
@@ -53,6 +53,14 @@ class ShareFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        view.findViewById<TextView>(R.id.ins_xxx).also {
+            Util.stringLive.observe(this.viewLifecycleOwner) { value ->
+                it.text = value
+            }
+        }.setOnClickListener {
+            Util.stringLive.postValue("xxxxxxxxxxxxxxx")
+        }
+
         view.findViewById<TextView>(R.id.ins_feed).setOnClickListener(this)
         view.findViewById<TextView>(R.id.ins_story).setOnClickListener(this)
         view.findViewById<TextView>(R.id.twitter).setOnClickListener(this)
@@ -63,10 +71,7 @@ class ShareFragment : Fragment(), View.OnClickListener {
         view.findViewById<TextView>(R.id.messenger).setOnClickListener(this)
         view.findViewById<TextView>(R.id.whatsapp).setOnClickListener(this)
         view.findViewById<TextView>(R.id.xxx).setOnClickListener {
-
-
             TestBottomSheetFragment().show(childFragmentManager, "")
-
         }
     }
 
@@ -74,7 +79,8 @@ class ShareFragment : Fragment(), View.OnClickListener {
     fun shareVideoAction(activity: Activity, platform: String, shareUrl: String) {
         try {
 
-            val tempUrl = "/data/data/com.example.myapplication/files/PXL_20221124_090646934.mp4"
+            val tempUrl =
+                "/storage/emulated/0/Android/data/com.example.myapplication/files/PXL_20230605_074458728.mp4"
             val file = File(tempUrl)
             val contentUri = FileProvider.getUriForFile(
                 activity.applicationContext,

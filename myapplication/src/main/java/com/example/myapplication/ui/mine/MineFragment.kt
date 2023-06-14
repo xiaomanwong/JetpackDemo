@@ -45,8 +45,8 @@ class MineFragment : Fragment() {
 
         }
 
-        binding.calendarView.apply {
-         this.weekDayTextAppearance = R.style.Widget_MaterialComponents_MaterialCalendar_Day_Today
-        }
+//        binding.calendarView.apply {
+//         this.weekDayTextAppearance = R.style.Widget_MaterialComponents_MaterialCalendar_Day_Today
+//        }
     }
 }

@@ -77,8 +77,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <CalendarView
-                android:id="@+id/calendar_view"
+            <Button
+                android:id="@+id/btn_papaer"
+                android:text="PaperView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

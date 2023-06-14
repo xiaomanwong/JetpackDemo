@@ -1,28 +1,8 @@
 package com.example.myapplication.custom_page
 
+
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Matrix
-import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.activity.OnBackPressedCallback
-import androidx.annotation.Keep
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.updatePadding
-import androidx.fragment.app.Fragment
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
-import com.example.lib_annotation.FragmentDestination
-import com.example.myapplication.R
-import kotlinx.android.synthetic.main.fragment_view_pager.vp_paper_list
-
-
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -32,9 +12,28 @@ import android.net.LinkProperties
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
+import androidx.annotation.Keep
 import androidx.annotation.RequiresApi
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
+import com.example.lib_annotation.FragmentDestination
+import com.example.myapplication.R
+import kotlinx.android.synthetic.main.fragment_view_pager.button_delete_txt
 import kotlinx.android.synthetic.main.fragment_view_pager.tv_ssss
 import kotlinx.android.synthetic.main.fragment_view_pager.tv_ssss2
+import kotlinx.android.synthetic.main.fragment_view_pager.vp_paper_list
+import java.io.File
+import java.io.FileInputStream
 import kotlin.math.*
 
 /**
@@ -70,8 +69,8 @@ class ViewPagerFragment : Fragment() {
     var listener: AzimuthSensorListener? = null
     private val runnable = object : Runnable {
         override fun run() {
-            tv_ssss.text = listener?.azimuth.toString()
-            tv_ssss.postDelayed(this, 1000)
+//            tv_ssss.text = listener?.azimuth.toString()
+//            tv_ssss.postDelayed(this, 1000)
         }
 
     }
@@ -80,6 +79,13 @@ class ViewPagerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        button_delete_txt.setOnClickListener {
+            (vp_paper_list.adapter as PaperBallPageAdapter).papers?.removeAt(vp_paper_list.currentItem)
+            vp_paper_list.adapter?.notifyDataSetChanged()
+            val itemIndex = vp_paper_list.currentItem
+            vp_paper_list.adapter=vp_paper_list.adapter
+            vp_paper_list.setCurrentItem(itemIndex, true)
+        }
         (context?.getSystemService(Context.SENSOR_SERVICE) as? SensorManager)?.let {
             listener = AzimuthSensorListener(
                 it
@@ -134,11 +140,11 @@ class ViewPagerFragment : Fragment() {
             }
         }
 
-        vp_paper_list.adapter = PaperBallPageAdapter().apply {
+        vp_paper_list.adapter = PaperBallPageAdapter(vp_paper_list).apply {
             papers = mutableListOf(
                 Paper(
                     "",
-                    "/storage/emulated/0/Android/data/com/example/myapplication/files/Pictures/imageWithTextTemp_1683959410968.jpg",
+                    "/storage/emulated/0/Android/data/com.example.myapplication/files/imageWithTextTemp_1683959410968.jpg",
                     "8krpWJIYgn6T85",
                     "1",
                     "",
@@ -147,7 +153,7 @@ class ViewPagerFragment : Fragment() {
                 ),
                 Paper(
                     "",
-                    "/storage/emulated/0/Android/data/com/example/myapplication/files/Pictures/imageWithTextTemp_1683877659547.jpg",
+                    "/storage/emulated/0/Android/data/com.example.myapplication/files/imageWithTextTemp_1683877659547.jpg",
                     "8krpWJIYgn6T85",
                     "2",
                     "",
@@ -156,7 +162,7 @@ class ViewPagerFragment : Fragment() {
                 ),
                 Paper(
                     "",
-                    "/storage/emulated/0/Android/data/com/example/myapplication/files/Pictures/imageWithTextTemp_1683959410968.jpg",
+                    "/storage/emulated/0/Android/data/com.example.myapplication/files/imageWithTextTemp_1683959410968.jpg",
                     "8krpWJIYgn6T85",
                     "3",
                     "",
@@ -165,7 +171,7 @@ class ViewPagerFragment : Fragment() {
                 ),
                 Paper(
                     "",
-                    "/storage/emulated/0/Android/data/com/example/myapplication/files/Pictures/imageWithTextTemp_1683877659547.jpg",
+                    "/storage/emulated/0/Android/data/com.example.myapplication/files/imageWithTextTemp_1683877659547.jpg",
                     "8krpWJIYgn6T85",
                     "4",
                     "",
@@ -179,14 +185,16 @@ class ViewPagerFragment : Fragment() {
             override fun onPageScrolled(
                 position: Int, positionOffset: Float, positionOffsetPixels: Int
             ) {
-
+                Log.d("TAG", "onPageScrolled: position: $position")
             }
 
             override fun onPageSelected(position: Int) {
 //                setPagerIndicator(position)
+                Log.d("TAG", "onPageScrollStateChanged :position: $position")
             }
 
             override fun onPageScrollStateChanged(state: Int) {
+                Log.d("TAG", "onPageScrollStateChanged state:$state")
 
             }
         })
@@ -242,11 +250,12 @@ class TiltTransformer : ViewPager.PageTransformer {
     }
 }
 
-internal class PaperBallPageAdapter : PagerAdapter() {
-    var papers: List<Paper>? = null
+class PaperBallPageAdapter(private val vp: ViewPager) : PagerAdapter() {
+    var papers: MutableList<Paper>? = null
 
+    var viewList: MutableList<View> = mutableListOf()
     override fun getCount(): Int {
-        return papers?.size ?: 0
+        return papers?.count() ?: 0
     }
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
@@ -254,7 +263,11 @@ internal class PaperBallPageAdapter : PagerAdapter() {
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+        container.removeView(`object` as View?)
+    }
 
+    override fun getItemPosition(`object`: Any): Int {
+        return POSITION_NONE
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
@@ -270,34 +283,49 @@ internal class PaperBallPageAdapter : PagerAdapter() {
             val date = findViewById<TextView>(R.id.paper_publish_date)
             val paperItem = papers?.getOrNull(position)
 
-            val newBitmap = BitmapFactory.decodeResource(resources, R.drawable.die).let {
+//            val newBitmap = BitmapFactory.decodeResource(resources, R.drawable.die).let {
+            val newBitmap =
+                BitmapFactory.decodeStream(FileInputStream(paperItem?.image_url?.let { File(it) }))
+                    .apply {
 
-                image.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
-                Bitmap.createBitmap(
-                    it,
-                    0,
-                    0,
-                    it.width,
-                    it.height,
-                    Matrix().apply {
-                        val scale = image.layoutParams.width / it.width.toFloat()
-                        postScale(scale, scale)
+                        image.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+//                Bitmap.createBitmap(
+//                    it,
+//                    0,
+//                    0,
+//                    it.width,
+//                    it.height,
+//                    Matrix().apply {
+//                        val scale = image.layoutParams.width / it.width.toFloat()
+//                        postScale(scale, scale)
+//
+//                    },
+//                    true
+//                )
 
-                    },
-                    true
-                )
+                    }
+            image.setOnLongClickListener {
+                papers?.removeAt(position)
+                notifyDataSetChanged()
 
+                if (position == 0) {
+                    vp.setCurrentItem(1, true)
+                    vp.setCurrentItem(0, true)
+                } else {
+                    vp.setCurrentItem(position - 1, true)
+                }
+                true
             }
-
             image.setImageBitmap(newBitmap)
-            val transY = (image.layoutParams.height - newBitmap.height) / 2f
-            image.updatePadding(top = transY.toInt())
+//            val transY = (image.layoutParams.height - newBitmap.height) / 2f
+//            image.updatePadding(top = transY.toInt())
 
             owner.text = paperItem?.username
             date.text = paperItem?.create_time.toString()
         }
 
         container.addView(parent)
+        viewList.add(parent)
         return parent
     }
 }
