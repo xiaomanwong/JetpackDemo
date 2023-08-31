@@ -4,7 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/qwert"
     tools:context=".ui.home.HomeFragment">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+        app:spanCount="2"
+        tools:itemCount="10"
+        tools:listitem="@layout/item_model_list" />
 
     <TextView
         android:id="@+id/text_home"
@@ -28,58 +39,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btn_curtain"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="自定义 view" />
-
-            <Button
-                android:id="@+id/btn_permission"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="权限请求" />
-
-
-            <Button
-                android:id="@+id/btn_auto_change_network"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="网络切换" />
-
-            <com.example.myapplication.widget.widget.loading.HaloWaveView
-                android:layout_width="match_parent"
-                android:layout_height="80dp" />
-
-            <Button
-                android:id="@+id/btn_immersive_activity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="沉浸式布局" />
-
-
-            <Button
-                android:id="@+id/btn1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="按钮 1" />
-
-
-            <Button
-                android:id="@+id/btn2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="按钮 2" />
-
-            <Button
-                android:id="@+id/btn4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="分享" />
-
 
             <ImageView
                 android:id="@+id/btn3"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/image_picture_wall"

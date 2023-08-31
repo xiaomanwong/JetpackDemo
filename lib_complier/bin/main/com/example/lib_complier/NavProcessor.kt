@@ -2,7 +2,6 @@ import com.alibaba.fastjson.JSON
 import com.alibaba.fastjson.JSONObject
 import com.example.lib_annotation.ActivityDestination
 import com.example.lib_annotation.FragmentDestination
-import com.example.lib_annotation.ShareItemAction
 import com.google.auto.service.AutoService
 import java.io.File
 import java.io.FileOutputStream
@@ -25,8 +24,7 @@ import javax.tools.StandardLocation
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 @SupportedAnnotationTypes(
     "com.example.lib_annotation.FragmentDestination",
-    "com.example.lib_annotation.ActivityDestination",
-    "com.example.lib_annotation.ShareItemAction",
+    "com.example.lib_annotation.ActivityDestination"
 )
 class NavProcessor : AbstractProcessor() {
     private var messager: Messager? = null
@@ -57,9 +55,6 @@ class NavProcessor : AbstractProcessor() {
             ActivityDestination::class.java
         )
 
-        val elements4 =
-            roundEnvironment?.getElementsAnnotatedWith(ShareItemAction::class.java) ?: return false
-
         println("开始编译")
         if (!fragmentElements?.isEmpty()!! || !activityElements?.isEmpty()!!) {
             val destMap = HashMap<String, JSONObject>()
@@ -69,10 +64,6 @@ class NavProcessor : AbstractProcessor() {
                 ActivityDestination::class.java,
                 destMap
             )
-//            ShareActionProcessor(filer, messager, elementUtils = processingEnv?.elementUtils)
-//                .handleShareItemAction(
-//                    elements4, ShareItemAction::class.java
-//                ).build()
 
 //            // 生成文件 app/src/main/assets
 //               filer.createResource()意思是创建源文件
@@ -116,7 +107,7 @@ class NavProcessor : AbstractProcessor() {
                 fileOutputStream?.close()
             }
         }
-        return false
+        return true
     }
 
     private fun handleDestination(

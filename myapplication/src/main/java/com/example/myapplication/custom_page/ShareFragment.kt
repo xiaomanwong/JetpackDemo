@@ -17,9 +17,14 @@ import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.example.lib_annotation.FragmentDestination
 import com.example.myapplication.R
+import com.example.myapplication.Student
 import com.example.myapplication.Util
+import com.google.android.gms.vision.clearcut.LogUtils
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import jp.wasabeef.glide.transformations.internal.Utils
 import java.io.File
+import java.util.Arrays
+import java.util.Random
 
 /**
  * @author admin
@@ -59,6 +64,26 @@ class ShareFragment : Fragment(), View.OnClickListener {
             }
         }.setOnClickListener {
             Util.stringLive.postValue("xxxxxxxxxxxxxxx")
+            val list = if (Util.listLiveData.value == null) {
+                mutableListOf(Student("zhangsan", 1),Student("lisi", 3),Student("wangwu", 2))
+            } else{
+                Util.listLiveData.value as MutableList<Student>
+            }
+            Util.listLiveData.postValue(list)
+        }
+
+        view.findViewById<TextView>(R.id.ins_list).also {
+
+        }.setOnClickListener {
+
+            val list = Util.listLiveData.value
+            val student = list?.getOrNull(2)
+            student?.age = Random().nextInt()
+            Util.listLiveData.postValue(list)
+        }
+
+        Util.listLiveData.observe(this.viewLifecycleOwner) {
+            Log.d("quinn", it.toTypedArray().contentToString())
         }
 
         view.findViewById<TextView>(R.id.ins_feed).setOnClickListener(this)
@@ -73,6 +98,7 @@ class ShareFragment : Fragment(), View.OnClickListener {
         view.findViewById<TextView>(R.id.xxx).setOnClickListener {
             TestBottomSheetFragment().show(childFragmentManager, "")
         }
+        resources
     }
 
 

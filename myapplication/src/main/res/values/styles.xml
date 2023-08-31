@@ -22,4 +22,9 @@
              activity will be used. -->
         <item name="android:windowAnimationStyle">@android:style/Animation</item>
     </style>
+
+    <style name="DialogAnimator">
+        <item name="android:windowEnterAnimation">@anim/actionsheet_dialog_in</item>
+        <item name="android:windowExitAnimation">@anim/actionsheet_dialog_out</item>
+    </style>
 </resources>

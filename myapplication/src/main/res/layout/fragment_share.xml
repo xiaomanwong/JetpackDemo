@@ -11,7 +11,15 @@
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="ins feed" />
+        android:text="ins xxxxx" />
+
+    <TextView
+        android:id="@+id/ins_list"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="ins ssss" />
 
     <TextView
         android:id="@+id/ins_feed"

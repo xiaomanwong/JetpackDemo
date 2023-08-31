@@ -11,4 +11,11 @@ object Util {
 
 
     val stringLive: MutableLiveData<String> = MutableLiveData()
+    val listLiveData = MutableLiveData<List<Student>>()
+}
+
+class Student(val name: String, var age: Int) {
+    override fun toString(): String {
+        return "[name: $name, age:$age]"
+    }
 }

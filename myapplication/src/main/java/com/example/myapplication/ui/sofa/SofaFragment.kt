@@ -1,21 +1,30 @@
 package com.example.myapplication.ui.sofa
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.lifecycleScope
 import com.example.lib_annotation.FragmentDestination
-import com.example.myapplication.R
+import com.example.myapplication.util.post
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.*
-import java.util.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
+
 
 @FragmentDestination(pageUrl = "main/tabs/sofa", asStart = false)
 class SofaFragment : Fragment() {
@@ -29,10 +38,45 @@ class SofaFragment : Fragment() {
     ): View? {
         sofaViewModel =
             ViewModelProviders.of(this).get(SofaViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_notifications, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
+        val root = inflater.inflate(
+            com.example.myapplication.R.layout.fragment_notifications,
+            container,
+            false
+        )
+        val textView: TextView =
+            root.findViewById(com.example.myapplication.R.id.text_notifications)
 
         textView.setOnClickListener {
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val channelId = "your_channel_id"
+                val channelName: CharSequence = "Your Channel Name"
+                val channelDescription = "Your Channel Description"
+                val importance = NotificationManager.IMPORTANCE_DEFAULT
+                val channel = NotificationChannel(channelId, channelName, importance)
+                channel.description = channelDescription
+                val notificationManager: NotificationManager? = context?.getSystemService(
+                    NotificationManager::class.java
+                )
+                notificationManager!!.createNotificationChannel(channel)
+            }
+
+            val builder: NotificationCompat.Builder =
+                NotificationCompat.Builder(this.requireContext(), "your_channel_id")
+                    .setSmallIcon(com.example.myapplication.R.mipmap.ic_launcher)
+                    .setContentTitle("Notification Title")
+                    .setContentText("Notification Content")
+                    .setOngoing(true)
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setAutoCancel(true) // 当用户点击通知后，自动取消通知
+
+
+            val notificationId = 1 // 通知的ID，可以用于后续更新或取消通知
+            textView.postDelayed({
+
+                val notificationManager = NotificationManagerCompat.from(this.requireContext())
+                notificationManager.notify(notificationId, builder.build())
+            }, 5000)
 
             //viewModel中调用，将Int转成String
             lifecycleScope.launchWhenCreated {
@@ -72,9 +116,9 @@ class SofaFragment : Fragment() {
 //                    } // 求和（末端操作符）
 //                println(sum)
 
-                startActivity(Intent(requireContext(), IndexableListViewActivity::class.java))
-
-                println("초".toCharArray().contentToString())
+//                startActivity(Intent(requireContext(), IndexableListViewActivity::class.java))
+//
+//                println("초".toCharArray().contentToString())
 //                fun requestFlow(i: Int): Flow<String> = flow {
 //                    emit("$i: First")
 //                    check(i > 2)

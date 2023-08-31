@@ -1,6 +1,5 @@
 package com.example.myapplication.ui.home
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -10,38 +9,24 @@ import android.media.Image
 import android.media.ImageReader
 import android.media.projection.MediaProjection
 import android.media.projection.MediaProjectionManager
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.transition.TransitionSet
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.RecyclerView
 import com.example.lib_annotation.FragmentDestination
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
-import com.example.myapplication.TransitionPendingActivity
-import com.example.myapplication.Util
-import com.example.myapplication.transition.ChangeAlphaTransition
-import com.example.myapplication.transition.ExitTransition
+import com.example.myapplication.databinding.ItemModelListBinding
+import com.example.myapplication.ui.ItemModel
 import com.example.myapplication.util.getDestination
-import kotlinx.android.synthetic.main.fragment_home.btn1
-import kotlinx.android.synthetic.main.fragment_home.btn2
-import kotlinx.android.synthetic.main.fragment_home.view.btn3
-import kotlinx.android.synthetic.main.fragment_home.view.btn4
-import kotlinx.android.synthetic.main.fragment_home.view.btn_auto_change_network
-import kotlinx.android.synthetic.main.fragment_home.view.btn_immersive_activity
-import kotlinx.android.synthetic.main.fragment_home.view.btn_permission
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -63,108 +48,20 @@ class HomeFragment : Fragment() {
         homeViewModel =
             ViewModelProviders.of(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        val btnCurtain: Button = root.findViewById(R.id.btn_curtain)
 
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val result =
-                context?.checkSelfPermission(android.Manifest.permission.READ_PHONE_STATE)
-            Log.d(TAG, "checkSelfPermission: " + result)
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val result =
-                activity?.shouldShowRequestPermissionRationale(android.Manifest.permission.READ_PHONE_STATE)
-            Log.d(TAG, "shouldShowRequestPermissionRationale: " + result)
-        }
-        root.btn_permission.setOnClickListener {
-            requestPermissions(
-                arrayOf(
-                    android.Manifest.permission.READ_PHONE_STATE
-                ), 1
-            );
-        }
-
-        root.btn_auto_change_network.setOnClickListener {
-            (requireActivity() as MainActivity).getNavController()
-                .navigate(getDestination("main/wifi/strength")?.id!!)
-        }
-
-        root.btn_immersive_activity.setOnClickListener {
-//            startActivity(Intent(this.requireContext(), ImmericActivity::class.java))
-            takeScreenShot()
-        }
-
-        btnCurtain.setOnClickListener {
-            (requireActivity() as MainActivity).getNavController()
-                .navigate(getDestination("main/tabs/custom_page")?.id!!)
-        }
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-
-        root.btn4.also {
-            Util.stringLive.observe(this.viewLifecycleOwner) { value ->
-                it.text = value
-            }
-        }.setOnClickListener {
-            (requireActivity() as MainActivity).getNavController()
-                .navigate(getDestination("main/tabs/share")?.id!!)
-        }
-
-        root.btn3.setOnClickListener {
-
-            val btn3: View = root.btn3
-
-            // 退场动画
-            val enterTransition = TransitionSet()
-            val enterScale = ExitTransition(1, 20)
-            val enterAlpha = ChangeAlphaTransition(1f, 0f)
-            enterScale.addTarget(root.btn3)
-            enterAlpha.addTarget(root.btn3)
-            enterTransition.addTransition(enterScale)
-            enterTransition.addTransition(enterAlpha)
-            enterTransition.ordering = TransitionSet.ORDERING_TOGETHER
-            enterTransition.duration = 300
-
-            // 重新进入动画
-            val reentrantTransition = TransitionSet()
-            val reenterScale = ExitTransition(20, 1)
-            val reenterAlpha = ChangeAlphaTransition(0f, 1f)
-            reenterScale.addTarget(root.btn3)
-            reenterAlpha.addTarget(root.btn3)
-            reentrantTransition.addTransition(reenterScale)
-            reentrantTransition.addTransition(reenterAlpha)
-            reentrantTransition.ordering = TransitionSet.ORDERING_TOGETHER
-            reentrantTransition.duration = 300
-
-            requireActivity().window?.exitTransition = enterTransition
-            requireActivity().window?.reenterTransition = reentrantTransition
-            startActivity(
-                Intent(activity, TransitionPendingActivity::class.java),
-                ActivityOptionsCompat.makeSceneTransitionAnimation(
-                    context as Activity
-                ).toBundle()
-            )
-//            startActivity()
-        }
+        val list = listOf<ItemModel>(
+            ItemModel("自定义View", "main/tabs/custom_page"),
+            ItemModel("权限请求", ""),
+            ItemModel("网络切换", "main/wifi/strength"),
+            ItemModel("沉浸式布局", "main/ImmericActivity"),
+            ItemModel("分区存储", "main/tabs/divide_store"),
+            ItemModel("IPv6", "main/tabs/ipv6"),
+            ItemModel("分享", "main/tabs/share"),
+        )
+        root.findViewById<RecyclerView>(R.id.rv_list).adapter = HomeAdapter(list)
         return root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        btn1.setOnClickListener {
-            (requireActivity() as MainActivity).getNavController()
-                .navigate(getDestination("main/tabs/divide_store")?.id!!)
-        }
-
-        btn2.setOnClickListener {
-            (requireActivity() as MainActivity).getNavController()
-                .navigate(getDestination("main/tabs/ipv6")?.id!!)
-        }
-    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -275,6 +172,37 @@ class HomeFragment : Fragment() {
             out?.close()
         } catch (e: IOException) {
             e.printStackTrace()
+        }
+    }
+
+
+    inner class HomeAdapter(list: List<ItemModel>) : RecyclerView.Adapter<HomeAdapter.HomeRecyclerViewHolder>() {
+
+        private val list = list
+
+        inner class HomeRecyclerViewHolder(private val binding: ItemModelListBinding) :
+            RecyclerView.ViewHolder(binding.root) {
+            fun bind(itemModel: ItemModel) {
+                binding.tvItemName.text = itemModel.itemName
+                binding.root.setOnClickListener {
+                    (requireActivity() as MainActivity).getNavController()
+                        .navigate(getDestination(itemModel.itemPath)?.id!!)
+                }
+            }
+
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeRecyclerViewHolder {
+            return HomeRecyclerViewHolder(ItemModelListBinding.inflate(LayoutInflater.from(parent.context)))
+        }
+
+        override fun getItemCount(): Int {
+            return list.size
+        }
+
+        override fun onBindViewHolder(holder: HomeRecyclerViewHolder, position: Int) {
+            holder.bind(list[position])
+
         }
     }
 

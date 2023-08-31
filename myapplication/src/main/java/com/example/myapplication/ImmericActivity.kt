@@ -13,10 +13,13 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.AccessibilityDelegateCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
+import com.example.lib_annotation.ActivityDestination
+import com.example.lib_annotation.FragmentDestination
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
 
 
+@ActivityDestination(pageUrl = "main/ImmericActivity", asStart = true)
 class ImmericActivity : AppCompatActivity() {
 
 
