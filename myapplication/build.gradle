@@ -77,4 +77,10 @@ dependencies {
     api 'jp.wasabeef:glide-transformations:4.0.0'
     kapt 'com.github.bumptech.glide:compiler:4.10.0'
     api "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+
+
+    // video player
+    api 'xyz.doikki.android.dkplayer:dkplayer-java:3.3.7'
+    api 'xyz.doikki.android.dkplayer:dkplayer-ui:3.3.7'
+    api 'xyz.doikki.android.dkplayer:player-ijk:3.3.7'
 }

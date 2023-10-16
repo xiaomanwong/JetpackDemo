@@ -81,6 +81,8 @@
         <activity android:name=".TransitionPendingActivity" />
         <activity android:name=".TransitionPendingActivity2" />
         <activity android:name=".ui.sofa.IndexableListViewActivity" />
+        <activity android:name=".DoubleFlowActivity" />
+        <activity android:name=".VideoPlayActivity" />
 
         <!--            android:theme="@style/AppTheme.FullScreen"-->
         <!--            android:theme="@style/Theme.AppCompat"-->

@@ -1,7 +1,10 @@
 package com.example.mylibrary.sync
 
+import android.text.TextUtils
+import android.view.View
+import androidx.core.util.Pair
 import org.json.JSONObject
-import org.json.JSONTokener
+import java.util.regex.Pattern
 
 /**
  * @author Quinn
@@ -15,18 +18,48 @@ class test {
 
 fun main() {
 
-    val str = "\"{\n" +
-            "\"trans_info\": \"{\\\"message_id\\\":\\\"test:742353130_5\\\",\\\"push_channel\\\":\\\"fcm-self\\\",\\\"push_type\\\":5,\\\"userid\\\":\\\"8ojWDZgbLa9e\\\"}\",\n" +
-            "\"_notification\": \"{\\\"_body\\\":\\\"push content\\\",\\\"_title\\\":\\\"test push\\\"}\",\n" +
-            "\"extra\": \"{\\\"action\\\":\\\"{\\\\\\\"action\\\\\\\":\\\\\\\"push\\\\\\\",\\\\\\\"badge\\\\\\\":{\\\\\\\"all\\\\\\\":1,\\\\\\\"feed_badge\\\\\\\":0,\\\\\\\"friend_badge\\\\\\\":0},\\\\\\\"options\\\\\\\":false,\\\\\\\"parameters\\\\\\\":{\\\\\\\"is_official\\\\\\\":2,\\\\\\\"nickname\\\\\\\":\\\\\\\"软桃真好吃\\\\\\\",\\\\\\\"profile\\\\\\\":\\\\\\\"https://ibz2.go2yd.com/image.php?url=ZL_cnt_2_01Durek2704M×tamp=1661494254&auth_id=truelyimg&auth_key=530b2a6a39e6505347d8bb518641c0f3\\\\\\\",\\\\\\\"userid\\\\\\\":\\\\\\\"8ojWDZgbLa9e\\\\\\\"},\\\\\\\"path\\\\\\\":\\\\\\\"conversation_page\\\\\\\"}\\\"}\"\n" +
-            "}\""
+    val PARAM = "BF\\[\\[(\\[?.*?\\]?)\\]\\]"
+    val REQUEST_URL_PARTNER = Pattern.compile(PARAM)
+    val matcher = REQUEST_URL_PARTNER.matcher("contentValue")
+    push(
+        "contentValue",
+        mutableMapOf("xxx" to "123", "yyy" to "456", "zzz" to "789"),
+    )
 
+    try {
+        if (matcher.find()) {
+            val matcher0 = matcher.group()
+            val matcher1 = matcher.group(1)
+            println("match0:$matcher0")
+            println("match1:$matcher1")
+            if (TextUtils.isEmpty(matcher0) || TextUtils.isEmpty(matcher1)) {
+                ""
+            } else {
+                matcher1
+            }
+        } else {
+            println("no match")
+        }
+    } catch (e: Exception) {
+        ""
+    }
+}
 
-    val newStr = str.replace("\\", "").replace("\"{", "{").replace("}\"", "}").replace("\n","").replace("\"", "'")
-//        .replace("\"", "/\"")
-    println(newStr)
-
-    val json = JSONObject(JSONTokener(newStr))
-
-    println(json.toString())
+fun push(
+    routePath: String,
+    params: MutableMap<String, Any> = mutableMapOf(),
+    vararg sharedElement: Pair<View, String> = emptyArray()
+) {
+    println(
+        """
+                routePath = $routePath
+                params = %s
+                sharedElement = ${sharedElement.toString()}"
+            """.trimIndent().format(
+            """
+                    ${params.toString()}
+            }
+                """.trimIndent()
+        )
+    )
 }

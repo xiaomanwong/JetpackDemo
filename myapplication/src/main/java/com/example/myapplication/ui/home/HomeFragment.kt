@@ -57,6 +57,8 @@ class HomeFragment : Fragment() {
             ItemModel("分区存储", "main/tabs/divide_store"),
             ItemModel("IPv6", "main/tabs/ipv6"),
             ItemModel("分享", "main/tabs/share"),
+            ItemModel("双排瀑布流", "main/tabs/flow"),
+            ItemModel("视频", "main/tabs/video_play"),
         )
         root.findViewById<RecyclerView>(R.id.rv_list).adapter = HomeAdapter(list)
         return root
