@@ -18,7 +18,7 @@ android {
     }
     defaultConfig {
         applicationId "com.example.jetpackdemo"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -105,7 +105,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     // AOP 插件库：https://mvnrepository.com/artifact/org.aspectj/aspectjrt
-//    implementation 'org.aspectj:aspectjrt:1.9.5'
+    implementation 'org.aspectj:aspectjrt:1.9.5'
     // 权限请求框架：https://github.com/getActivity/XXPermissions
     implementation 'com.hjq:xxpermissions:6.2'
     implementation 'com.github.hackware1993:MagicIndicator:1.5.0'

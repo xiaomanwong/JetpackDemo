@@ -65,10 +65,59 @@
                 android:text="引导蒙版" />
 
             <Button
+                android:id="@+id/btn_emoji_flower"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Emoji Flower" />
+
+            <Button
                 android:id="@+id/btn_viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="view_pager" />
+
+
+            <com.example.myapplication.custom_page.IdProfileHeaderView
+                android:layout_width="28dp"
+                android:layout_height="28dp" />
+
+            <com.example.myapplication.custom_page.UserOnlineStatusHeaderView
+                android:id="@+id/user_online_status_header_view"
+                android:layout_width="28dp"
+                android:layout_height="28dp" />
+
+
+
+
+            <TextView
+                android:id="@+id/tv_chat_template_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center"
+                android:lineHeight="16sp"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:text="110912cvknlskdhgw110912cvknlskdhgw110912cvknlskdhgw sldjnkervhadv "
+                android:textColor="@color/black"
+                android:textFontWeight="500"
+                android:textSize="22dp"
+                app:layout_constraintEnd_toEndOf="@+id/iv_chat_template_image"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toEndOf="@+id/iv_chat_template_check"
+                app:layout_constraintTop_toBottomOf="@+id/iv_chat_template_image"
+                app:layout_constraintWidth_max="74dp" />
+
+
+            <Button
+                android:id="@+id/btn_flow_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="流布局" />
+
 
         </LinearLayout>
     </ScrollView>

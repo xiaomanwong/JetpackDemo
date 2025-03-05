@@ -1,0 +1,63 @@
+[
+  [
+    {
+      "position": {
+        "start": {
+          "x": 561.0,
+          "y": 860.25
+        },
+        "end": {
+          "x": 554.49,
+          "y": 551.25
+        },
+        // ... (rest of the object remains unchanged)
+      },
+      // ... (other properties remain unchanged)
+    },
+    {
+      "position": {
+        "start": {
+          "x": 554.49,
+          "y": 551.25
+        },
+        "end": {
+          "x": 569,
+          "y": 857.75
+        },
+        // ... (rest of the object remains unchanged)
+      },
+      // ... (other properties remain unchanged)
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 572.5,
+          "y": 837.25
+        },
+        "end": {
+          "x": 638.99,
+          "y": 658.75
+        },
+        // ... (rest of the object remains unchanged)
+      },
+      // ... (other properties remain unchanged)
+    },
+    {
+      "position": {
+        "start": {
+          "x": 638.99,
+          "y": 658.75
+        },
+        "end": {
+          "x": 706.5,
+          "y": 816.75
+        },
+        // ... (rest of the object remains unchanged)
+      },
+      // ... (other properties remain unchanged)
+    }
+  ],
+  // ... (similar changes for all other elements in the array)
+]

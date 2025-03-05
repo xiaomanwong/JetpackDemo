@@ -1,0 +1,112 @@
+import groovy.xml.Namespace
+import groovy.xml.XmlUtil
+
+/**
+ * Modify configChanges in Android Manifest to ensure that fold and flip can respond to screen changes
+ * Prevent developers from forgetting to write related adaptations
+ */
+android.applicationVariants.all { variant ->
+    def modifyManifestTask = tasks.register("modify${variant.name.capitalize()}Manifest") {
+        println("modify${variant.name.capitalize()}Manifest")
+        doLast {
+            def manifestFile = file("${variant.outputs[0].processResources.manifestFile}")
+//            def manifestFile = new File(variant.processManifestProvider.get().manifestOutputDirectory.get().asFile, "AndroidManifest.xml")
+//            def manifestFile = file("${variant.mergeResourcesProvider.get().outputDir}/AndroidManifest.xml")
+            def realFile = file(manifestFile.path.replace("merged_manifests", "merged_manifests"))
+            println("manifestFile: $realFile.path")
+//            def manifestFile = new File(manifestPath)
+            println("manifestFile: ${realFile.exists()}")
+            if (!realFile.exists()) return
+            def manifestXml = new XmlParser().parse(realFile)
+            def defaultConfigs = "smallestScreenSize|screenLayout|screenSize"
+            def androidSpace = new Namespace('http://schemas.android.com/apk/res/android', 'android')
+            def nodes = manifestXml.application[0].'*'.findAll {
+                //Select the node to modify，No specified exported
+                it.name() == 'activity'
+            }
+            //Needs to be increased/add to exported，default false
+            nodes.each {
+//                println("activity: ${it.attributes().get(androidSpace.name)}")
+                def isMain = false
+                if (!(it.attributes().get(androidSpace.name) == "com.facebook.FacebookActivity"
+                        || it.attributes().get(androidSpace.name) == "com.unity3d.player.UnityPlayerActivity")) {
+                    def configs = it.attributes().get(androidSpace.configChanges)
+                    println("attributes: ${it.attributes()}")
+                    if (configs == null) {
+                        it.attributes().put("android:configChanges", defaultConfigs)
+                    } else {
+                        def list = new ArrayList<String>()
+                        list.addAll(configs.split("\\|"))
+                        list.addAll(defaultConfigs.split("\\|"))
+                        Set<String> set = new HashSet(list)
+                        it.attributes().put(androidSpace.configChanges, set.join("|"))
+                    }
+                    def orientation = it.attributes().get(androidSpace.screenOrientation)
+                    if(orientation == null) {
+                        it.attributes().put(androidSpace.screenOrientation, "portrait")
+                    }
+                }
+
+            }
+
+            def writer = new FileWriter(realFile)
+            new XmlNodePrinter(new PrintWriter(writer)).print(manifestXml)
+            writer.close()
+        }
+    }
+
+    variant.outputs.each { output ->
+        modifyManifestTask.configure {
+            dependsOn variant.mergeResourcesProvider
+            shouldRunAfter variant.mergeResourcesProvider
+        }
+        output.processManifestProvider.configure {
+            finalizedBy modifyManifestTask
+        }
+    }
+
+
+//    variant.outputs.all { output ->
+//        output.processResources.doFirst { pm ->
+//            String manifestPath = output.processResources.manifestFile
+//            def manifestFile = new File(manifestPath)
+//            if (!manifestFile.exists()) return
+//            def xml = new XmlParser(false, true).parse(manifestFile)
+//            def defaultConfigs = "smallestScreenSize|screenLayout|screenSize"
+//            ///appoint space
+//            def androidSpace = new Namespace('http://schemas.android.com/apk/res/android', 'android')
+//
+//            def nodes = xml.application[0].'*'.findAll {
+//                //Select the node to modify，No specified exported
+//                it.name() == 'activity'
+//            }
+//            //Needs to be increased/add to exported，default false
+//            nodes.each {
+//                def isMain = false
+//                if (!(it.attributes().get(androidSpace.name) == "com.facebook.FacebookActivity"
+//                        || it.attributes().get(androidSpace.name) == "com.unity3d.player.UnityPlayerActivity")) {
+//                    def configs = it.attributes().get(androidSpace.configChanges)
+//                    if (configs == null) {
+//                        it.attributes().put(androidSpace.configChanges, defaultConfigs)
+//                    } else {
+//                        def list = new ArrayList<String>()
+//                        list.addAll(configs.split("\\|"))
+//                        list.addAll(defaultConfigs.split("\\|"))
+//                        Set<String> set = new HashSet(list)
+//                        it.attributes().put(androidSpace.configChanges, set.join("|"))
+//                    }
+//                    def orientation = it.attributes().get(androidSpace.screenOrientation)
+//                    if(orientation == null) {
+//                        it.attributes().put(androidSpace.screenOrientation, "portrait")
+//                    }
+//                }
+//
+//            }
+//
+//            PrintWriter pw = new PrintWriter(manifestFile)
+//            pw.write(XmlUtil.serialize(xml))
+//            pw.close()
+//        }
+//    }
+
+}

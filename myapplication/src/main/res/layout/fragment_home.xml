@@ -15,6 +15,7 @@
         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
         app:spanCount="2"
         tools:itemCount="10"
+        android:transitionName="sharedItem"
         tools:listitem="@layout/item_model_list" />
 
     <TextView

@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.home
 
+import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -18,8 +19,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavOptions
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lib_annotation.FragmentDestination
 import com.example.myapplication.MainActivity
@@ -48,8 +51,8 @@ class HomeFragment : Fragment() {
         homeViewModel =
             ViewModelProviders.of(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-
-        val list = listOf<ItemModel>(
+        val listView = root.findViewById<RecyclerView>(R.id.rv_list)
+        val list = listOf(
             ItemModel("自定义View", "main/tabs/custom_page"),
             ItemModel("权限请求", ""),
             ItemModel("网络切换", "main/wifi/strength"),
@@ -58,9 +61,22 @@ class HomeFragment : Fragment() {
             ItemModel("IPv6", "main/tabs/ipv6"),
             ItemModel("分享", "main/tabs/share"),
             ItemModel("双排瀑布流", "main/tabs/flow"),
+            ItemModel("语音转文字", "main/transform_audio"),
+            ItemModel(
+                "转场动画", "main/page/transform_page_animator",
+                ActivityOptions.makeSceneTransitionAnimation(
+                    activity,
+                    listView,
+                    "sharedItem"
+                ).toBundle()
+//                    .apply {
+//                    putLong("shoe_id", 11L)
+//                    putString("transition_name", "shoe")
+//                }
+            ),
             ItemModel("视频", "main/tabs/video_play"),
         )
-        root.findViewById<RecyclerView>(R.id.rv_list).adapter = HomeAdapter(list)
+        listView.adapter = HomeAdapter(list)
         return root
     }
 
@@ -178,7 +194,8 @@ class HomeFragment : Fragment() {
     }
 
 
-    inner class HomeAdapter(list: List<ItemModel>) : RecyclerView.Adapter<HomeAdapter.HomeRecyclerViewHolder>() {
+    inner class HomeAdapter(list: List<ItemModel>) :
+        RecyclerView.Adapter<HomeAdapter.HomeRecyclerViewHolder>() {
 
         private val list = list
 
@@ -188,7 +205,28 @@ class HomeFragment : Fragment() {
                 binding.tvItemName.text = itemModel.itemName
                 binding.root.setOnClickListener {
                     (requireActivity() as MainActivity).getNavController()
-                        .navigate(getDestination(itemModel.itemPath)?.id!!)
+                        .navigate(
+                            getDestination(itemModel.itemPath)?.id!!,
+                            itemModel.options,
+//                            navOptions = NavOptions.Builder().setEnterAnim(R.anim.slide_in_right)
+//                                .setExitAnim(R.anim.slide_out_left)
+//                                .setPopEnterAnim(R.anim.slide_in_left)
+//                                .setPopExitAnim(R.anim.slide_out_right)
+//                                .build()
+//                            ActivityOptions.makeSceneTransitionAnimation(
+//                                activity,
+//                                it as ConstraintLayout,
+//                                "shoe"
+//                            ).toBundle().apply {
+//                                putLong("shoe_id", 11L)
+//                                putString("transition_name", "shoe")
+//                            },
+//                            NavOptions.Builder().setEnterAnim(R.anim.slide_in_right)
+//                                .setExitAnim(R.anim.slide_out_left)
+//                                .setPopEnterAnim(R.anim.slide_in_left)
+//                                .setPopExitAnim(R.anim.slide_out_right)
+//                                .build()
+                        )
                 }
             }
 

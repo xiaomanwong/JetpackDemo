@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.os.Bundle
 import android.text.TextUtils
+import android.transition.Fade
 import android.transition.Slide
 import android.view.MenuItem
 import android.view.Window
@@ -12,6 +13,7 @@ import com.example.myapplication.util.NavGraphBuilder
 import com.example.myapplication.util.getDestConfig
 import com.example.myapplication.widget.AppBottomBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -20,12 +22,15 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+//        window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
+        setExitSharedElementCallback(MaterialContainerTransformSharedElementCallback())
+        window?.sharedElementsUseOverlay = false
         setContentView(R.layout.activity_main)
-        window?.enterTransition = Slide()
-        window?.exitTransition = Slide()
-        window?.reenterTransition = Slide()
-        window?.returnTransition = Slide()
+        window?.enterTransition = Fade()
+        window?.exitTransition = Fade()
+        window?.reenterTransition = Fade()
+        window?.returnTransition = Fade()
         navView = findViewById(R.id.nav_view)
         val fragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
         navController = NavHostFragment.findNavController(fragment!!)

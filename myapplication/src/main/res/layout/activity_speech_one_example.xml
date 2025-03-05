@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- 播放按钮和文本 -->
+    <TextView
+        android:id="@+id/textViewWithIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <!--    <com.pierfrancescosoffritti.androidyoutubeplayer.core.sampleapp.examples.voicewaveview.TestDraw-->
+    <!--        android:id="@+id/testDraw"-->
+    <!--        android:layout_width="150dp"-->
+    <!--        android:layout_height="100dp"/>-->
+
+    <!--    <com.pierfrancescosoffritti.androidyoutubeplayer.core.sampleapp.examples.simpleExample.WaveformView-->
+    <!--        android:id="@+id/waveformView"-->
+    <!--        android:layout_width="150dp"-->
+    <!--        android:layout_height="100dp" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="16dp"-->
+<!--        android:text="按下按钮开始说话"-->
+<!--        android:textSize="18sp" />-->
+
+<!--    <Spinner-->
+<!--        android:id="@+id/languageSpinner"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="16dp" />-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:background="@color/Red_800"-->
+<!--        android:gravity="center"-->
+<!--        android:orientation="vertical">-->
+
+
+<!--        <View-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="90dp"-->
+<!--            android:background="@color/black"-->
+<!--            android:translationY="-20dp" />-->
+<!--    </LinearLayout>-->
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开始说话" />
+
+    <ImageView
+        android:id="@+id/imageViewGif"
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
+
+<!--    <com.example.myapplication.widget.BondeeSwipeRefreshLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="300dp">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="300dp">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="这里试试" />-->
+<!--        </LinearLayout>-->
+
+
+<!--    </com.example.myapplication.widget.BondeeSwipeRefreshLayout>-->
+</LinearLayout>

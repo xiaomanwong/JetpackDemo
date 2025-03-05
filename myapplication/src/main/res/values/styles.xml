@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="circleStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 
 
     <style name="AppTheme.FullScreen" parent="Theme.AppCompat">
@@ -27,4 +31,12 @@
         <item name="android:windowEnterAnimation">@anim/actionsheet_dialog_in</item>
         <item name="android:windowExitAnimation">@anim/actionsheet_dialog_out</item>
     </style>
+
+    <declare-styleable name="MaterialLoadingButton">
+        <attr name="progressBarColor" format="color" />
+        <attr name="buttonTextColor" format="color" />
+        <attr name="buttonTextSize" format="dimension" />
+        <attr name="buttonTextStyle" format="integer" />
+        <attr name="progressBarSize" format="dimension" />
+    </declare-styleable>
 </resources>

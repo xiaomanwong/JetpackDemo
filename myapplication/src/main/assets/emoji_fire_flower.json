@@ -1,0 +1,2758 @@
+[
+  [
+    {
+      "position": {
+        "start": {
+          "x": 561.0,
+          "y": 560.25
+        },
+        "end": {
+          "x": 554.49,
+          "y": 251.25
+        },
+        "control": {
+          "control1": {
+            "x": 0.13,
+            "y": 0
+          },
+          "control2": {
+            "x": 0.01,
+            "y": 0.8
+          }
+        }
+      },
+      "rotation": {
+        "start": 0.0,
+        "end": 18.55,
+        "control": {
+          "control1": {
+            "x": 0.1,
+            "y": 0
+          },
+          "control2": {
+            "x": 0.01,
+            "y": -2.30
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0
+          },
+          "control2": {
+            "x": 0.01,
+            "y": 0.39
+          }
+        }
+      },
+      "startDelay": 0,
+      "duration": 333
+    },
+    {
+      "position": {
+        "start": {
+          "x": 554.49,
+          "y": 251.25
+        },
+        "end": {
+          "x": 569,
+          "y": 557.75
+        },
+        "control": {
+          "control1": {
+            "x": 1.0,
+            "y": 0.2
+          },
+          "control2": {
+            "x": 0.9,
+            "y": 1.0
+          }
+        }
+      },
+      "rotation": {
+        "start": 18.55,
+        "end": 165.0,
+        "control": {
+          "control1": {
+            "x": 0.86,
+            "y": 0.36
+          },
+          "control2": {
+            "x": 0.9,
+            "y": 1.0
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.79,
+            "y": -0.49
+          },
+          "control2": {
+            "x": 0.56,
+            "y": 1
+          }
+        }
+      },
+      "startDelay": 0,
+      "duration": 333
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 572.5,
+          "y": 537.25
+        },
+        "end": {
+          "x": 638.99,
+          "y": 358.75
+        },
+        "control": {
+          "control1": {
+            "x": 0.13,
+            "y": 0
+          },
+          "control2": {
+            "x": 0.04,
+            "y": 0.68
+          }
+        }
+      },
+      "rotation": {
+        "start": -53,
+        "end": -15.45,
+        "control": {
+          "control1": {
+            "x": 0.10,
+            "y": 0
+          },
+          "control2": {
+            "x": 0.04,
+            "y": -0.61
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0
+          },
+          "control2": {
+            "x": 0.04,
+            "y": 0.40
+          }
+        }
+      },
+      "startDelay": 33,
+      "duration": 333
+    },
+    {
+      "position": {
+        "start": {
+          "x": 638.99,
+          "y": 358.75
+        },
+        "end": {
+          "x": 706.5,
+          "y": 516.75
+        },
+        "control": {
+          "control1": {
+            "x": 1.00,
+            "y": 0.37
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": -15.45,
+        "end": 30,
+        "control": {
+          "control1": {
+            "x": 0.93,
+            "y": 1.29
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.37,
+            "y": -0.23
+          },
+          "control2": {
+            "x": 0.83,
+            "y": 0.83
+          }
+        }
+      },
+      "startDelay": 33,
+      "duration": 333
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 561.0,
+          "y": 560.25
+        },
+        "end": {
+          "x": 388.39,
+          "y": 261.72
+        },
+        "control": {
+          "control1": {
+            "x": 0.17,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.04,
+            "y": 0.82
+          }
+        }
+      },
+      "rotation": {
+        "start": 0.0,
+        "end": -65.45,
+        "control": {
+          "control1": {
+            "x": 0.10,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.00,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.00,
+            "y": 1.00
+          }
+        }
+      },
+      "startDelay": 100,
+      "duration": 333
+    },
+    {
+      "position": {
+        "start": {
+          "x": 388.39,
+          "y": 261.72
+        },
+        "end": {
+          "x": 260.0,
+          "y": 511.25
+        },
+        "control": {
+          "control1": {
+            "x": 0.29,
+            "y": 0.07
+          },
+          "control2": {
+            "x": 0.23,
+            "y": 0.42
+          }
+        }
+      },
+      "rotation": {
+        "start": -65.45,
+        "end": -108.45,
+        "control": {
+          "control1": {
+            "x": 0.90,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.00,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.83,
+            "y": 0.83
+          }
+        }
+      },
+      "startDelay": 100,
+      "duration": 333
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 561.0,
+          "y": 560.25
+        },
+        "end": {
+          "x": 562.49,
+          "y": 412.54
+        },
+        "control": {
+          "control1": {
+            "x": 0.13,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": 0.59
+          }
+        }
+      },
+      "rotation": {
+        "start": 0.0,
+        "end": 18.55,
+        "control": {
+          "control1": {
+            "x": 0.10,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": -2.30
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": 0.39
+          }
+        }
+      },
+      "startDelay": 200,
+      "duration": 250
+    },
+    {
+      "position": {
+        "start": {
+          "x": 562.49,
+          "y": 412.54
+        },
+        "end": {
+          "x": 569.0,
+          "y": 557.75
+        },
+        "control": {
+          "control1": {
+            "x": 1.00,
+            "y": 0.42
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": 18.55,
+        "end": 165.0,
+        "control": {
+          "control1": {
+            "x": 0.86,
+            "y": 0.36
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.79,
+            "y": -0.49
+          },
+          "control2": {
+            "x": 0.56,
+            "y": 1.00
+          }
+        }
+      },
+      "startDelay": 200,
+      "duration": 250
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 496.0,
+          "y": 588.5
+        },
+        "end": {
+          "x": 497.49,
+          "y": 440.79
+        },
+        "control": {
+          "control1": {
+            "x": 0.13,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": 0.56
+          }
+        }
+      },
+      "rotation": {
+        "start": 0.0,
+        "end": 18.55,
+        "control": {
+          "control1": {
+            "x": 0.10,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": -2.52
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": 0.35
+          }
+        }
+      },
+      "startDelay": 367,
+      "duration": 267
+    },
+    {
+      "position": {
+        "start": {
+          "x": 497.49,
+          "y": 440.79
+        },
+        "end": {
+          "x": 504.0,
+          "y": 586.0
+        },
+        "control": {
+          "control1": {
+            "x": 1.00,
+            "y": 0.40
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": 18.55,
+        "end": 165.0,
+        "control": {
+          "control1": {
+            "x": 0.86,
+            "y": 0.34
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.79,
+            "y": -0.45
+          },
+          "control2": {
+            "x": 0.56,
+            "y": 1.00
+          }
+        }
+      },
+      "startDelay": 367,
+      "duration": 233
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 572.5,
+          "y": 537.25
+        },
+        "end": {
+          "x": 638.99,
+          "y": 358.75
+        },
+        "control": {
+          "control1": {
+            "x": 0.13,
+            "y": 0
+          },
+          "control2": {
+            "x": 0.04,
+            "y": 0.68
+          }
+        }
+      },
+      "rotation": {
+        "start": -53,
+        "end": -15.45,
+        "control": {
+          "control1": {
+            "x": 0.10,
+            "y": 0
+          },
+          "control2": {
+            "x": 0.04,
+            "y": -0.61
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0
+          },
+          "control2": {
+            "x": 0.04,
+            "y": 0.40
+          }
+        }
+      },
+      "startDelay": 433,
+      "duration": 333
+    },
+    {
+      "position": {
+        "start": {
+          "x": 638.99,
+          "y": 358.75
+        },
+        "end": {
+          "x": 706.5,
+          "y": 516.75
+        },
+        "control": {
+          "control1": {
+            "x": 1.00,
+            "y": 0.37
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": -15.45,
+        "end": 30,
+        "control": {
+          "control1": {
+            "x": 0.93,
+            "y": 1.29
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.37,
+            "y": -0.23
+          },
+          "control2": {
+            "x": 0.83,
+            "y": 0.83
+          }
+        }
+      },
+      "startDelay": 433,
+      "duration": 333
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 596.0,
+          "y": 559.75
+        },
+        "end": {
+          "x": 666.49,
+          "y": 358.75
+        },
+        "control": {
+          "control1": {
+            "x": 0.23,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": 0.67
+          }
+        }
+      },
+      "rotation": {
+        "start": 0.0,
+        "end": 58.0,
+        "control": {
+          "control1": {
+            "x": 0.16,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": -0.20
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.19,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": 0.30
+          }
+        }
+      },
+      "startDelay": 500,
+      "duration": 333
+    },
+    {
+      "position": {
+        "start": {
+          "x": 666.49,
+          "y": 358.75
+        },
+        "end": {
+          "x": 718.5,
+          "y": 546.75
+        },
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": 0.38
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": 58.0,
+        "end": 165.0,
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": 0.69
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": -0.74
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "startDelay": 500,
+      "duration": 333
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 561.0,
+          "y": 560.25
+        },
+        "end": {
+          "x": 550.74,
+          "y": 412.54
+        },
+        "control": {
+          "control1": {
+            "x": 0.13,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": 0.59
+          }
+        }
+      },
+      "rotation": {
+        "start": 0.0,
+        "end": 18.55,
+        "control": {
+          "control1": {
+            "x": 0.10,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": -2.30
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": 0.39
+          }
+        }
+      },
+      "startDelay": 600,
+      "duration": 250
+    },
+    {
+      "position": {
+        "start": {
+          "x": 550.74,
+          "y": 412.54
+        },
+        "end": {
+          "x": 545.75,
+          "y": 560.75
+        },
+        "control": {
+          "control1": {
+            "x": 1.00,
+            "y": 0.42
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": 18.55,
+        "end": 165.0,
+        "control": {
+          "control1": {
+            "x": 0.86,
+            "y": 0.36
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.79,
+            "y": -0.49
+          },
+          "control2": {
+            "x": 0.56,
+            "y": 1.00
+          }
+        }
+      },
+      "startDelay": 600,
+      "duration": 250
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 630.0,
+          "y": 550.75
+        },
+        "end": {
+          "x": 749.49,
+          "y": 334.75
+        },
+        "control": {
+          "control1": {
+            "x": 0.23,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": 0.72
+          }
+        }
+      },
+      "rotation": {
+        "start": 0.0,
+        "end": 58.0,
+        "control": {
+          "control1": {
+            "x": 0.16,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": -0.20
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.19,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": 0.30
+          }
+        }
+      },
+      "startDelay": 667,
+      "duration": 333
+    },
+    {
+      "position": {
+        "start": {
+          "x": 749.49,
+          "y": 334.75
+        },
+        "end": {
+          "x": 870.0,
+          "y": 548.25
+        },
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": 0.30
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": 58.0,
+        "end": 165.0,
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": 0.69
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": -0.74
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "startDelay": 667,
+      "duration": 333
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 596.0,
+          "y": 559.75
+        },
+        "end": {
+          "x": 666.49,
+          "y": 358.75
+        },
+        "control": {
+          "control1": {
+            "x": 0.23,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": 0.67
+          }
+        }
+      },
+      "rotation": {
+        "start": 0.0,
+        "end": 58.0,
+        "control": {
+          "control1": {
+            "x": 0.16,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": -0.20
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.19,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": 0.30
+          }
+        }
+      },
+      "startDelay": 667,
+      "duration": 333
+    },
+    {
+      "position": {
+        "start": {
+          "x": 666.49,
+          "y": 358.75
+        },
+        "end": {
+          "x": 718.5,
+          "y": 546.75
+        },
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": 0.38
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": 58.0,
+        "end": 165.0,
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": 0.69
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": -0.74
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "startDelay": 667,
+      "duration": 333
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 561.0,
+          "y": 560.25
+        },
+        "end": {
+          "x": 554.49,
+          "y": 251.25
+        },
+        "control": {
+          "control1": {
+            "x": 0.13,
+            "y": 0
+          },
+          "control2": {
+            "x": 0.01,
+            "y": 0.8
+          }
+        }
+      },
+      "rotation": {
+        "start": 0.0,
+        "end": 18.55,
+        "control": {
+          "control1": {
+            "x": 0.1,
+            "y": 0
+          },
+          "control2": {
+            "x": 0.01,
+            "y": -2.30
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0
+          },
+          "control2": {
+            "x": 0.01,
+            "y": 0.39
+          }
+        }
+      },
+      "startDelay": 800,
+      "duration": 333
+    },
+    {
+      "position": {
+        "start": {
+          "x": 554.49,
+          "y": 251.25
+        },
+        "end": {
+          "x": 569,
+          "y": 557.75
+        },
+        "control": {
+          "control1": {
+            "x": 1.0,
+            "y": 0.2
+          },
+          "control2": {
+            "x": 0.9,
+            "y": 1.0
+          }
+        }
+      },
+      "rotation": {
+        "start": 18.55,
+        "end": 165.0,
+        "control": {
+          "control1": {
+            "x": 0.86,
+            "y": 0.36
+          },
+          "control2": {
+            "x": 0.9,
+            "y": 1.0
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.79,
+            "y": -0.49
+          },
+          "control2": {
+            "x": 0.56,
+            "y": 1
+          }
+        }
+      },
+      "startDelay": 800,
+      "duration": 333
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 589.0,
+          "y": 551.75
+        },
+        "end": {
+          "x": 662.49,
+          "y": 104.75
+        },
+        "control": {
+          "control1": {
+            "x": 0.23,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": 0.85
+          }
+        }
+      },
+      "rotation": {
+        "start": 0.0,
+        "end": 58.0,
+        "control": {
+          "control1": {
+            "x": 0.16,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": -0.20
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.19,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": 0.30
+          }
+        }
+      },
+      "startDelay": 833,
+      "duration": 333
+    },
+    {
+      "position": {
+        "start": {
+          "x": 662.49,
+          "y": 104.75
+        },
+        "end": {
+          "x": 760.0,
+          "y": 431.71
+        },
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": 0.22
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": 58.0,
+        "end": 165.0,
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": 0.69
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": -0.74
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "startDelay": 833,
+      "duration": 333
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 496.0,
+          "y": 588.5
+        },
+        "end": {
+          "x": 497.49,
+          "y": 440.79
+        },
+        "control": {
+          "control1": {
+            "x": 0.13,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": 0.56
+          }
+        }
+      },
+      "rotation": {
+        "start": 0.0,
+        "end": 18.55,
+        "control": {
+          "control1": {
+            "x": 0.10,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": -2.52
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": 0.35
+          }
+        }
+      },
+      "startDelay": 933,
+      "duration": 267
+    },
+    {
+      "position": {
+        "start": {
+          "x": 497.49,
+          "y": 440.79
+        },
+        "end": {
+          "x": 504.0,
+          "y": 586.0
+        },
+        "control": {
+          "control1": {
+            "x": 1.00,
+            "y": 0.40
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": 18.55,
+        "end": 165.0,
+        "control": {
+          "control1": {
+            "x": 0.86,
+            "y": 0.34
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.79,
+            "y": -0.45
+          },
+          "control2": {
+            "x": 0.56,
+            "y": 1.00
+          }
+        }
+      },
+      "startDelay": 933,
+      "duration": 233
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 561.0,
+          "y": 560.25
+        },
+        "end": {
+          "x": 562.49,
+          "y": 412.54
+        },
+        "control": {
+          "control1": {
+            "x": 0.13,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": 0.59
+          }
+        }
+      },
+      "rotation": {
+        "start": 0.0,
+        "end": 18.55,
+        "control": {
+          "control1": {
+            "x": 0.10,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": -2.30
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": 0.39
+          }
+        }
+      },
+      "startDelay": 1133,
+      "duration": 250
+    },
+    {
+      "position": {
+        "start": {
+          "x": 562.49,
+          "y": 412.54
+        },
+        "end": {
+          "x": 569.0,
+          "y": 557.75
+        },
+        "control": {
+          "control1": {
+            "x": 1.00,
+            "y": 0.42
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": 18.55,
+        "end": 165.0,
+        "control": {
+          "control1": {
+            "x": 0.86,
+            "y": 0.36
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.79,
+            "y": -0.49
+          },
+          "control2": {
+            "x": 0.56,
+            "y": 1.00
+          }
+        }
+      },
+      "startDelay": 1133,
+      "duration": 250
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 572.5,
+          "y": 537.25
+        },
+        "end": {
+          "x": 638.99,
+          "y": 358.75
+        },
+        "control": {
+          "control1": {
+            "x": 0.13,
+            "y": 0
+          },
+          "control2": {
+            "x": 0.04,
+            "y": 0.68
+          }
+        }
+      },
+      "rotation": {
+        "start": -53,
+        "end": -15.45,
+        "control": {
+          "control1": {
+            "x": 0.10,
+            "y": 0
+          },
+          "control2": {
+            "x": 0.04,
+            "y": -0.61
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0
+          },
+          "control2": {
+            "x": 0.04,
+            "y": 0.40
+          }
+        }
+      },
+      "startDelay": 1267,
+      "duration": 333
+    },
+    {
+      "position": {
+        "start": {
+          "x": 638.99,
+          "y": 358.75
+        },
+        "end": {
+          "x": 706.5,
+          "y": 516.75
+        },
+        "control": {
+          "control1": {
+            "x": 1.00,
+            "y": 0.37
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": -15.45,
+        "end": 30,
+        "control": {
+          "control1": {
+            "x": 0.93,
+            "y": 1.29
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.37,
+            "y": -0.23
+          },
+          "control2": {
+            "x": 0.83,
+            "y": 0.83
+          }
+        }
+      },
+      "startDelay": 1267,
+      "duration": 333
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 561.0,
+          "y": 560.25
+        },
+        "end": {
+          "x": 388.39,
+          "y": 261.72
+        },
+        "control": {
+          "control1": {
+            "x": 0.17,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.04,
+            "y": 0.82
+          }
+        }
+      },
+      "rotation": {
+        "start": 0.0,
+        "end": -65.45,
+        "control": {
+          "control1": {
+            "x": 0.10,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.00,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.00,
+            "y": 1.00
+          }
+        }
+      },
+      "startDelay": 1300,
+      "duration": 333
+    },
+    {
+      "position": {
+        "start": {
+          "x": 388.39,
+          "y": 261.72
+        },
+        "end": {
+          "x": 260.0,
+          "y": 511.25
+        },
+        "control": {
+          "control1": {
+            "x": 0.29,
+            "y": 0.07
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": -65.45,
+        "end": -108.45,
+        "control": {
+          "control1": {
+            "x": 0.90,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.00,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.83,
+            "y": 0.83
+          }
+        }
+      },
+      "startDelay": 1300,
+      "duration": 333
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 596.0,
+          "y": 559.75
+        },
+        "end": {
+          "x": 666.49,
+          "y": 358.75
+        },
+        "control": {
+          "control1": {
+            "x": 0.23,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": 0.67
+          }
+        }
+      },
+      "rotation": {
+        "start": 0.0,
+        "end": 58.0,
+        "control": {
+          "control1": {
+            "x": 0.16,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": -0.20
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.19,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": 0.30
+          }
+        }
+      },
+      "startDelay": 1467,
+      "duration": 333
+    },
+    {
+      "position": {
+        "start": {
+          "x": 666.49,
+          "y": 358.75
+        },
+        "end": {
+          "x": 718.5,
+          "y": 546.75
+        },
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": 0.38
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": 58.0,
+        "end": 165.0,
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": 0.69
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": -0.74
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "startDelay": 1467,
+      "duration": 333
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 496.0,
+          "y": 588.5
+        },
+        "end": {
+          "x": 497.49,
+          "y": 440.79
+        },
+        "control": {
+          "control1": {
+            "x": 0.13,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": 0.56
+          }
+        }
+      },
+      "rotation": {
+        "start": 0.0,
+        "end": 18.55,
+        "control": {
+          "control1": {
+            "x": 0.10,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": -2.52
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": 0.35
+          }
+        }
+      },
+      "startDelay": 1600,
+      "duration": 267
+    },
+    {
+      "position": {
+        "start": {
+          "x": 497.49,
+          "y": 440.79
+        },
+        "end": {
+          "x": 504.0,
+          "y": 586.0
+        },
+        "control": {
+          "control1": {
+            "x": 1.00,
+            "y": 0.40
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": 18.55,
+        "end": 165.0,
+        "control": {
+          "control1": {
+            "x": 0.86,
+            "y": 0.34
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.79,
+            "y": -0.45
+          },
+          "control2": {
+            "x": 0.56,
+            "y": 1.00
+          }
+        }
+      },
+      "startDelay": 1600,
+      "duration": 233
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 561.0,
+          "y": 560.25
+        },
+        "end": {
+          "x": 562.49,
+          "y": 412.54
+        },
+        "control": {
+          "control1": {
+            "x": 0.13,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": 0.59
+          }
+        }
+      },
+      "rotation": {
+        "start": 0.0,
+        "end": 18.55,
+        "control": {
+          "control1": {
+            "x": 0.10,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": -2.30
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.01,
+            "y": 0.39
+          }
+        }
+      },
+      "startDelay": 1833,
+      "duration": 250
+    },
+    {
+      "position": {
+        "start": {
+          "x": 562.49,
+          "y": 412.54
+        },
+        "end": {
+          "x": 569.0,
+          "y": 557.75
+        },
+        "control": {
+          "control1": {
+            "x": 1.00,
+            "y": 0.42
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": 18.55,
+        "end": 165.0,
+        "control": {
+          "control1": {
+            "x": 0.86,
+            "y": 0.36
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.79,
+            "y": -0.49
+          },
+          "control2": {
+            "x": 0.56,
+            "y": 1.00
+          }
+        }
+      },
+      "startDelay": 1833,
+      "duration": 250
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 596.0,
+          "y": 559.75
+        },
+        "end": {
+          "x": 666.49,
+          "y": 358.75
+        },
+        "control": {
+          "control1": {
+            "x": 0.23,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": 0.67
+          }
+        }
+      },
+      "rotation": {
+        "start": 0.0,
+        "end": 58.0,
+        "control": {
+          "control1": {
+            "x": 0.16,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": -0.20
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.19,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": 0.30
+          }
+        }
+      },
+      "startDelay": 1900,
+      "duration": 333
+    },
+    {
+      "position": {
+        "start": {
+          "x": 666.49,
+          "y": 358.75
+        },
+        "end": {
+          "x": 718.5,
+          "y": 546.75
+        },
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": 0.38
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": 58.0,
+        "end": 165.0,
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": 0.69
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": -0.74
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "startDelay": 1900,
+      "duration": 333
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 589.0,
+          "y": 551.75
+        },
+        "end": {
+          "x": 662.49,
+          "y": 104.75
+        },
+        "control": {
+          "control1": {
+            "x": 0.23,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": 0.85
+          }
+        }
+      },
+      "rotation": {
+        "start": 0.0,
+        "end": 58.0,
+        "control": {
+          "control1": {
+            "x": 0.16,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": -0.20
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.19,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": 0.30
+          }
+        }
+      },
+      "startDelay": 2067,
+      "duration": 333
+    },
+    {
+      "position": {
+        "start": {
+          "x": 662.49,
+          "y": 104.75
+        },
+        "end": {
+          "x": 760.0,
+          "y": 431.71
+        },
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": 0.22
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": 58.0,
+        "end": 165.0,
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": 0.69
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": -0.74
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "startDelay": 2067,
+      "duration": 333
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 572.5,
+          "y": 537.25
+        },
+        "end": {
+          "x": 638.99,
+          "y": 358.75
+        },
+        "control": {
+          "control1": {
+            "x": 0.13,
+            "y": 0
+          },
+          "control2": {
+            "x": 0.04,
+            "y": 0.68
+          }
+        }
+      },
+      "rotation": {
+        "start": -53,
+        "end": -15.45,
+        "control": {
+          "control1": {
+            "x": 0.10,
+            "y": 0
+          },
+          "control2": {
+            "x": 0.04,
+            "y": -0.61
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0
+          },
+          "control2": {
+            "x": 0.04,
+            "y": 0.40
+          }
+        }
+      },
+      "startDelay": 2367,
+      "duration": 333
+    },
+    {
+      "position": {
+        "start": {
+          "x": 638.99,
+          "y": 358.75
+        },
+        "end": {
+          "x": 706.5,
+          "y": 516.75
+        },
+        "control": {
+          "control1": {
+            "x": 1.00,
+            "y": 0.37
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": -15.45,
+        "end": 30,
+        "control": {
+          "control1": {
+            "x": 0.93,
+            "y": 1.29
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.37,
+            "y": -0.23
+          },
+          "control2": {
+            "x": 0.83,
+            "y": 0.83
+          }
+        }
+      },
+      "startDelay": 2367,
+      "duration": 333
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 572.5,
+          "y": 537.25
+        },
+        "end": {
+          "x": 511.99,
+          "y": 358.75
+        },
+        "control": {
+          "control1": {
+            "x": 0.13,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.04,
+            "y": 0.68
+          }
+        }
+      },
+      "rotation": {
+        "start": 0,
+        "end": -71.45,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.12,
+            "y": 0.84
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.04,
+            "y": 0.40
+          }
+        }
+      },
+      "startDelay": 67,
+      "duration": 333
+    },
+    {
+      "position": {
+        "start": {
+          "x": 511.99,
+          "y": 358.75
+        },
+        "end": {
+          "x": 432.5,
+          "y": 511.76
+        },
+        "control": {
+          "control1": {
+            "x": 1.00,
+            "y": 0.36
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": -71.45,
+        "end": -130,
+        "control": {
+          "control1": {
+            "x": 1.0,
+            "y": 0.22
+          },
+          "control2": {
+            "x": 0.92,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.37,
+            "y": -0.23
+          },
+          "control2": {
+            "x": 0.83,
+            "y": 0.83
+          }
+        }
+      },
+      "startDelay": 67,
+      "duration": 333
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 572.5,
+          "y": 537.25
+        },
+        "end": {
+          "x": 492.99,
+          "y": 358.75
+        },
+        "control": {
+          "control1": {
+            "x": 0.13,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.04,
+            "y": 0.69
+          }
+        }
+      },
+      "rotation": {
+        "start": 0,
+        "end": -53.45,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.12,
+            "y": 0.79
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.04,
+            "y": 0.40
+          }
+        }
+      },
+      "startDelay": 433,
+      "duration": 333
+    },
+    {
+      "position": {
+        "start": {
+          "x": 492.99,
+          "y": 358.75
+        },
+        "end": {
+          "x": 420,
+          "y": 516.75
+        },
+        "control": {
+          "control1": {
+            "x": 1.00,
+            "y": 0.36
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": -53.45,
+        "end": -130,
+        "control": {
+          "control1": {
+            "x": 1.0,
+            "y": 0.17
+          },
+          "control2": {
+            "x": 0.92,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.37,
+            "y": -0.23
+          },
+          "control2": {
+            "x": 0.83,
+            "y": 0.83
+          }
+        }
+      },
+      "startDelay": 433,
+      "duration": 333
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 596,
+          "y": 559.75
+        },
+        "end": {
+          "x": 533.49,
+          "y": 358.75
+        },
+        "control": {
+          "control1": {
+            "x": 0.23,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": 0.67
+          }
+        }
+      },
+      "rotation": {
+        "start": 0,
+        "end": -62.45,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.12,
+            "y": 0.82
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.19,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": 0.30
+          }
+        }
+      },
+      "startDelay": 867,
+      "duration": 333
+    },
+    {
+      "position": {
+        "start": {
+          "x": 533.49,
+          "y": 358.75
+        },
+        "end": {
+          "x": 480.5,
+          "y": 557
+        },
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": 0.36
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": -62.45,
+        "end": -130,
+        "control": {
+          "control1": {
+            "x": 1.0,
+            "y": 0.19
+          },
+          "control2": {
+            "x": 0.92,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": -0.74
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "startDelay": 867,
+      "duration": 333
+    }
+  ],
+  [
+    {
+      "position": {
+        "start": {
+          "x": 596,
+          "y": 559.75
+        },
+        "end": {
+          "x": 515.49,
+          "y": 358.75
+        },
+        "control": {
+          "control1": {
+            "x": 0.23,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": 0.68
+          }
+        }
+      },
+      "rotation": {
+        "start": 0,
+        "end": -23.45,
+        "control": {
+          "control1": {
+            "x": 0.33,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.12,
+            "y": 0.52
+          }
+        }
+      },
+      "alpha": {
+        "start": 0,
+        "end": 1,
+        "control": {
+          "control1": {
+            "x": 0.19,
+            "y": 0.00
+          },
+          "control2": {
+            "x": 0.02,
+            "y": 0.30
+          }
+        }
+      },
+      "startDelay": 1900,
+      "duration": 333
+    },
+    {
+      "position": {
+        "start": {
+          "x": 515.49,
+          "y": 358.75
+        },
+        "end": {
+          "x": 446.5,
+          "y": 557
+        },
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": 0.35
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "rotation": {
+        "start": -23.45,
+        "end": -130,
+        "control": {
+          "control1": {
+            "x": 1.0,
+            "y": 0.12
+          },
+          "control2": {
+            "x": 0.92,
+            "y": 1.00
+          }
+        }
+      },
+      "alpha": {
+        "start": 1,
+        "end": 0,
+        "control": {
+          "control1": {
+            "x": 0.98,
+            "y": -0.74
+          },
+          "control2": {
+            "x": 0.90,
+            "y": 1.00
+          }
+        }
+      },
+      "startDelay": 1900,
+      "duration": 333
+    }
+  ]
+]

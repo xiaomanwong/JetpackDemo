@@ -10,6 +10,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.OnBackPressedDispatcher
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.drawable.toBitmapOrNull
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import com.example.lib_annotation.FragmentDestination
@@ -68,23 +70,42 @@ class CustomFragment : Fragment() {
                 .navigate(getDestination("main/tabs/home/curtain")?.id!!)
         }
 
-        root.btn_viewpager.setOnClickListener {
-//            (requireActivity() as MainActivity).getNavController()
-//                .navigate(getDestination("main/tabs/home/view_pager")?.id!!)
-            try {
-                val fragment = ViewPagerFragment.newInstance()
-                activity?.supportFragmentManager?.beginTransaction()
-                    ?.replace(android.R.id.content,fragment)
-                    ?.commitAllowingStateLoss()
-
-
-
-
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+        root.btn_emoji_flower.setOnClickListener {
+            (requireActivity() as MainActivity).getNavController()
+                .navigate(getDestination("main/tabs/home/emoji_flower")?.id!!)
         }
 
+        root.btn_flow_layout.setOnClickListener {
+            (requireActivity() as MainActivity).getNavController()
+                .navigate(getDestination("main/tabs/home/flow_layout")?.id!!)
+        }
+
+        root.btn_viewpager.setOnClickListener {
+            (requireActivity() as MainActivity).getNavController()
+                .navigate(getDestination("main/tabs/home/view_pager")?.id!!)
+
+
+
+//            try {
+//                val fragment = ViewPagerFragment.newInstance()
+//                activity?.supportFragmentManager?.beginTransaction()
+//                    ?.replace(android.R.id.content,fragment)
+//                    ?.commitAllowingStateLoss()
+//
+//
+//
+//
+//            } catch (e: Exception) {
+//                e.printStackTrace()
+//            }
+            }
+
+            root.tv_chat_template_name.isSelected = true
+
+            root.user_online_status_header_view.headerProfile =
+                ResourcesCompat.getDrawable(resources, R.drawable.ic_launcher_background, null)
+                    ?.toBitmapOrNull()
+            root.user_online_status_header_view.setOnlineStatus(true)
         return root
     }
     private val TAG = "CustomFragment"

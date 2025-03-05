@@ -30,6 +30,7 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
 
     <queries>
@@ -44,6 +45,9 @@
         <package android:name="com.twitter.android" />
 
         <provider android:authorities="com.facebook.orca.provider.PlatformProvider" />
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
     </queries>
 
     <application
@@ -82,12 +86,31 @@
         <activity android:name=".TransitionPendingActivity2" />
         <activity android:name=".ui.sofa.IndexableListViewActivity" />
         <activity android:name=".DoubleFlowActivity" />
-        <activity android:name=".VideoPlayActivity" />
+<!--        <activity android:name=".VideoPlayActivity" />-->
+        <activity android:name=".ui.SpeechRecognizersActivity" />
+        <activity android:name=".custom_page.TransformPageAnimatorActivity" />
 
         <!--            android:theme="@style/AppTheme.FullScreen"-->
         <!--            android:theme="@style/Theme.AppCompat"-->
 
         <!--        android:theme="@style/AppTheme.FullScreen"-->
+
+<!--        <service android:name="com.google.android.gms.speech.RecognitionService"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.speech.RecognitionService" />-->
+<!--            </intent-filter>-->
+
+<!--        </service>-->
+
+        <!-- Prompt Google Play services to install the backported photo picker module -->
+        <service android:name="com.google.android.gms.metadata.ModuleDependencies" android:enabled="false" android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES" />
+            </intent-filter>
+
+            <meta-data android:name="photopicker_activity:0:required" android:value="" />
+        </service>
     </application>
 
 </manifest>
